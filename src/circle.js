@@ -410,10 +410,7 @@
 			this.digestId = 0;
 			this.serviceMap = {};
 			this.behaviorRegistry = {};
-			return this.wc;
 		}
-
-		
 
 		stackTrace() {
 			var err = new Error();

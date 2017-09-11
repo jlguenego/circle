@@ -28,5 +28,6 @@ module.exports = {
 		Promise: true,
 		Proxy: true,
 		d3: true,
+		o: true,
 	}
 };
