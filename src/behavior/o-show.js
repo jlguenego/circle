@@ -15,5 +15,5 @@
             }
         }
     }
-    OShow.register();
+    OShow.reg;
 })();

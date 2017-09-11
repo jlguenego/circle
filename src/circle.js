@@ -235,7 +235,7 @@
 		static get tag() {
 			return camel2Spinal(this.name);
 		}
-		static register() {
+		static get reg() {
 			window.customElements.define(this.tag, this);
 		}
 		constructor() {
@@ -372,7 +372,7 @@
 		static get tag() {
 			return camel2Spinal(this.name);
 		}
-		static register() {
+		static get reg() {
 			window.circle.behaviorRegistry[this.tag] = this;
 		}
 
@@ -449,5 +449,5 @@
 			this.root.innerHTML = str;
 		}
 	}
-	CircleExpr.register();
+	CircleExpr.reg;
 })();

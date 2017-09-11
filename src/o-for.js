@@ -33,7 +33,7 @@
 		}
 	}
 
-	OFor.register();
+	OFor.reg;
 
 	class OForItem extends circle.Element {
 
@@ -60,5 +60,5 @@
 		}
 	}
 
-	OForItem.register();
+	OForItem.reg;
 })();
