@@ -27,8 +27,8 @@ Done !
 By using *circle*, you will have less boilerplate code than in "vanilla" JS:
 - Tag name is automatically calculated from the class name: the class `HelloName` (PascalCase) corresponds to the tag element `hello-name` (spinal-case).
 - No long name like `window.customElements.define('app-drawer', AppDrawer);`. Just `AppDrawer.reg;`.
-- Template are automatically using the Shadow DOM.
-- Template understand expression (same syntax as AngularJS/Angular). At that time, expression are just variable replacement. No more, no less. `{{name}}` ok. `{{name | uppercase}}` not ok (may be in future version).
+- Template is automatically using the Shadow DOM.
+- Template understands expression (same syntax as AngularJS/Angular). At that time, expression are just variable replacement. No more, no less. `{{name}}` ok. `{{name | uppercase}}` not ok (may be in future version).
 
 ### Using a web component
 
