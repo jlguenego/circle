@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+	<title>Hello World Component</title>
+	<link rel="import" href="hello-name.component.html">
+</head>
+
+<body>
+	<hello-name name="Maïté"></hello-name><br>
+	<button onclick="set('Jean-Louis')">Hello Monsieur</button>
+	<button onclick="set('Maïté')">Hello Madame</button>
+	<script>
+	function set(name) {
+		document.querySelector('hello-name').setAttribute('name', name);
+	}
+	</script>
+</body>
+
+</html>

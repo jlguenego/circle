@@ -96,7 +96,7 @@
 		}
 	}
 
-	ORepeat.register();
+	ORepeat.reg;
 
 	class ORepeatItem extends circle.Element {
 
@@ -127,6 +127,6 @@
 		}
 	}
 
-	ORepeatItem.register();
+	ORepeatItem.reg;
 
 })();

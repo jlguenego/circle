@@ -1,4 +1,4 @@
-(function () {
+(function() {
 	'use strict';
 
 	if (window.circle) {
@@ -24,7 +24,7 @@
 	}
 
 	function spinal2Camel(str) {
-		return str.replace(/(-[a-z])/g, function ($1) { return $1.toUpperCase().replace('-', ''); });
+		return str.replace(/(-[a-z])/g, function($1) { return $1.toUpperCase().replace('-', ''); });
 	}
 
 	function dirname(absoluteKey) {
@@ -181,6 +181,7 @@
 			for (let attr in this.scope) {
 				if (this.scope[attr] === DBNotation.scope.LITTERAL) {
 					this.elt.setModel(spinal2Camel(attr), this.elt.getAttribute(attr));
+
 					continue;
 				}
 
@@ -211,7 +212,9 @@
 		digest(key) {
 			if (key in this.scope) {
 				if (this.scope[key] === DBNotation.scope.LITTERAL) {
-					this.elt.setAttribute(key, this.elt.getModel(spinal2Camel(key)));
+					if (this.elt.getAttribute(key) !== this.elt.getModel(spinal2Camel(key))) {
+						this.elt.setAttribute(key, this.elt.getModel(spinal2Camel(key)));
+					}
 				}
 				if (this.scope[key] === DBNotation.scope.TWO_WAYS) {
 					const modelVar = this.getModelVar(key);
@@ -222,7 +225,7 @@
 		}
 	}
 
-	class CircleProxyType { }
+	class CircleProxyType {}
 
 	/**
 	 * A component in circle must extends the circle.Element class
@@ -235,8 +238,20 @@
 		static get tag() {
 			return camel2Spinal(this.name);
 		}
-		static register() {
+		static get reg() {
 			window.customElements.define(this.tag, this);
+		}
+
+		static get observedAttributes() {
+			return this._oa;
+		}
+
+		static set oa(value) {
+			this._oa = value;
+		}
+
+		attributeChangedCallback(attr, oldValue, newValue) {
+			this.setModel(spinal2Camel(attr), newValue);		
 		}
 		constructor() {
 			super();
@@ -279,7 +294,7 @@
 						return true;
 					},
 
-					getPrototypeOf: function (key) {
+					getPrototypeOf: function(key) {
 						return CircleProxyType.prototype;
 					}
 				};
@@ -295,6 +310,7 @@
 		getParent() {
 			return this.getRootNode().host;
 		}
+
 		connectedCallback() {
 			this.root = this.root || this.attachShadow({
 				// see https://developers.google.com/web/fundamentals/architecture/building-components/shadowdom
@@ -325,7 +341,7 @@
 			}
 		}
 
-		render() { }
+		render() {}
 
 		onDigest(key) {
 			this.databinding.onDigest(key);
@@ -372,7 +388,7 @@
 		static get tag() {
 			return camel2Spinal(this.name);
 		}
-		static register() {
+		static get reg() {
 			window.circle.behaviorRegistry[this.tag] = this;
 		}
 
@@ -393,7 +409,7 @@
 			return DBNotation.extractModelVar(this.elt.getAttribute(attr));
 		}
 
-		onDigest() { }
+		onDigest() {}
 	}
 
 	/**
@@ -417,26 +433,24 @@
 			return err.stack;
 		}
 
-		wc(element, tag) {
-			if (tag === undefined) {
-				return element.getRootNode().host;
-			}
-			let host = element.getRootNode().host;
-			while (host.constructor.tag !== tag) {
-				host = host.getRootNode().host;
-				if (!host) {
-					throw new Error('circle.wc: cannot find a component with tag ' + tag);
-				}
-			}
-			return host;
-		}
-
 		set(str, service) { this.serviceMap[str] = service; }
-
 		get(str) { return this.serviceMap[str]; }
 	}
-	window.circle = new Circle();
-	window.o = window.circle.wc;
+	window.o = function(element, tag) {
+		if (tag === undefined) {
+			return element.getRootNode().host;
+		}
+		let host = element.getRootNode().host;
+		while (host.constructor.tag !== tag) {
+			host = host.getRootNode().host;
+			if (!host) {
+				throw new Error('circle.wc: cannot find a component with tag ' + tag);
+			}
+		}
+		return host;
+	};
+	Object.setPrototypeOf(window.o, new Circle());
+	window.circle = window.o;
 
 	/**
 	 * CircleExpr is the component that allows displaying expressions.
@@ -451,5 +465,5 @@
 			this.root.innerHTML = str;
 		}
 	}
-	CircleExpr.register();
+	CircleExpr.reg;
 })();

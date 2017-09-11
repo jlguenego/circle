@@ -6,5 +6,5 @@
 			this.root.innerHTML = (this.model.cond) ? '<slot></slot>' : '';
 		}
 	}
-	OIf.register();
+	OIf.reg;
 })();

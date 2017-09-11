@@ -17,6 +17,8 @@ Then, in your HTML file, import the circle HTML file.
 <link rel="import" href="../node_modules/@jlguenego/circle/src/circle.html">
 ```
 
+Done.
+
 
 Table of Content
 ================
