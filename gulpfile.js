@@ -1,8 +1,13 @@
 const gulp = require('gulp');
+const ghPages = require('gulp-gh-pages');
 const eslint = require('gulp-eslint');
 const debug = require('gulp-debug');
 const gulpIf = require('gulp-if');
 
+
+const base = {
+	deploy: ['./src/**/*', './examples/**/*', 'index.html']
+}
 
 gulp.task('default', ['eslint']);
 
@@ -30,6 +35,11 @@ gulp.task('eslint-fix', function() {
 		}))
 		.pipe(eslint.formatEach())
 		.pipe(gulpIf(isFixed, gulp.dest('.')));
+});
+
+gulp.task('deploy', function() {
+	return gulp.src(base.deploy)
+		.pipe(ghPages({ cacheDir: '../.publish_boof'}));
 });
 
 
