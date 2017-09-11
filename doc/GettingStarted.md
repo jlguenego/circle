@@ -32,7 +32,7 @@ By using *circle*, you will have less boilerplate code than in "vanilla" JS:
 
 ### Using a web component
 
-Just put it in the code, anywhere in the `<body>`. Or inside another web component. Web component can embed other web components. So an web app is like a tree of web components (like Angular, React, etc.). The root of the tree is called the *root web component*.
+Just put it in the code, anywhere in the `<body>`. Or inside another web component. Web component can embed other web components. So a web app is like a tree of web components (like Angular, React, etc.). The root of the tree is called the *root web component*.
 
 For instance:
 
