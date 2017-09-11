@@ -50,14 +50,42 @@ A circle component is equiped with a model, which is a fully observable object.
 
 By specifying an attribute `my-key="my-value"` to a circle component, we add to the circle component model the property `myKey` which contains `my-value`.
 
-If the attribute value changes, then the model value change and is propagated inside the circle component. 
+If the attribute value changes, then the model value change and is propagated inside the circle component.
 
 Let us check this fact !
 
 
 Hello Madame Monsieur
-----------------------------
+---------------------
 
+- [Read the code](../examples/02-hello-madame-monsieur/)
+- [Run it](https://jlguenego.github.io/circle/examples/02-hello-madame-monsieur/)
+
+
+Hmmm. Almost... It will work only if we added the attribute name to the observed attribute array (yes, it is because of the web component architecture limitation).
+So we would absolutely need to do something like `HelloName.oa = ['name']`.
+
+```
+<template id="hello-name">
+    <h1>Hello {{name}} !</h1>
+</template>
+<script>
+    class HelloName extends o.Element {}
+    HelloName.oa = ['name'];
+    HelloName.reg;
+</script>
+```
+
+Note that with the "Vanilla" JS, it would be:
+
+```
+static get observedAttributes() {return ['name']; }
+```
+
+And we have simplified to:
+```
+HelloName.oa = ['name'];
+```
 
 
 
