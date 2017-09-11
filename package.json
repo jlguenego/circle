@@ -1,13 +1,14 @@
 {
-  "name": "circle",
+  "name": "@jlguenego/circle",
   "version": "0.0.1",
+  "private": false,
   "description": "",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "keywords": [],
-  "author": "",
+  "keywords": ["webcomponents", "javascript", "navigator"],
+  "author": "Jean-Louis GUENEGO",
   "license": "ISC",
   "devDependencies": {
     "express": "^4.15.4",
