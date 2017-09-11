@@ -1,6 +1,10 @@
 (function () {
 	'use strict';
 
+	if (window.circle) {
+		console.warning('circle already loaded');
+	}
+
 	// Firefox and Edge does not understand well currentScript after init.
 	// So we keep this pointer for later.
 	const doc = document.currentScript.ownerDocument;

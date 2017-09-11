@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>My First Web Component</title>
+	<link rel="import" href="../../src/circle.html">
+</head>
+
+<body>
+	<template id="hello-world">
+<h1>Hello World !</h1>
+(Author: Jean-Louis Guénégo)
+	</template>
+	<script>
+	class HelloWorld extends circle.Element {}
+	HelloWorld.register();
+	</script>
+</body>
+
+</html>
