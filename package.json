@@ -15,6 +15,7 @@
   "author": "Jean-Louis GUENEGO",
   "license": "ISC",
   "devDependencies": {
+    "eslint-config-google": "^0.9.1",
     "express": "^4.15.4",
     "gulp": "^3.9.1",
     "gulp-debug": "^3.1.0",
