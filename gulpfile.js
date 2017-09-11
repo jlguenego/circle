@@ -4,15 +4,11 @@ const eslint = require('gulp-eslint');
 const debug = require('gulp-debug');
 const gulpIf = require('gulp-if');
 
-
-const base = {
-	deploy: ['./src/**/*', './examples/**/*', 'index.html']
-}
-
 gulp.task('default', ['eslint']);
 
 const path = {
-	lint: ['**/*.js', '!node_modules/**/*', '!**/*.min.js']
+	lint: ['**/*.js', '!node_modules/**/*', '!**/*.min.js'],
+	deploy: ['./**/*', '!./node_modules/**/*', '!package*', '!*.js'],
 };
 
 
@@ -38,7 +34,7 @@ gulp.task('eslint-fix', function() {
 });
 
 gulp.task('deploy', function() {
-	return gulp.src(base.deploy)
+	return gulp.src(path.deploy)
 		.pipe(ghPages({ cacheDir: '../.publish_boof'}));
 });
 
