@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>My First Web Component</title>
+	<link rel="import" href="../../src/circle.html">
+</head>
+
+<body>
+	<template id="hello-name">
+<h1>Hello {{name}} !</h1>
+	</template>
+	<script>
+	class HelloName extends o.Element {
+		static get observedAttributes() {
+			return ['name'];
+		}
+	}
+	HelloName.reg;
+	</script>
+</body>
+
+</html>
