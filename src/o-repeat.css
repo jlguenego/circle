@@ -1,0 +1,36 @@
+o-repeat-item {
+	display: block;
+	animation: fade-in 0.5s forwards;
+	background-color: #eee;
+
+}
+
+@keyframes fade-in {
+	from {
+		opacity: 0;
+		height: 0;
+		background-color: red;
+	}
+	to {
+		opacity: 1;
+		height: 30px;
+		background-color: #eee;
+	}
+}
+
+@keyframes fade-out {
+	from {
+		opacity: 1;
+		height: 30px;
+		background-color: #eee;
+	}
+	to {
+		opacity: 0;
+		height: 0;
+		background-color: transparent;
+	}
+}
+
+.leaving {
+	animation: fade-out 0.5s forwards;
+}
