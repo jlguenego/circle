@@ -242,8 +242,15 @@
 			window.customElements.define(this.tag, this);
 		}
 
+		static get observedAttributes() {
+			return this._oa;
+		}
+
+		static set oa(value) {
+			this._oa = value;
+		}
+
 		attributeChangedCallback(attr, oldValue, newValue) {
-			console.log('%s attributeChangedCallback', this.constructor.name, arguments);
 			this.setModel(spinal2Camel(attr), newValue);		
 		}
 		constructor() {
