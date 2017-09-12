@@ -1,26 +1,19 @@
-<!DOCTYPE html>
-<html>
-
-<head>
-	<link rel="import" href="star-input.component.html">	
-</head>
-
-<body>
-	<template id="my-app">
-		<star-input note="[[myNote]]"></star-input><br>
-		<button onclick="o(this).model.myNote++">Increment</button>
-		<button onclick="o(this).model.myNote--">Decrement</button>
-		<div>myNote = {{myNote}}</div>
-	</template>
-	<script>
-		class MyApp extends o.Element {
-			constructor() {
-				super();
-				this.model.myNote = 4;
-			}
+<link rel="import" href="../../src/circle.html">
+<template id="my-app">
+	<promise-button promise="o(this).doSomething()">Click me !</promise-button><br>
+</template>
+<script>
+	class MyApp extends o.Element {
+		doSomething() {
+			console.log('start');
+			return new Promise((fulfill, reject) => {
+				setTimeout(() => {
+					console.log('end');
+					fulfill();
+				}, 2000);
+			});
 		}
-		MyApp.reg;
-	</script>
-</body>
-
-</html>
+	}
+	MyApp.reg;
+</script>
+<link rel="import" href="promise-button.component.html">
