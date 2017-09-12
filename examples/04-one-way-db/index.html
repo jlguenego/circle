@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+	<title>Circle JS library - Example on Model</title>
+	<link rel="import" href="person-detail.component.html">
+	<style>
+		body {
+			line-height: 2em;
+			color: blue;
+		}
+
+		li {
+			background-color: #eee;
+		}
+	</style>
+</head>
+
+<body>
+	<my-app></my-app>
+	<script>
+		class MyApp extends o.Element {
+			constructor() {
+				super();
+				this.model.firstname = 'Maïté';
+			}
+		}
+		MyApp.reg;
+	</script>
+	<template id="my-app">
+		<hello-name name="[firstname]"></hello-name>
+	</template>
+</body>
+
+</html>
