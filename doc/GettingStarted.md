@@ -1,9 +1,7 @@
 Getting Started
 ===============
 
-Go to see the examples ([sources](../examples/), [run](https://jlguenego.github.io/circle/examples/index.html)) directory to grab the code and read it.
-
-If you want to quickly run them, you can execute them directly from the [official circle website](https://jlguenego.github.io/circle/).
+You can see the examples ([sources](../examples/), [run](https://jlguenego.github.io/circle/examples/index.html)).
 
 Ok, let's go !
 
