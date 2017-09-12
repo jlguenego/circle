@@ -360,7 +360,10 @@
 				parseBehavior(this.root);
 			}
 			this.databinding.connectedCallBack();
+			this.init();
 		}
+
+		init() {}
 
 		askRendering() {
 			if (!this.isRenderingAsked) {
