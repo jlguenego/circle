@@ -226,6 +226,20 @@ connectedCallback() {
 }
 ```
 
+That's it. You know all what is important about databinding.
+
+Now let's go to the behaviors (it's like angular attribute directive).
+
+07 - Behaviors
+--------------
+
+- [Read the code](../examples/07-behaviors/)
+- [Run it](https://jlguenego.github.io/circle/examples/07-behaviors/index.html)
+
+
+
+
+
 
 
 
