@@ -1,11 +1,11 @@
 <link rel="import" href="../../src/circle.html">
 <template id="my-app">
-	<promise-button promise="o(this).doSomething()">Click me !</promise-button><br>
+	<promise-button promise="&o(this).doSomething()">Click me !</promise-button><br>
 </template>
 <script>
 	class MyApp extends o.Element {
 		doSomething() {
-			console.log('start');
+			console.log('start', arguments);
 			return new Promise((fulfill, reject) => {
 				setTimeout(() => {
 					console.log('end');
