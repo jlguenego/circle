@@ -204,7 +204,7 @@ Notation easy to remember:
 
 In the example, there is a circle component called `promise-button`. It is a button that becomes disabled during the time that the blocking call (promise) it executes is not finished to run. After running, the button becomes enabled and thus ready to be called again.
 
-There is a event databinding on this button: `<promise-button promise="&o(this).doSomething()">Click me !</promise-button>`
+There is a event databinding on this button: `<promise-button promise="&o(this).doSomething()">Click me!</promise-button>`
 
 Look at the `&` before the expression.
 
