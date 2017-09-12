@@ -174,6 +174,47 @@ As well you can see the `o(this)`. It is a quick way to retrieve the parent circ
 
 
 
+05 - 2 Ways databinding
+-------------------------
+
+- [Read the code](../examples/05-two-ways-db/)
+- [Run it](https://jlguenego.github.io/circle/examples/05-two-ways-db/index.html)
+
+This example shows two circle components:
+- `my-app`: the root circle component (parent)
+- `star-input`: a circle component that takes one attribute `note`.
+
+Here we pass to the `star-input` circle component the `my-app` model variable called `myNote`. Also we specify we want it in 2-ways databinding. So we put `[[]]`:
+
+```
+<star-input note="[[myNote]]"></star-input>
+```
+
+Notation easy to remember:
+- 1-way databinding: one square bracket `[]`.
+- 2-ways databinding: two squares bracket `[[]]`.
+- Interpolation databinding: no square bracket.
+- Event databinding: see next. `&`
+
+06 - Event databinding
+----------------------
+
+- [Read the code](../examples/06-event-db/)
+- [Run it](https://jlguenego.github.io/circle/examples/06-event-db/index.html)
+
+In the example, there is a circle component called `promise-button`. It is a button that becomes disabled during the time that the blocking call (promise) it executes is not finished to run. After running, the button becomes enabled and thus ready to be called again.
+
+There is a event databinding on this button: `<promise-button promise="&o(this).doSomething()">Click me !</promise-button>`
+
+Look at the `&` before the expression.
+
+The event databinding expression is executed with the circle element context: `this` is the `promise-button` circle web component.
+
+
+
+
+
+
 
 
 

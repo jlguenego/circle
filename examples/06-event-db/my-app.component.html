@@ -1,0 +1,19 @@
+<link rel="import" href="../../src/circle.html">
+<template id="my-app">
+	<promise-button promise="&o(this).doSomething()">Click me !</promise-button><br>
+</template>
+<script>
+	class MyApp extends o.Element {
+		doSomething() {
+			console.log('start something (wait for 2s)');
+			return new Promise((fulfill, reject) => {
+				setTimeout(() => {
+					console.log('end something');
+					fulfill();
+				}, 2000);
+			});
+		}
+	}
+	MyApp.reg;
+</script>
+<link rel="import" href="promise-button.component.html">

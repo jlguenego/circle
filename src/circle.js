@@ -129,6 +129,10 @@
 			return value.match(/^\[.*\]$/);
 		}
 
+		static isEvent(value) {
+			return value.match(/^&/);
+		}
+
 		/**
 		 * removes the [] or [[]].
 		 * 
@@ -143,11 +147,16 @@
 			return expr;
 		}
 
+		static extractEventExpr(value) {
+			return value.substring(1);
+		}
+
 		static get scope() {
 			return {
 				TWO_WAYS: '=',
 				ONE_WAY: '<',
-				LITTERAL: '@'
+				LITTERAL: '@',
+				EVENT: '&'
 			};
 		}
 	}
@@ -166,6 +175,8 @@
 					this.scope[key] = DBNotation.scope.TWO_WAYS;
 				} else if (DBNotation.isOneWay(value)) {
 					this.scope[key] = DBNotation.scope.ONE_WAY;
+				} else if (DBNotation.isEvent(value)) {
+					this.scope[key] = DBNotation.scope.EVENT;
 				} else {
 					this.scope[key] = DBNotation.scope.LITTERAL;
 				}
@@ -181,7 +192,11 @@
 			for (let attr in this.scope) {
 				if (this.scope[attr] === DBNotation.scope.LITTERAL) {
 					this.elt.setModel(spinal2Camel(attr), this.elt.getAttribute(attr));
+					continue;
+				}
 
+				if (this.scope[attr] === DBNotation.scope.EVENT) {
+					this.elt.setEvent(spinal2Camel(attr), DBNotation.extractEventExpr(this.elt.getAttribute(attr)));
 					continue;
 				}
 
@@ -300,6 +315,7 @@
 				};
 			}
 
+			this.event = {};
 			this.model = new Proxy({}, handler());
 			this.digestRegistry = {};
 			this.templateSelector = '#' + this.constructor.tag;
@@ -380,6 +396,10 @@
 			}
 			const str = 'this.model.' + absoluteKey + ' = value';
 			eval(str);
+		}
+
+		setEvent(attr, value) {
+			this.event[attr] = () => eval(value);
 		}
 	}
 
