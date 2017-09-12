@@ -7,18 +7,17 @@
 			this.button = this.root.querySelector('button');
 		}
 		runPromise() {
-			console.log('button clicked, start promise');
+			console.log('button clicked, start promise (button disable)');
 			this.button.disabled = true;
 			const promise = this.event.promise();
 			if (!(promise instanceof Promise)) {
 				throw Error('need a promise');
 			}
-			console.log('promise', promise);
 			promise.then(() => {
-				console.log('promise ended with success.');
+				console.log('promise ended with success. (button enable)');
 				this.button.disabled = false;
 			}).catch(() => {
-				console.log('promise ended with error.');
+				console.log('promise ended with error. (button enable)');
 				this.button.disabled = false;
 			});
 		}

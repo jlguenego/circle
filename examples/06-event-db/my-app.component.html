@@ -5,10 +5,10 @@
 <script>
 	class MyApp extends o.Element {
 		doSomething() {
-			console.log('start', arguments);
+			console.log('start something (wait for 2s)');
 			return new Promise((fulfill, reject) => {
 				setTimeout(() => {
-					console.log('end');
+					console.log('end something');
 					fulfill();
 				}, 2000);
 			});
