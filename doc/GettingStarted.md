@@ -174,7 +174,11 @@ As well you can see the `o(this)`. It is a quick way to retrieve the parent circ
 
 
 
+05 - 2 Ways databinding
+-------------------------
 
+- [Read the code](../examples/05-two-ways-db/)
+- [Run it](https://jlguenego.github.io/circle/examples/05-two-ways-db/index.html)
 
 
 
