@@ -194,13 +194,21 @@ Notation easy to remember:
 - 1-way databinding: one square bracket `[]`.
 - 2-ways databinding: two squares bracket `[[]]`.
 - Interpolation databinding: no square bracket.
-- Event databinding: see next.
+- Event databinding: see next. `&`
 
 06 - Event databinding
 ----------------------
 
 - [Read the code](../examples/06-event-db/)
 - [Run it](https://jlguenego.github.io/circle/examples/06-event-db/index.html)
+
+In the example, there is a circle component called `promise-button`. It is a button that becomes disabled during the time that the blocking call (promise) it executes is not finished to run. After running, the button becomes enabled and thus ready to be called again.
+
+There is a event databinding on this button: `<promise-button promise="&o(this).doSomething()">Click me !</promise-button>`
+
+Look at the `&` before the expression.
+
+The event databinding expression is executed with the circle element context: `this` is the `promise-button` circle web component.
 
 
 
