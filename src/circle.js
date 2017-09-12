@@ -369,10 +369,9 @@
 			if (k && (typeof this.getModel(k) !== 'object')) {
 				this.setModel(k, {});
 			}
-			const str = 'this.model.' + absoluteKey;
-			// console.log('getModel str', str);
-			const result = eval(str);
-			return result;
+			const prefix = (absoluteKey.startsWith('[')) ? 'this.model' : 'this.model.';
+			const str = prefix + absoluteKey;
+			return eval(str);
 		}
 
 		setModel(absoluteKey, value) {

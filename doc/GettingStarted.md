@@ -44,7 +44,7 @@ Here we have a **interpolation databinding**. The term comes from AngularJS/Angu
 
 Each web component defined with *circle* is called a **circle component**.
 
-A circle component is equiped with a model, which is a fully observable object.
+A circle component is equiped with a **model**, which is a fully observable object.
 
 By specifying an attribute `my-key="my-value"` to a circle component, we add to the circle component model the property `myKey` which contains `my-value`.
 
