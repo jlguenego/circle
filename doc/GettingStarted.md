@@ -147,6 +147,7 @@ Note: CSS styles are local. In this example, the `li` settings from above the co
 **Property databinding** (also called **one-way databinding**) consists to pass a model variable from a parent circle component to a child circle component.
 
 There is a specific notation: the property variable must be passed within square brackets `[]`.
+
 Here we pass the model variable `firstname`: so `<hello-name name="[firstname]"></hello-name>`.
 
 
