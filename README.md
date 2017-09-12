@@ -34,7 +34,8 @@ Why Circle ?
 ============
 
 A circle has no angle, is not [angular](https://angular.io/)... ;)
-It is more an alternative of [Polymer](https://www.polymer-project.org/)
+
+It would be more an alternative of [Polymer](https://www.polymer-project.org/)
 
 
 
