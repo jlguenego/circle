@@ -210,7 +210,21 @@ Look at the `&` before the expression.
 
 The event databinding expression is executed with the circle element context: `this` is the `promise-button` circle web component.
 
-**Note on boilerplate code:** instead of using `connectedCallback`, we prefer using `init`. Shorter. Clearer. And we don't need to call the `super.connectedCallback()`
+**Note on boilerplate code:** instead of using `connectedCallback`, we prefer using `init`. Shorter. Clearer. And we don't need to call the `super.connectedCallback()`.
+
+Thus we have now:
+```
+init() {
+	this.button = this.root.querySelector('button');
+}
+```
+instead of
+```
+connectedCallback() {
+	super.connectedCallback();
+	this.button = this.root.querySelector('button');
+}
+```
 
 
 
