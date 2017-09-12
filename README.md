@@ -2,9 +2,10 @@ Circle
 ======
 
 Purpose: 
-- Using the web components technologies in projects.
-- Reducing boilerplate code
-- Doing approximatively what Angular does without its size.
+- Using the web components technologies in projects, and the other very recent web API.
+- Reducing boilerplate code to something very simple for the developer.
+- Providing templating, observable model, with the 4 kinds of databinding, Dependancy Injection.
+- Library size very small.
 
 Installation
 ------------
@@ -28,6 +29,19 @@ Table of Content
 - [API Reference](./doc/APIReference.md)
 - [Examples](./doc/Examples.md)
 
+
+Why Circle ?
+============
+
+A circle has no angle, is not [angular](https://angular.io/)... ;)
+It is more an alternative of [Polymer](https://www.polymer-project.org/)
+
+
+
+Author
+======
+Just for fun.
+Jean-Louis GUENEGO, @2017.
 
 
 
