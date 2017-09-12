@@ -170,6 +170,8 @@ Here we pass the model variable `firstname`: so `<hello-name name="[firstname]">
 </body>
 ```
 
+As well you can see the `o(this)`. It is a quick way to retrive the parent circle component from anywhere, particularely from a on[event] attribute.
+
 
 
 
