@@ -6,7 +6,7 @@ Official web site: (https://jlguenego.github.io/circle/)
 Purpose: 
 - Using the web components technologies in projects, and the other very recent web API.
 - Reducing boilerplate code to something very simple for the developer.
-- Providing templating, observable model, with the 4 kinds of databinding, Dependancy Injection.
+- Providing templating, observable model, with the 4 kinds of databinding (1-way, 2-way, interpolation, event), Dependancy Injection.
 - Library size very small.
 
 Installation
