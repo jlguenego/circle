@@ -1,9 +1,7 @@
-(function() {
+(function () {
 	'use strict';
 
-	if (window.circle) {
-		console.warning('circle already loaded');
-	}
+	if (window.circle) { console.warning('circle already loaded'); }
 
 	// Firefox and Edge does not understand well currentScript after init.
 	// So we keep this pointer for later.
@@ -24,7 +22,7 @@
 	}
 
 	function spinal2Camel(str) {
-		return str.replace(/(-[a-z])/g, function($1) { return $1.toUpperCase().replace('-', ''); });
+		return str.replace(/(-[a-z])/g, function ($1) { return $1.toUpperCase().replace('-', ''); });
 	}
 
 	function dirname(absoluteKey) {
@@ -42,8 +40,7 @@
 	 * @returns 
 	 */
 	function parseAbsoluteKey(key) {
-		const result = key.replace(/\.([^.]+)/g, '[\'$1\']');
-		return result;
+		return key.replace(/\.([^.]+)/g, '[\'$1\']');
 	}
 
 	/**
@@ -101,8 +98,9 @@
 	 * Class in charge of managing the databinding notation:
 	 * [] for one way databinding
 	 * [[]] for two way databinding
+	 * & for event databinding
 	 * For internal scope notation (Angular like: '@' for litteral, '<' for simple DB,
-	 * '=' for 2 way DB)
+	 * '=' for 2 way DB, '&' for event DB)
 	 * 
 	 * @class DBNotation
 	 */
@@ -129,6 +127,15 @@
 			return value.match(/^\[.*\]$/);
 		}
 
+		/**
+		 * Test if the notation is a event databinding
+		 * Notation is for the time being: &...
+		 * 
+		 * @static
+		 * @param {any} value 
+		 * @returns 
+		 * @memberof DBNotation
+		 */
 		static isEvent(value) {
 			return value.match(/^&/);
 		}
@@ -147,6 +154,14 @@
 			return expr;
 		}
 
+		/**
+		 * Removes the starting &.
+		 * 
+		 * @static
+		 * @param {any} value 
+		 * @returns 
+		 * @memberof DBNotation
+		 */
 		static extractEventExpr(value) {
 			return value.substring(1);
 		}
@@ -240,7 +255,7 @@
 		}
 	}
 
-	class CircleProxyType {}
+	class CircleProxyType { }
 
 	/**
 	 * A component in circle must extends the circle.Element class
@@ -266,7 +281,7 @@
 		}
 
 		attributeChangedCallback(attr, oldValue, newValue) {
-			this.setModel(spinal2Camel(attr), newValue);		
+			this.setModel(spinal2Camel(attr), newValue);
 		}
 		constructor() {
 			super();
@@ -309,7 +324,7 @@
 						return true;
 					},
 
-					getPrototypeOf: function(key) {
+					getPrototypeOf: function (key) {
 						return CircleProxyType.prototype;
 					}
 				};
@@ -357,7 +372,7 @@
 			}
 		}
 
-		render() {}
+		render() { }
 
 		onDigest(key) {
 			this.databinding.onDigest(key);
@@ -428,7 +443,7 @@
 			return DBNotation.extractModelVar(this.elt.getAttribute(attr));
 		}
 
-		onDigest() {}
+		onDigest() { }
 	}
 
 	/**
@@ -455,7 +470,7 @@
 		set(str, service) { this.serviceMap[str] = service; }
 		get(str) { return this.serviceMap[str]; }
 	}
-	window.o = function(element, tag) {
+	window.o = function (element, tag) {
 		if (tag === undefined) {
 			return element.getRootNode().host;
 		}
