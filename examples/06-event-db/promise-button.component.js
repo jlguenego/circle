@@ -2,10 +2,10 @@
 	'use strict';
 
 	class PromiseButton extends circle.Element {
-		connectedCallback() {
-			super.connectedCallback();
+		init() {
 			this.button = this.root.querySelector('button');
 		}
+		
 		runPromise() {
 			console.log('button clicked, start promise (button disable)');
 			this.button.disabled = true;

@@ -204,11 +204,27 @@ Notation easy to remember:
 
 In the example, there is a circle component called `promise-button`. It is a button that becomes disabled during the time that the blocking call (promise) it executes is not finished to run. After running, the button becomes enabled and thus ready to be called again.
 
-There is a event databinding on this button: `<promise-button promise="&o(this).doSomething()">Click me !</promise-button>`
+There is a event databinding on this button: `<promise-button promise="&o(this).doSomething()">Click me!</promise-button>`
 
 Look at the `&` before the expression.
 
 The event databinding expression is executed with the circle element context: `this` is the `promise-button` circle web component.
+
+**Note on boilerplate code:** instead of using `connectedCallback`, we prefer using `init`. Shorter. Clearer. And we don't need to call the `super.connectedCallback()`.
+
+Thus we have now:
+```
+init() {
+	this.button = this.root.querySelector('button');
+}
+```
+instead of
+```
+connectedCallback() {
+	super.connectedCallback();
+	this.button = this.root.querySelector('button');
+}
+```
 
 
 
