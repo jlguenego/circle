@@ -1,9 +1,7 @@
 Getting Started
 ===============
 
-Go to see the examples ([sources](../examples/), [run](https://jlguenego.github.io/circle/examples/index.html)) directory to grab the code and read it.
-
-If you want to quickly run them, you can execute them directly from the [official circle website](https://jlguenego.github.io/circle/).
+You can see the examples ([sources](../examples/), [run](https://jlguenego.github.io/circle/examples/index.html)).
 
 Ok, let's go !
 
@@ -28,7 +26,7 @@ By using *circle*, you will have less boilerplate code than in "vanilla" JS:
 - Tag name is automatically calculated from the class name: the class `HelloName` (PascalCase) corresponds to the tag element `hello-name` (spinal-case).
 - No long name like `window.customElements.define('app-drawer', AppDrawer);`. Just `AppDrawer.reg;`.
 - Template is automatically using the Shadow DOM.
-- Template understands expression (same syntax as AngularJS/Angular). At that time, expressions are just observable variable replacement. No more, no less. `{{name}}` ok. `{{name | uppercase}}` not ok (may be in future version).
+- Template understands **expression** (similar syntax as AngularJS/Angular). At that time, expressions are just observable variable replacement. No more, no less. `{{name}}` ok. `{{name | uppercase}}` not ok (may be in future version).
 
 ### Using a web component
 
@@ -46,7 +44,7 @@ Here we have a **interpolation databinding**. The term comes from AngularJS/Angu
 
 Each web component defined with *circle* is called a **circle component**.
 
-A circle component is equiped with a model, which is a fully observable object.
+A circle component is equiped with a **model**, which is a fully observable object.
 
 By specifying an attribute `my-key="my-value"` to a circle component, we add to the circle component model the property `myKey` which contains `my-value`.
 
@@ -87,7 +85,52 @@ And we have simplified to:
 HelloName.oa = ['name'];
 ```
 
+Model
+-----
 
+- [Read the code](../examples/02-hello-madame-monsieur/)
+- [Run it](https://jlguenego.github.io/circle/examples/02-hello-madame-monsieur/index.html)
+
+All variables given in a expression `{{...}}` comes from the circle component **model**.
+The model is in fact a javascript `Proxy` on an initially 
+empty object `{}`. The developer can add any property to the model. If a property is an object, it will be proxied as well.
+
+When a property is added or modified in the model, the proxy triggers what we call a **digestion** (like in AngularJS).
+
+A digestion on a model property is in charge to propagate everywhere is needed the value of the model.
+
+In the example, you can see how we *manually* add a property to the model of a circle component.
+
+```
+<body>
+	<template id="person-detail">
+<h1>Person Detail</h1>
+<ul>
+	<li>First name: {{firstname}}</li>
+	<li>Last name: {{lastname}}</li>
+	<li>Email: {{profile.email}}</li>
+	<li>Birthday: {{['personal-info'].birthday}}</li>
+</ul>
+	</template>
+	<script>
+		class PersonDetail extends o.Element {
+			constructor() {
+				super();
+				this.model.firstname = 'John';
+				this.model.lastname = 'Doe';
+				this.model.profile = {
+					email: 'john@doe.io'
+				};
+				this.model['personal-info'] = {
+					birthday: '12 dec. 2004'
+				};
+			}
+		}
+		PersonDetail.reg;
+
+	</script>
+</body>
+```
 
 
 

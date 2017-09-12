@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>My First Web Component</title>
+	<link rel="import" href="../../src/circle.html">
+</head>
+
+<body>
+	<template id="person-detail">
+		<h1>Person Detail</h1>
+		<ul>
+			<li>First name: {{firstname}}</li>
+			<li>Last name: {{lastname}}</li>
+			<li>Email: {{profile.email}}</li>
+			<li>Birthday: {{['personal-info'].birthday}}</li>
+		</ul>
+	</template>
+	<script>
+		class PersonDetail extends o.Element {
+			constructor() {
+				super();
+				this.model.firstname = 'John';
+				this.model.lastname = 'Doe';
+				this.model.profile = {
+					email: 'john@doe.io'
+				};
+				this.model['personal-info'] = {
+					birthday: '12 dec. 2004'
+				};
+			}
+		}
+		PersonDetail.reg;
+	</script>
+</body>
+
+</html>
