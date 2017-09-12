@@ -5,8 +5,8 @@ You can see the examples ([sources](../examples/), [run](https://jlguenego.githu
 
 Ok, let's go !
 
-Hello {{name}}
---------------
+01 - Hello {{name}}
+-------------------
 
 - [Read the code](../examples/01-hello-name/)
 - [Run it](https://jlguenego.github.io/circle/examples/01-hello-name/index.html)
@@ -53,8 +53,8 @@ If the attribute value changes, then the model value change and is propagated in
 Let us check this fact !
 
 
-Hello Madame Monsieur
----------------------
+02 - Hello Madame Monsieur
+--------------------------
 
 - [Read the code](../examples/02-hello-madame-monsieur/)
 - [Run it](https://jlguenego.github.io/circle/examples/02-hello-madame-monsieur/index.html)
@@ -85,8 +85,8 @@ And we have simplified to:
 HelloName.oa = ['name'];
 ```
 
-Model
------
+03 - Model
+----------
 
 - [Read the code](../examples/03-model/)
 - [Run it](https://jlguenego.github.io/circle/examples/03-model/index.html)
@@ -104,6 +104,11 @@ In the example, you can see how we *manually* add a property to the model of a c
 ```
 <body>
 	<template id="person-detail">
+		<style>
+			li {
+				border: 1px solid gray;
+			}
+		</style>
 		<h1>Person Detail</h1>
 		<ul>
 			<li>First name: {{firstname}}</li>
@@ -131,16 +136,38 @@ In the example, you can see how we *manually* add a property to the model of a c
 </body>
 ```
 
-Property databinding
--------------------
+Note: CSS styles are local. In this example, the `li` settings from above the component are ignored.
+
+04 - Property databinding
+-------------------------
 
 - [Read the code](../examples/04-one-way-db/)
 - [Run it](https://jlguenego.github.io/circle/examples/04-one-way-db/index.html)
 
 **Property databinding** (also called **one-way databinding**) consists to pass a model variable from a parent circle component to a child circle component.
 
+There is a specific notation: the property variable must be passed within square brackets `[]`.
+Here we pass the model variable `firstname`: so `<hello-name name="[firstname]"></hello-name>`.
 
 
+```
+<body>
+	<template id="my-app">
+		<hello-name name="[firstname]"></hello-name><br>
+		<button onclick="o(this).model.firstname = 'Jean-Louis'">Hello Monsieur</button>
+		<button onclick="o(this).model.firstname = 'Maïté'">Hello Madame</button>
+	</template>
+	<script>
+		class MyApp extends o.Element {
+			constructor() {
+				super();
+				this.model.firstname = 'Maïté';
+			}
+		}
+		MyApp.reg;
+	</script>
+</body>
+```
 
 
 
