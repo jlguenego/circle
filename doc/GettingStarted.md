@@ -88,8 +88,8 @@ HelloName.oa = ['name'];
 Model
 -----
 
-- [Read the code](../examples/02-hello-madame-monsieur/)
-- [Run it](https://jlguenego.github.io/circle/examples/02-hello-madame-monsieur/index.html)
+- [Read the code](../examples/03-model/)
+- [Run it](https://jlguenego.github.io/circle/examples/03-model/index.html)
 
 All variables given in a expression `{{...}}` comes from the circle component **model**.
 The model is in fact a javascript `Proxy` on an initially 
@@ -104,13 +104,13 @@ In the example, you can see how we *manually* add a property to the model of a c
 ```
 <body>
 	<template id="person-detail">
-<h1>Person Detail</h1>
-<ul>
-	<li>First name: {{firstname}}</li>
-	<li>Last name: {{lastname}}</li>
-	<li>Email: {{profile.email}}</li>
-	<li>Birthday: {{['personal-info'].birthday}}</li>
-</ul>
+		<h1>Person Detail</h1>
+		<ul>
+			<li>First name: {{firstname}}</li>
+			<li>Last name: {{lastname}}</li>
+			<li>Email: {{profile.email}}</li>
+			<li>Birthday: {{['personal-info'].birthday}}</li>
+		</ul>
 	</template>
 	<script>
 		class PersonDetail extends o.Element {
@@ -127,10 +127,17 @@ In the example, you can see how we *manually* add a property to the model of a c
 			}
 		}
 		PersonDetail.reg;
-
 	</script>
 </body>
 ```
+
+Property databinding
+-------------------
+
+- [Read the code](../examples/04-one-way-db/)
+- [Run it](https://jlguenego.github.io/circle/examples/04-one-way-db/index.html)
+
+**Property databinding** (also called **one-way databinding**) consists to pass a model variable from a parent circle component to a child circle component.
 
 
 

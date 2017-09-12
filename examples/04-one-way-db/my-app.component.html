@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<link rel="import" href="../../src/circle.html">
+</head>
+
+<body>
+	<template id="my-app">
+		<hello-name name="[firstname]"></hello-name><br>
+		<button onclick="o(this).model.firstname = 'Jean-Louis'">Hello Monsieur</button>
+		<button onclick="o(this).model.firstname = 'Maïté'">Hello Madame</button>
+	</template>
+	<script>
+		class MyApp extends o.Element {
+			constructor() {
+				super();
+				this.model.firstname = 'Maïté';
+			}
+		}
+		MyApp.reg;
+	</script>
+</body>
+
+</html>
