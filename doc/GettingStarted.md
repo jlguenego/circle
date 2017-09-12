@@ -199,6 +199,10 @@ Notation easy to remember:
 06 - Event databinding
 ----------------------
 
+- [Read the code](../examples/06-event-db/)
+- [Run it](https://jlguenego.github.io/circle/examples/06-event-db/index.html)
+
+
 
 
 

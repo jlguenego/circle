@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<link rel="import" href="star-input.component.html">	
+</head>
+
+<body>
+	<template id="my-app">
+		<star-input note="[[myNote]]"></star-input><br>
+		<button onclick="o(this).model.myNote++">Increment</button>
+		<button onclick="o(this).model.myNote--">Decrement</button>
+		<div>myNote = {{myNote}}</div>
+	</template>
+	<script>
+		class MyApp extends o.Element {
+			constructor() {
+				super();
+				this.model.myNote = 4;
+			}
+		}
+		MyApp.reg;
+	</script>
+</body>
+
+</html>
