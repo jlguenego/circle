@@ -13,9 +13,7 @@
 	class MyApp extends o.Element {
 		doAction() {
 			console.log('doAction start');
-			const xhr = o.get('xhr');
-
-			xhr.get('content.json').then((response) => {
+			o.di('xhr').get('content.json').then((response) => {
 				const div = this.root.querySelector('#content');
 				div.innerHTML = response.data.content;
 			}).catch((error) => {

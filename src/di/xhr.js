@@ -61,7 +61,6 @@
 			});
 		}
 	}
-	const xhr = new XHR();
-	o.set('xhr', xhr);
+	o.di('xhr', new XHR());
 
 })();
