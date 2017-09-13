@@ -238,8 +238,29 @@ Now let's go to the behaviors (it's like angular attribute directive).
 
 A **behavior** is like an directive attribute that must be inside a circle component.
 
+To use OOTB behaviors, you must import the `behavior.html` provided in the circle project.
+
 For instance, `o-value`, a OOTB behavior allows to take the value property of an element (input, select, etc.)
 and add it to the model of the current circle component.
+
+```
+<link rel="import" href="../../src/circle.html">
+<link rel="import" href="../../src/behavior.html">
+<template id="my-app">
+	<input type="text" o-value="name"><br>
+	Name: {{name}}<br>
+</template>
+<script>
+	class MyApp extends o.Element {}
+	MyApp.reg;
+</script>
+```
+
+08 - Select
+-----------
+
+
+
 
 
 
