@@ -3,16 +3,35 @@ const ghPages = require('gulp-gh-pages');
 const eslint = require('gulp-eslint');
 const debug = require('gulp-debug');
 const gulpIf = require('gulp-if');
+const uglify = require('gulp-uglify');
+const pump = require('pump');
+const babel = require('gulp-babel');
+
 
 gulp.task('default', ['eslint']);
 
 const path = {
 	lint: ['**/*.js', '!node_modules/**/*', '!**/*.min.js'],
+	circle: ['./src/circle.js'],
 	deploy: ['./**/*', '!./node_modules/**/*', '!package*', '!*.js'],
+	dist: 'dist',
 };
 
+gulp.task('build', function (cb) {
+	pump([
+		gulp.src('src/circle.js'),
+		babel({
+			presets: ['env']
+		}),
+		uglify(),
+		gulp.dest('dist')
+	],
+		cb
+	);
+});
 
-gulp.task('eslint', function() {
+
+gulp.task('eslint', function () {
 	return gulp.src(path.lint)
 		.pipe(debug())
 		.pipe(eslint())
@@ -24,7 +43,7 @@ function isFixed(file) {
 	return file.eslint != null && file.eslint.fixed;
 }
 
-gulp.task('eslint-fix', function() {
+gulp.task('eslint-fix', function () {
 	return gulp.src(path.lint)
 		.pipe(eslint({
 			fix: true
@@ -33,9 +52,9 @@ gulp.task('eslint-fix', function() {
 		.pipe(gulpIf(isFixed, gulp.dest('.')));
 });
 
-gulp.task('deploy', function() {
+gulp.task('deploy', function () {
 	return gulp.src(path.deploy)
-		.pipe(ghPages({ cacheDir: '../.publish_boof'}));
+		.pipe(ghPages({ cacheDir: '../.publish_boof' }));
 });
 
 
