@@ -2,14 +2,22 @@
 <html>
 
 <head>
-	<link rel="import" href="star-input.component.html">	
+	<link rel="import" href="star-input.component.html">
 </head>
 
 <body>
 	<template id="my-app">
+		<style>
+			button {
+				display: inline-block;
+				border: 1px solid black;
+				font-size: 1.2em;
+				padding: 20px;
+			}
+		</style>
 		<star-input note="[[myNote]]"></star-input><br>
-		<button onclick="o(this).model.myNote++">Increment</button>
 		<button onclick="o(this).model.myNote--">Decrement</button>
+		<button onclick="o(this).model.myNote++">Increment</button>
 		<div>myNote = {{myNote}}</div>
 	</template>
 	<script>
