@@ -299,7 +299,21 @@ There is 2 illustrated situations:
 
 The model has the priority to set the initial value, not the `selected` keyword on the `option`.
 
+08 - Draggable
+-----------
 
+- [Read the code](../examples/09-draggable/)
+- [Run it](https://jlguenego.github.io/circle/examples/09-draggable/index.html)
+
+This example shows the behavior `draggable` applied to a any element.
+
+
+```
+
+```
+
+This is a very common scenario: when you need to add a new behavior to any element, just use a **circle behavior**.
+It is a good practice to suffix your behavior with a *-able*.
 
 
 
