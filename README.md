@@ -22,6 +22,10 @@ Then, in your HTML file, import the circle HTML file.
 
 Done.
 
+Note: If you want your code working on almost all browsers, we highly recommand to use a web component API polyfill in your `index.html` header before including *circle*:
+
+`<script src="https://cdnjs.cloudflare.com/ajax/libs/webcomponentsjs/1.0.10/webcomponents-lite.js"></script>`
+
 
 Table of Content
 ================
