@@ -236,7 +236,12 @@ Now let's go to the behaviors (it's like angular attribute directive).
 - [Read the code](../examples/07-behaviors/)
 - [Run it](https://jlguenego.github.io/circle/examples/07-behaviors/index.html)
 
-One behavior very useful is for input sync.
+A **behavior** is like an directive attribute that must be inside a circle component.
+
+For instance, `o-value`, a OOTB behavior allows to take the value property of an element (input, select, etc.)
+and add it to the model of the current circle component.
+
+
 
 
 

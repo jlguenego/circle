@@ -1,19 +1,10 @@
 <link rel="import" href="../../src/circle.html">
+<link rel="import" href="../../src/behavior.html">
 <template id="my-app">
-	<promise-button promise="&o(this).doSomething()">Click me!</promise-button><br>
+	<input type="text" o-value="name"><br>
+	Name: {{name}}<br>
 </template>
 <script>
-	class MyApp extends o.Element {
-		doSomething() {
-			console.log('start something (wait for 2s)');
-			return new Promise((fulfill, reject) => {
-				setTimeout(() => {
-					console.log('end something');
-					fulfill();
-				}, 2000);
-			});
-		}
-	}
+	class MyApp extends o.Element {}
 	MyApp.reg;
 </script>
-<link rel="import" href="promise-button.component.html">
