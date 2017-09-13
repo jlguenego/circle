@@ -1,0 +1,38 @@
+<link rel="import" href="../../src/circle.html">
+<script>
+	console.log('draggable');
+	class Draggable extends o.Behavior {
+		init() {
+
+			var startX = 0, startY = 0, x = 0, y = 0;
+			const element = this.elt;
+
+			element.style.position = 'relative';
+			element.style.cursor = 'pointer';
+
+			element.addEventListener('mousedown', function (event) {
+				// Prevent default dragging of selected content
+				event.preventDefault();
+				startX = event.pageX - x;
+				startY = event.pageY - y;
+				document.addEventListener('mousemove', mousemove);
+				document.addEventListener('mouseup', mouseup);
+			});
+
+			function mousemove(event) {
+				y = event.pageY - startY;
+				x = event.pageX - startX;
+				element.style.top = y + 'px';
+				element.style.left = x + 'px';
+			}
+
+			function mouseup() {
+				document.removeEventListener('mousemove', mousemove);
+				document.removeEventListener('mouseup', mouseup);
+			}
+
+		};
+	}
+	Draggable.reg;
+
+</script>

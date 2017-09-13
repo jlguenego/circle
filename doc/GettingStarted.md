@@ -299,7 +299,77 @@ There is 2 illustrated situations:
 
 The model has the priority to set the initial value, not the `selected` keyword on the `option`.
 
+08 - Draggable
+-----------
 
+- [Read the code](../examples/09-draggable/)
+- [Run it](https://jlguenego.github.io/circle/examples/09-draggable/index.html)
+
+This example shows the behavior `draggable` applied to a any element.
+Thanks to AngularJS for the [idea](https://docs.angularjs.org/guide/directive#creating-a-directive-that-adds-event-listeners)...
+
+- my-app.component.html:
+
+```
+<link rel="import" href="../../src/circle.html">
+<link rel="import" href="draggable.behavior.html">
+<template id="my-app">
+	<link rel="stylesheet" href="draggable.behavior.css">
+	<span draggable>Hello world!</span>
+	<span draggable>Hello world!</span>
+	<span draggable>Hello world!</span>
+</template>
+<script>
+	class MyApp extends o.Element { }
+	MyApp.reg;
+</script>
+```
+
+- draggable.behavior.html:
+
+```
+<link rel="import" href="../../src/circle.html">
+<script>
+	console.log('draggable');
+	class Draggable extends o.Behavior {
+		init() {
+
+			var startX = 0, startY = 0, x = 0, y = 0;
+			const element = this.elt;
+
+			element.style.position = 'relative';
+			element.style.cursor = 'pointer';
+
+			element.addEventListener('mousedown', function (event) {
+				// Prevent default dragging of selected content
+				event.preventDefault();
+				startX = event.pageX - x;
+				startY = event.pageY - y;
+				document.addEventListener('mousemove', mousemove);
+				document.addEventListener('mouseup', mouseup);
+			});
+
+			function mousemove(event) {
+				y = event.pageY - startY;
+				x = event.pageX - startX;
+				element.style.top = y + 'px';
+				element.style.left = x + 'px';
+			}
+
+			function mouseup() {
+				document.removeEventListener('mousemove', mousemove);
+				document.removeEventListener('mouseup', mouseup);
+			}
+
+		};
+	}
+	Draggable.reg;
+
+</script>
+```
+
+This is a very common scenario: when you need to add a new behavior to any element, just use a **circle behavior**.
+It is a good practice to suffix your behavior with a *-able*.
 
 
 
