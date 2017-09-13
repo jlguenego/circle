@@ -269,14 +269,36 @@ This example shows the behavior `o-value` applied to a select element.
 <link rel="import" href="../../src/circle.html">
 <link rel="import" href="../../src/behavior.html">
 <template id="my-app">
-	<input type="text" o-value="name"><br>
-	Name: {{name}}<br>
+	<select o-value="person.identity.firstname.code">
+		<option value="maite">Maïté</option>
+		<option selected value="dany">Dany</option>
+		<option value="yannis">Yannis</option>
+		<option value="jlg" >Jean-Louis</option>
+	</select> Value: {{person.identity.firstname.code}}<br>
+
+	<select o-value="value">
+			<option value="maite">Maïté</option>
+			<option value="dany">Dany</option>
+			<option selected value="yannis">Yannis</option>
+			<option value="jlg" >Jean-Louis</option>
+		</select> Value: {{value}}<br>
 </template>
 <script>
-	class MyApp extends o.Element {}
+	class MyApp extends o.Element { 
+		init() {
+			this.model.value = 'jlg';
+		}
+	}
 	MyApp.reg;
+
 </script>
 ```
+
+There is 2 illustrated situations:
+- the model is not initialized
+- the model is initialiazed
+
+The model has the priority to set the initial value, not the `selected` keyword on the `option`.
 
 
 
