@@ -259,6 +259,24 @@ and add it to the model of the current circle component.
 08 - Select
 -----------
 
+- [Read the code](../examples/08-select/)
+- [Run it](https://jlguenego.github.io/circle/examples/08-select/index.html)
+
+This example shows the behavior `o-value` applied to a select element.
+
+
+```
+<link rel="import" href="../../src/circle.html">
+<link rel="import" href="../../src/behavior.html">
+<template id="my-app">
+	<input type="text" o-value="name"><br>
+	Name: {{name}}<br>
+</template>
+<script>
+	class MyApp extends o.Element {}
+	MyApp.reg;
+</script>
+```
 
 
 
