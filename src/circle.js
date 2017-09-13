@@ -501,7 +501,7 @@
 			this.Element = CircleElement;
 			this.Behavior = CircleBehavior;
 			this.digestId = 0;
-			this.serviceMap = {};
+			this.dependancyInjectionRegistry = {};
 			this.behaviorRegistry = {};
 		}
 
@@ -510,8 +510,12 @@
 			return err.stack;
 		}
 
-		set(str, service) { this.serviceMap[str] = service; }
-		get(str) { return this.serviceMap[str]; }
+		di(str, di) {
+			if (arguments.length > 1) {
+				this.dependancyInjectionRegistry[str] = di;
+			}
+			return this.dependancyInjectionRegistry[str];
+		}
 	}
 	window.o = function (element, tag) {
 		if (tag === undefined) {

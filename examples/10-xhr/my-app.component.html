@@ -1,0 +1,32 @@
+<link rel="import" href="../../src/circle.html">
+<script src="../../src/di/xhr.js"></script>
+<template id="my-app">
+	<div>
+		The xhr dependancy injection.<br>
+		<button onclick="o(this).doAction()">Click me!</button>
+		<button onclick="o(this).reset()">Reset</button>
+		<div id="content"></div>
+	</div>
+
+</template>
+<script>
+	class MyApp extends o.Element {
+		doAction() {
+			console.log('doAction start');
+			o.di('xhr').get('content.json').then((response) => {
+				const div = this.root.querySelector('#content');
+				div.innerHTML = response.data.content;
+			}).catch((error) => {
+				console.log('error', error);
+			});
+		}
+
+		reset() {
+			console.log('reset start');
+			const div = this.root.querySelector('#content');
+			div.innerHTML = '';
+		}
+	}
+	MyApp.reg;
+
+</script>

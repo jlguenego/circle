@@ -299,7 +299,7 @@ There is 2 illustrated situations:
 
 The model has the priority to set the initial value, not the `selected` keyword on the `option`.
 
-08 - Draggable
+09 - Draggable
 -----------
 
 - [Read the code](../examples/09-draggable/)
@@ -373,12 +373,28 @@ It is a good practice to suffix your behavior with a *-able*.
 
 
 
+10 - Dependancy Injection
+-----------
 
+- [Read the code](../examples/10-xhr/)
+- [Run it](https://jlguenego.github.io/circle/examples/10-xhr/index.html)
 
+Some utilities are implemented as dependancy injection (DI).
 
+For instance, xhr (ajax) is one of them.
 
+To set an DI, just do `o.di('yourname', yourobject)`.
 
+To use a DI, just do `o.di('yourname')`.
 
+xhr can do AJAX request with all the HTTP method, 
+you can configure exactly the HTTP request and parse exactly the HTTP response.
+
+```
+o.di('xhr').get(url).then((response) => {...}).catch((error) => {...});
+```
+
+DI allows you to replace the di object with the one you would prefer. 
 
 
 

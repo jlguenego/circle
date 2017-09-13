@@ -1,7 +1,7 @@
 (function() {
 	'use strict';
 
-	class Http {
+	class XHR {
 		send(config) {
 			return new Promise((resolve, reject) => {
 				var xhr = new XMLHttpRequest();
@@ -61,7 +61,6 @@
 			});
 		}
 	}
-	const http = new Http();
-	circle.set('http', http);
+	o.di('xhr', new XHR());
 
 })();
