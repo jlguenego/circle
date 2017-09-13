@@ -277,20 +277,19 @@ This example shows the behavior `o-value` applied to a select element.
 	</select> Value: {{person.identity.firstname.code}}<br>
 
 	<select o-value="value">
-			<option value="maite">Maïté</option>
-			<option value="dany">Dany</option>
-			<option selected value="yannis">Yannis</option>
-			<option value="jlg" >Jean-Louis</option>
-		</select> Value: {{value}}<br>
+		<option value="maite">Maïté</option>
+		<option value="dany">Dany</option>
+		<option selected value="yannis">Yannis</option>
+		<option value="jlg" >Jean-Louis</option>
+	</select> Value: {{value}}<br>
 </template>
 <script>
-	class MyApp extends o.Element { 
+	class MyApp extends o.Element {
 		init() {
 			this.model.value = 'jlg';
 		}
 	}
 	MyApp.reg;
-
 </script>
 ```
 
