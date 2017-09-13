@@ -511,7 +511,7 @@
 		}
 
 		di(str, di) {
-			if (di) {
+			if (arguments.length > 1) {
 				this.dependancyInjectionRegistry[str] = di;
 			}
 			return this.dependancyInjectionRegistry[str];
