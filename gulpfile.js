@@ -3,9 +3,6 @@ const ghPages = require('gulp-gh-pages');
 const eslint = require('gulp-eslint');
 const debug = require('gulp-debug');
 const gulpIf = require('gulp-if');
-const uglify = require('gulp-uglify');
-const pump = require('pump');
-const babel = require('gulp-babel');
 
 
 gulp.task('default', ['eslint']);
@@ -16,20 +13,6 @@ const path = {
 	deploy: ['./**/*', '!./node_modules/**/*', '!package*', '!*.js'],
 	dist: 'dist',
 };
-
-gulp.task('build', function (cb) {
-	pump([
-		gulp.src('src/circle.js'),
-		babel({
-			presets: ['env']
-		}),
-		uglify(),
-		gulp.dest('dist')
-	],
-		cb
-	);
-});
-
 
 gulp.task('eslint', function () {
 	return gulp.src(path.lint)
