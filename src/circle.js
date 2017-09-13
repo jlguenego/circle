@@ -25,11 +25,38 @@
 		return str.replace(/(-[a-z])/g, function ($1) { return $1.toUpperCase().replace('-', ''); });
 	}
 
+	/**
+	 * Returns the parent key
+	 * Ex: 
+	 * hello['world']['toto'] becomes hello['world']
+	 * hello['world'] becomes hello
+	 * hello becomes undefined
+	 * 
+	 * @param {any} absoluteKey 
+	 * @returns 
+	 */
 	function dirname(absoluteKey) {
 		if (absoluteKey.match(/\[/)) {
 			return absoluteKey.replace(/^(.*)\[[^[]+?\]$/, '$1');
 		}
 		return undefined;
+	}
+
+	/**
+	 * Return the last key
+	 * Ex: 
+	 * hello['world']['toto'] becomes toto
+	 * hello['world'] becomes world
+	 * hello becomes hello
+	 * 
+	 * @param {any} absoluteKey 
+	 * @returns 
+	 */
+	function basename(absoluteKey) {
+		if (absoluteKey.match(/\[/)) {
+			return absoluteKey.replace(/^.*\['([^']+)'\]$/, '$1');
+		}
+		return absoluteKey;
 	}
 
 	/**
@@ -363,7 +390,7 @@
 			this.init();
 		}
 
-		init() {}
+		init() { }
 
 		askRendering() {
 			if (!this.isRenderingAsked) {
@@ -408,6 +435,15 @@
 			return eval(str);
 		}
 
+		hasModel(absoluteKey) {
+			const k = dirname(absoluteKey);
+			const b = basename(absoluteKey);
+			if (k) {
+				return this.hasModel(k) && (b in this.getModel(k));
+			}
+			return b in this.model;
+		}
+
 		setModel(absoluteKey, value) {
 			if (this.getModel(absoluteKey) === value) {
 				return;
@@ -433,6 +469,8 @@
 			this.elt = elt;
 			this.host = elt.getRootNode().host;
 			this.key = this.getModelVar(this.constructor.tag);
+			this.init();
+
 			this.host.bindKey(this.key, this);
 			let k = this.key;
 			while (k) {
@@ -441,6 +479,8 @@
 			}
 			this.onDigest(this.key);
 		}
+
+		init() { }
 
 		getModelVar(attr) {
 			return DBNotation.extractModelVar(this.elt.getAttribute(attr));

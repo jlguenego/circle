@@ -3,7 +3,6 @@
     class OValue extends circle.Behavior {
         constructor(elt) {
             super(elt);
-            console.log('this.elt', this.elt);
             this.elt.addEventListener('input', () => {
                 this.host.setModel(this.key, this.elt.value);
             });
@@ -11,6 +10,12 @@
                 this.elt.form.addEventListener('reset', () => {
                     this.host.setModel(this.key, '');
                 });
+            }
+        }
+
+        init() {
+            if (!this.host.hasModel(this.key)) {
+                this.host.setModel(this.key, this.elt.value);
             }
         }
 

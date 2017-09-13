@@ -236,7 +236,73 @@ Now let's go to the behaviors (it's like angular attribute directive).
 - [Read the code](../examples/07-behaviors/)
 - [Run it](https://jlguenego.github.io/circle/examples/07-behaviors/index.html)
 
-One behavior very useful is for input sync.
+A **behavior** is like an directive attribute that must be inside a circle component.
+
+To use OOTB behaviors, you must import the `behavior.html` provided in the circle project.
+
+For instance, `o-value`, a OOTB behavior allows to take the value property of an element (input, select, etc.)
+and add it to the model of the current circle component.
+
+```
+<link rel="import" href="../../src/circle.html">
+<link rel="import" href="../../src/behavior.html">
+<template id="my-app">
+	<input type="text" o-value="name"><br>
+	Name: {{name}}<br>
+</template>
+<script>
+	class MyApp extends o.Element {}
+	MyApp.reg;
+</script>
+```
+
+08 - Select
+-----------
+
+- [Read the code](../examples/08-select/)
+- [Run it](https://jlguenego.github.io/circle/examples/08-select/index.html)
+
+This example shows the behavior `o-value` applied to a select element.
+
+
+```
+<link rel="import" href="../../src/circle.html">
+<link rel="import" href="../../src/behavior.html">
+<template id="my-app">
+	<select o-value="person.identity.firstname.code">
+		<option value="maite">Maïté</option>
+		<option selected value="dany">Dany</option>
+		<option value="yannis">Yannis</option>
+		<option value="jlg" >Jean-Louis</option>
+	</select> Value: {{person.identity.firstname.code}}<br>
+
+	<select o-value="value">
+			<option value="maite">Maïté</option>
+			<option value="dany">Dany</option>
+			<option selected value="yannis">Yannis</option>
+			<option value="jlg" >Jean-Louis</option>
+		</select> Value: {{value}}<br>
+</template>
+<script>
+	class MyApp extends o.Element { 
+		init() {
+			this.model.value = 'jlg';
+		}
+	}
+	MyApp.reg;
+
+</script>
+```
+
+There is 2 illustrated situations:
+- the model is not initialized
+- the model is initialiazed
+
+The model has the priority to set the initial value, not the `selected` keyword on the `option`.
+
+
+
+
 
 
 
