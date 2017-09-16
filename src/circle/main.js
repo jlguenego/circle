@@ -1,5 +1,13 @@
+import { Circle } from './Circle.js';
+
+console.log('start main');
+
 if (window.circle) { console.warning('circle already loaded'); }
 
+
+
+
+console.log('init');
 window.o = function (element, tag) {
     if (tag === undefined) {
         return element.getRootNode().host;
@@ -15,3 +23,19 @@ window.o = function (element, tag) {
 };
 Object.setPrototypeOf(window.o, new Circle());
 window.circle = window.o;
+
+
+/**
+ * CircleExpr is the component that allows displaying expressions.
+ * 
+ * @class CircleExpr
+ * @extends {circle.Element}
+ */
+class CircleExpr extends o.Element {
+    render() {
+        let str = (this.model.expr === undefined) ? '' : this.model.expr;
+        str = (typeof str === 'object') ? JSON.stringify(str) : str;
+        this.root.innerHTML = str;
+    }
+}
+CircleExpr.reg;

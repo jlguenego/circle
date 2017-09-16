@@ -1,4 +1,7 @@
-class CircleBehavior {
+import { camel2Spinal, dirname } from './functions.js';
+import { DBNotation } from './DBNotation.js';
+
+export class CircleBehavior {
     static get tag() {
         return camel2Spinal(this.name);
     }
@@ -11,6 +14,7 @@ class CircleBehavior {
         this.host = elt.getRootNode().host;
         this.key = this.getModelVar(this.constructor.tag);
         this.init();
+        console.log('behavior');
 
         this.host.bindKey(this.key, this);
         let k = this.key;

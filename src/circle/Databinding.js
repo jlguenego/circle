@@ -1,4 +1,8 @@
-class Databinding {
+import { spinal2Camel } from './functions.js';
+
+import { DBNotation } from './DBNotation.js';
+
+export class Databinding {
     constructor(circleElement) {
         this.elt = circleElement;
         this.scope = {};

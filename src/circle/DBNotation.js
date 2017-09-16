@@ -1,4 +1,15 @@
 /**
+ * Transforms hello.world[3].foo.bar in hello['world'][3]['foo']['bar']
+ * 
+ * 
+ * @param {any} key 
+ * @returns 
+ */
+function parseAbsoluteKey(key) {
+    return key.replace(/\.([^.]+)/g, '[\'$1\']');
+}
+
+/**
  * Class in charge of managing the databinding notation:
  * [] for one way databinding
  * [[]] for two way databinding
@@ -8,7 +19,7 @@
  * 
  * @class DBNotation
  */
-class DBNotation {
+export class DBNotation {
     /**
      * Tests if the notation is a 2 ways data binding.
      * Notation is for the time being: [[...]]
