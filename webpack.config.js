@@ -13,12 +13,13 @@ module.exports = {
 	devtool: 'source-map',
 	plugins: [
 		new UglifyJSPlugin({
+			sourceMap: true,
 			uglifyOptions: {
 				ie8: false,
 				ecma: 6,
 				compress: {
 					// keep_fnames: true,
-				// keep_classnames: true,
+					// keep_classnames: true,
 				},
 				mangle: {
 					// reserved: ['CircleExpr'],
@@ -28,7 +29,7 @@ module.exports = {
 				},
 				output: {
 					beautify: false
-				}
+				},
 			}
 		})
 	]
