@@ -29,7 +29,15 @@ gulp.task('copy', function () {
 
 gulp.task('uglify', ['copy'], function (cb) {
 	// the same options as described above
-	const options = {};
+	const options = {
+		compress: {
+			toplevel: true
+		},
+		mangle: {
+			toplevel: true,
+			properties: true
+		}
+	};
 
 	pump([
 		gulp.src('./src/circle.js'),
