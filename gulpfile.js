@@ -9,43 +9,72 @@ const pump = require('pump');
 const rename = require('gulp-rename');
 const sourcemaps = require('gulp-sourcemaps');
 const del = require('del');
+const fs = require('fs');
+const path = require('path');
 
-gulp.task('default', ['build']);
+gulp.task('default', ['uglify']);
 
-const pathCfg = {
+const cfg = {
+	html: ['./src/circle.html'],
+	src: 'src',
 	lint: ['**/*.js', '!node_modules/**/*', '!**/*.min.js'],
-	circle: './src/circle.js',
+	circle: './src/test.js',
+	minified: 'circle.min.js',
 	deploy: ['./**/*', '!./node_modules/**/*', '!package*', '!*.js'],
 	dist: 'dist',
 };
 
 gulp.task('clean', function () {
-	return del(pathCfg.dist);
+	return del(cfg.dist);
 });
 
-gulp.task('copy', function () {
-	return gulp.src(['./src/circle.js', './src/circle.html']).pipe(gulp.dest('dist'));
+gulp.task('js', function (cb) {
+	let code = '';
+	code += fs.readFileSync(path.resolve(cfg.src, 'circle', 'functions.js'), 'utf8');
+	code += fs.readFileSync(path.resolve(cfg.src, 'circle', 'DBNotation.js'), 'utf8');
+	code += fs.readFileSync(path.resolve(cfg.src, 'circle', 'Databinding.js'), 'utf8');
+	code += fs.readFileSync(path.resolve(cfg.src, 'circle', 'CircleElement.js'), 'utf8');
+	code += fs.readFileSync(path.resolve(cfg.src, 'circle', 'CircleBehavior.js'), 'utf8');
+	code += fs.readFileSync(path.resolve(cfg.src, 'circle', 'Circle.js'), 'utf8');
+	code += fs.readFileSync(path.resolve(cfg.src, 'circle', 'main.js'), 'utf8');
+	code += fs.readFileSync(path.resolve(cfg.src, 'circle', 'CircleExpr.js'), 'utf8');
+	const iife = `(function() {"use strict"; 
+${code}
+})();`;
+	fs.writeFileSync(path.resolve(cfg.dist, 'circle.js'), iife, 'utf8');
+	cb();
 });
 
-gulp.task('uglify', ['copy'], function (cb) {
+gulp.task('html', function () {
+	return gulp.src(cfg.html).pipe(gulp.dest(cfg.dist));
+});
+
+gulp.task('build', ['html', 'uglify']);
+
+gulp.task('uglify', ['js'], function (cb) {
 	// the same options as described above
 	const options = {
 		compress: {
-			toplevel: true
+			toplevel: true,
+			dead_code: true,
 		},
 		mangle: {
 			toplevel: true,
-			properties: false
-		}
+			properties: false,
+			eval: true
+		},
+		output: {
+			beautify: false,
+		},
 	};
 
 	pump([
-		gulp.src('./src/circle.js'),
+		gulp.src(cfg.circle),
 		sourcemaps.init(),
 		minify(options),
-		rename('circle.min.js'),
+		rename(cfg.minified),
 		sourcemaps.write('.'),
-		gulp.dest('dist')
+		gulp.dest(cfg.dist)
 	],
 		cb
 	);
@@ -53,7 +82,7 @@ gulp.task('uglify', ['copy'], function (cb) {
 
 
 gulp.task('eslint', function () {
-	return gulp.src(pathCfg.lint)
+	return gulp.src(cfg.lint)
 		.pipe(debug())
 		.pipe(eslint())
 		.pipe(eslint.formatEach())
@@ -65,7 +94,7 @@ function isFixed(file) {
 }
 
 gulp.task('eslint-fix', function () {
-	return gulp.src(pathCfg.lint)
+	return gulp.src(cfg.lint)
 		.pipe(eslint({
 			fix: true
 		}))
@@ -74,8 +103,15 @@ gulp.task('eslint-fix', function () {
 });
 
 gulp.task('deploy', function () {
-	return gulp.src(pathCfg.deploy)
+	return gulp.src(cfg.deploy)
 		.pipe(ghPages({ cacheDir: '../.publish_circle' }));
+});
+
+gulp.task('watch', function () {
+	const watcher = gulp.watch('src/**/*', ['uglify']);
+	watcher.on('change', function (event) {
+		console.log('File ' + event.path + ' was ' + event.type + ', running tasks...');
+	});
 });
 
 
