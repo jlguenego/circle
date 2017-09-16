@@ -12,24 +12,24 @@ module.exports = {
 	},
 	devtool: 'source-map',
 	plugins: [
-		// new UglifyJSPlugin({
-		// 	uglifyOptions: {
-		// 		ie8: false,
-		// 		ecma: 6,
-		// 		compress: {
-		// 			keep_fnames: true,
-		// 		// keep_classnames: true,
-		// 		},
-		// 		mangle: {
-		// 			reserved: ['CircleExpr'],
-		// 			properties: false,
-		// 			keep_fnames: true,
-		// 			keep_classnames: true,
-		// 		},
-		// 		output: {
-		// 			beautify: true
-		// 		}
-		// 	}
-		// })
+		new UglifyJSPlugin({
+			uglifyOptions: {
+				ie8: false,
+				ecma: 6,
+				compress: {
+					// keep_fnames: true,
+				// keep_classnames: true,
+				},
+				mangle: {
+					// reserved: ['CircleExpr'],
+					properties: false,
+					// keep_fnames: true,
+					keep_classnames: true,
+				},
+				output: {
+					beautify: false
+				}
+			}
+		})
 	]
 };
