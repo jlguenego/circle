@@ -28,8 +28,7 @@
     "gulp-uglify": "^3.0.0",
     "pump": "^1.0.2",
     "serve-index": "^1.9.0",
-    "uglify-es": "^3.1.0",
-    "uglify-js": "^3.1.0"
+    "uglify-es": "^3.1.0"
   },
   "dependencies": {}
 }
