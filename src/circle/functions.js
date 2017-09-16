@@ -1,10 +1,10 @@
 /**
-	 * Translate a string from CamelCase to spinal-case.
-	 * Note: works well with SPECIALCamelCase as well.
-	 * 
-	 * @param {string} str - CamelCase string
-	 * @returns spinal-case equivalent string.
-	 */
+ * Translate a string from CamelCase to spinal-case.
+ * Note: works well with SPECIALCamelCase as well.
+ * 
+ * @param {string} str - CamelCase string
+ * @returns spinal-case equivalent string.
+ */
 function camel2Spinal(str) {
     // handle case like JLGStars becoming jlg-stars
     str = str.replace(/^([A-Z]+)([A-Z][a-z])/g, '$1-$2');

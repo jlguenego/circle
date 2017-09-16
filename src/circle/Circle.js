@@ -1,10 +1,10 @@
 /**
-	 * The Circle class is the exposed class of the library.
-	 * The circle.js produces a global variable window.circle which is the hook
-	 * to all functionalities of this library.
-	 * 
-	 * @class Circle
-	 */
+ * The Circle class is the exposed class of the library.
+ * The circle.js produces a global variable window.circle which is the hook
+ * to all functionalities of this library.
+ * 
+ * @class Circle
+ */
 class Circle {
     constructor() {
         this.Element = CircleElement;
