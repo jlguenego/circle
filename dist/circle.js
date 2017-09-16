@@ -1,11 +1,11 @@
 (function() {"use strict"; 
 /**
-	 * Translate a string from CamelCase to spinal-case.
-	 * Note: works well with SPECIALCamelCase as well.
-	 * 
-	 * @param {string} str - CamelCase string
-	 * @returns spinal-case equivalent string.
-	 */
+ * Translate a string from CamelCase to spinal-case.
+ * Note: works well with SPECIALCamelCase as well.
+ * 
+ * @param {string} str - CamelCase string
+ * @returns spinal-case equivalent string.
+ */
 function camel2Spinal(str) {
     // handle case like JLGStars becoming jlg-stars
     str = str.replace(/^([A-Z]+)([A-Z][a-z])/g, '$1-$2');
@@ -460,6 +460,7 @@ class CircleElement extends HTMLElement {
         this.host = elt.getRootNode().host;
         this.key = this.getModelVar(this.constructor.tag);
         this.init();
+        console.log('behavior');
 
         this.host.bindKey(this.key, this);
         let k = this.key;
@@ -478,12 +479,12 @@ class CircleElement extends HTMLElement {
 
     onDigest() { }
 }/**
-	 * The Circle class is the exposed class of the library.
-	 * The circle.js produces a global variable window.circle which is the hook
-	 * to all functionalities of this library.
-	 * 
-	 * @class Circle
-	 */
+ * The Circle class is the exposed class of the library.
+ * The circle.js produces a global variable window.circle which is the hook
+ * to all functionalities of this library.
+ * 
+ * @class Circle
+ */
 class Circle {
     constructor() {
         this.Element = CircleElement;
