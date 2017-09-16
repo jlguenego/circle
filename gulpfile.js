@@ -12,7 +12,7 @@ const del = require('del');
 const fs = require('fs');
 const path = require('path');
 
-gulp.task('default', ['uglify']);
+gulp.task('default', ['build']);
 
 const cfg = {
 	html: ['./src/circle.html'],
@@ -28,7 +28,7 @@ gulp.task('clean', function () {
 	return del(cfg.dist);
 });
 
-gulp.task('js', function (cb) {
+gulp.task('js', ['html'], function (cb) {
 	let code = '';
 	code += fs.readFileSync(path.resolve(cfg.src, 'circle', 'functions.js'), 'utf8');
 	code += fs.readFileSync(path.resolve(cfg.src, 'circle', 'DBNotation.js'), 'utf8');
@@ -49,7 +49,7 @@ gulp.task('html', function () {
 	return gulp.src(cfg.html).pipe(gulp.dest(cfg.dist));
 });
 
-gulp.task('build', ['html', 'uglify']);
+gulp.task('build', ['uglify']);
 
 gulp.task('uglify', ['js'], function (cb) {
 	// the same options as described above
