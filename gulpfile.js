@@ -35,7 +35,7 @@ gulp.task('uglify', ['copy'], function (cb) {
 		},
 		mangle: {
 			toplevel: true,
-			properties: true
+			properties: false
 		}
 	};
 
