@@ -24,7 +24,7 @@ gulp.task('clean', function () {
 });
 
 gulp.task('copy', function () {
-	return gulp.src('./src/circle.js').pipe(gulp.dest('dist'));
+	return gulp.src(['./src/circle.js', './src/circle.html']).pipe(gulp.dest('dist'));
 });
 
 gulp.task('uglify', ['copy'], function (cb) {
