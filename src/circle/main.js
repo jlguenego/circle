@@ -4,10 +4,6 @@ console.log('start main');
 
 if (window.circle) { console.warning('circle already loaded'); }
 
-
-
-
-console.log('init');
 window.o = function (element, tag) {
     if (tag === undefined) {
         return element.getRootNode().host;

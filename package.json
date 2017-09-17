@@ -32,7 +32,8 @@
     "serve-index": "^1.9.0",
     "uglify-es": "^3.1.0",
     "uglifyjs-webpack-plugin": "^1.0.0-beta.2",
-    "webpack": "^3.6.0"
+    "webpack": "^3.6.0",
+    "webpack-dev-middleware": "^1.12.0"
   },
   "dependencies": {}
 }
