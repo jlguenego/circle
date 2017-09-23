@@ -2,7 +2,6 @@
 <link rel="import" href="../../src/o-repeat.html">
 <script src="../../src/di/xhr.js"></script>
 <template id="my-app">
-	<link rel="stylesheet" href="../../src/o-repeat.css">
 	<o-repeat list="[cities]" iterator="city">
 		<template header>
 			<style>
@@ -21,6 +20,7 @@
 					width: 200px;
 				}
 			</style>
+			<span>{{index}}</span>
 			<span>{{city.name}}</span>
 			<span>{{city.population}}</span>
 			<span>{{city.region}}</span>
@@ -30,12 +30,15 @@
 <script>
 	class MyApp extends o.Element {
 		init() {
-			o.di('xhr').get('content.json').then((response) => {
-				this.model.cities = response.data.content;
-				console.log('this.model.cities', this.model.cities);
-			}).catch((error) => {
-				console.error('error', error);
-			});
+			setTimeout(() => {
+				o.di('xhr').get('content.json').then((response) => {
+					this.model.cities = response.data.content;
+					console.log('this.model.cities', this.model.cities);
+				}).catch((error) => {
+					console.error('error', error);
+				});
+			}, 2000);
+			this.model.cities = [];
 		}
 	}
 	MyApp.reg;
