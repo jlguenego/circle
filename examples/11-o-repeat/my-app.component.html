@@ -1,0 +1,26 @@
+<link rel="import" href="../../dist/circle.html">
+<link rel="import" href="../../src/o-repeat.html">
+<script src="../../src/di/xhr.js"></script>
+<template id="my-app">
+	<o-repeat list="[cities]" iterator="city">
+		<template item>
+			<div>{{city.name}}</div>
+			<div>{{city.population}}</div>
+			<div>{{city.region}}</div>
+		</template>
+	</o-repeat>
+</template>
+<script>
+	class MyApp extends o.Element {
+		init() {
+			o.di('xhr').get('content.json').then((response) => {
+				this.model.cities = response.data.content;
+				console.log('this.model.cities', this.model.cities);
+			}).catch((error) => {
+				console.error('error', error);
+			});
+		}
+	}
+	MyApp.reg;
+
+</script>

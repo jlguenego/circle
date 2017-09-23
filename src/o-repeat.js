@@ -7,7 +7,7 @@
 		return template.content.firstChild;
 	}
 
-	class ORepeat extends circle.Element {
+	class ORepeat extends o.Element {
 
 		initDJ() {
 			const iterator = this.model.iterator;
@@ -63,8 +63,7 @@
 			});
 		}
 
-		connectedCallback() {
-			super.connectedCallback();
+		init() {
 			if (this.hasAttribute('tmpl-header-selector')) {
 				const originalTemplate = this.myDoc.querySelector(this.getAttribute('tmpl-header-selector'));
 				if (originalTemplate) {
@@ -92,13 +91,17 @@
 		}
 
 		render(digestId) {
+			if (!this.model.list) {
+				return;
+			}
+			console.log('this.model.list', this.model.list);
 			this.dj.update(this.model.list);
 		}
 	}
 
 	ORepeat.reg;
 
-	class ORepeatItem extends circle.Element {
+	class ORepeatItem extends o.Element {
 
 		static get observedAttributes() { return ['index']; }
 

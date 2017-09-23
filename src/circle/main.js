@@ -1,7 +1,5 @@
 import { Circle } from './Circle.js';
 
-console.log('start main');
-
 if (window.circle) { console.warning('circle already loaded'); }
 
 window.o = function (element, tag) {

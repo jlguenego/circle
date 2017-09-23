@@ -1,31 +1,6 @@
 import { camel2Spinal, spinal2Camel, dirname, basename, isFirefox, isEdge } from './functions.js';
 import { Databinding } from './Databinding.js';
 
-/**
- * We want the user be able to easily insert expression like in AngularJS.
- * But internally, the {{myModelVar}} must be converted to <circle-expr expr="[myModelVar]"></circle-expr>
- * 
- * @param {any} elt 
- */
-function parseExpr(elt) {
-    const walk = document.createTreeWalker(elt, NodeFilter.SHOW_TEXT, null, false);
-    let array = [];
-    for (let node = walk.nextNode(); node !== null; node = walk.nextNode()) {
-        if (node.data.match(/{{(.*?)}}/g)) {
-            array.push(node);
-        }
-    }
-    array.forEach((node) => {
-        const replacementNode = document.createElement('span');
-        replacementNode.innerHTML = node.data.replace(/{{(.*?)}}/g, (match, name) => {
-            return `<circle-expr expr="[${name}]"></circle-expr>`;
-        });
-        const parentNode = node.parentNode;
-        parentNode.insertBefore(replacementNode, node);
-        parentNode.removeChild(node);
-    });
-}
-
 function parseBehavior(rootElt) {
     for (let tag in window.circle.behaviorRegistry) {
         rootElt.querySelectorAll(`[${tag}]`).forEach(elt => {
@@ -85,8 +60,8 @@ export class CircleElement extends HTMLElement {
                         target[key] = value;
                     }
                     circle.digestId++;
-                    console.log('%d: %s: update %s to %s',
-                        circle.digestId, self.constructor.name, absoluteKey, value, circle.stackTrace());
+                    // console.log('%d: %s: update %s to %s',
+                    //     circle.digestId, self.constructor.name, absoluteKey, value, circle.stackTrace());
                     let k = absoluteKey;
                     while (k) {
                         self.digest(k);
@@ -137,7 +112,7 @@ export class CircleElement extends HTMLElement {
         const t = this.myDoc.querySelector(this.templateSelector);
         if (t) {
             const clone = document.importNode(t.content, true);
-            parseExpr(clone);
+            this.parseExpr(clone);
             this.root.innerHTML = '';
             this.root.appendChild(clone);
             parseBehavior(this.root);
@@ -210,5 +185,32 @@ export class CircleElement extends HTMLElement {
 
     setEvent(attr, value) {
         this.event[attr] = () => eval(value);
+    }
+
+
+    /**
+     * We want the user be able to easily insert expression like in AngularJS.
+     * But internally, the {{myModelVar}} must be converted to <circle-expr expr="[myModelVar]"></circle-expr>
+     * 
+     * @param {any} elt 
+     * @memberof CircleElement
+     */
+    parseExpr(elt) {
+        const walk = document.createTreeWalker(elt, NodeFilter.SHOW_TEXT, null, false);
+        let array = [];
+        for (let node = walk.nextNode(); node !== null; node = walk.nextNode()) {
+            if (node.data.match(/{{(.*?)}}/g)) {
+                array.push(node);
+            }
+        }
+        array.forEach((node) => {
+            const replacementNode = document.createElement('span');
+            replacementNode.innerHTML = node.data.replace(/{{(.*?)}}/g, (match, name) => {
+                return `<circle-expr expr="[${name}]"></circle-expr>`;
+            });
+            const parentNode = node.parentNode;
+            parentNode.insertBefore(replacementNode, node);
+            parentNode.removeChild(node);
+        });
     }
 }
