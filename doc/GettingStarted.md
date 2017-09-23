@@ -383,7 +383,7 @@ Some utilities are implemented as dependancy injection (DI).
 
 For instance, xhr (ajax) is one of them.
 
-To set an DI, just do `o.di('yourname', yourobject)`.
+To set a DI, just do `o.di('yourname', yourobject)`.
 
 To use a DI, just do `o.di('yourname')`.
 
