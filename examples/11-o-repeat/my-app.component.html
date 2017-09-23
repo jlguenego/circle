@@ -2,11 +2,28 @@
 <link rel="import" href="../../src/o-repeat.html">
 <script src="../../src/di/xhr.js"></script>
 <template id="my-app">
+	<link rel="stylesheet" href="../../src/o-repeat.css">
 	<o-repeat list="[cities]" iterator="city">
+		<template header>
+			<style>
+				o-repeat-item:nth-child(even) {
+					background-color: #eee;
+				}
+			</style>
+		</template>
 		<template item>
-			<div>{{city.name}}</div>
-			<div>{{city.population}}</div>
-			<div>{{city.region}}</div>
+			<style>
+				:host {
+					display: flex;
+				}
+
+				span {
+					width: 200px;
+				}
+			</style>
+			<span>{{city.name}}</span>
+			<span>{{city.population}}</span>
+			<span>{{city.region}}</span>
 		</template>
 	</o-repeat>
 </template>
