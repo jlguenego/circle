@@ -244,7 +244,7 @@ For instance, `o-value`, a OOTB behavior allows to take the value property of an
 and add it to the model of the current circle component.
 
 ```
-<link rel="import" href="../../src/circle.html">
+<link rel="import" href="../../dist/circle.html">
 <link rel="import" href="../../src/behavior.html">
 <template id="my-app">
 	<input type="text" o-value="name"><br>
@@ -266,7 +266,7 @@ This example shows the behavior `o-value` applied to a select element.
 
 
 ```
-<link rel="import" href="../../src/circle.html">
+<link rel="import" href="../../dist/circle.html">
 <link rel="import" href="../../src/behavior.html">
 <template id="my-app">
 	<select o-value="person.identity.firstname.code">
@@ -311,7 +311,7 @@ Thanks to AngularJS for the [idea](https://docs.angularjs.org/guide/directive#cr
 - my-app.component.html:
 
 ```
-<link rel="import" href="../../src/circle.html">
+<link rel="import" href="../../dist/circle.html">
 <link rel="import" href="draggable.behavior.html">
 <template id="my-app">
 	<link rel="stylesheet" href="draggable.behavior.css">
@@ -328,7 +328,7 @@ Thanks to AngularJS for the [idea](https://docs.angularjs.org/guide/directive#cr
 - draggable.behavior.html:
 
 ```
-<link rel="import" href="../../src/circle.html">
+<link rel="import" href="../../dist/circle.html">
 <script>
 	console.log('draggable');
 	class Draggable extends o.Behavior {
@@ -383,7 +383,7 @@ Some utilities are implemented as dependancy injection (DI).
 
 For instance, xhr (ajax) is one of them.
 
-To set an DI, just do `o.di('yourname', yourobject)`.
+To set a DI, just do `o.di('yourname', yourobject)`.
 
 To use a DI, just do `o.di('yourname')`.
 

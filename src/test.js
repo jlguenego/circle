@@ -1,31 +1,31 @@
 (function () {
-	'use strict';
+    'use strict';
 
-	if (window.circle) { console.warning('circle already loaded'); }
+    if (window.circle) { console.warning('circle already loaded'); }
 
-	// Firefox and Edge does not understand well currentScript after init.
-	// So we keep this pointer for later.
-	const doc = document.currentScript.ownerDocument;
+    // Firefox and Edge does not understand well currentScript after init.
+    // So we keep this pointer for later.
+    const doc = document.currentScript.ownerDocument;
 
-	/**
-	 * Translate a string from CamelCase to spinal-case.
-	 * Note: works well with SPECIALCamelCase as well.
-	 * 
-	 * @param {string} str - CamelCase string
-	 * @returns spinal-case equivalent string.
-	 */
-	function camel2Spinal(str) {
-		// handle case like JLGStars becoming jlg-stars
-		str = str.replace(/^([A-Z]+)([A-Z][a-z])/g, '$1-$2');
-		// then do the traditional conversion to spinal case.
-		return str.replace(/([a-z])([A-Z])/g, '$1-$2').toLowerCase();
-	}
+    /**
+         * Translate a string from CamelCase to spinal-case.
+         * Note: works well with SPECIALCamelCase as well.
+         * 
+         * @param {string} str - CamelCase string
+         * @returns spinal-case equivalent string.
+         */
+    function camel2Spinal(str) {
+        // handle case like JLGStars becoming jlg-stars
+        str = str.replace(/^([A-Z]+)([A-Z][a-z])/g, '$1-$2');
+        // then do the traditional conversion to spinal case.
+        return str.replace(/([a-z])([A-Z])/g, '$1-$2').toLowerCase();
+    }
 
-	function spinal2Camel(str) {
-		return str.replace(/(-[a-z])/g, function ($1) { return $1.toUpperCase().replace('-', ''); });
-	}
+    function spinal2Camel(str) {
+        return str.replace(/(-[a-z])/g, function ($1) { return $1.toUpperCase().replace('-', ''); });
+    }
 
-	/**
+    /**
 	 * Returns the parent key
 	 * Ex: 
 	 * hello['world']['toto'] becomes hello['world']
@@ -119,9 +119,9 @@
 				new window.circle.behaviorRegistry[tag](elt);
 			});
 		}
-	}
-
-	/**
+    }
+    
+    /**
 	 * Class in charge of managing the databinding notation:
 	 * [] for one way databinding
 	 * [[]] for two way databinding
@@ -201,9 +201,9 @@
 				EVENT: '&'
 			};
 		}
-	}
-
-	class Databinding {
+    }
+    
+    class Databinding {
 		constructor(circleElement) {
 			this.elt = circleElement;
 			this.scope = {};
@@ -280,11 +280,11 @@
 			}
 			this.elt.askRendering();
 		}
-	}
+    }
+    
+    class CircleProxyType { }
 
-	class CircleProxyType { }
-
-	/**
+    /**
 	 * A component in circle must extends the circle.Element class
 	 * which is a pointer on the CircleElement class.
 	 * 
@@ -329,8 +329,8 @@
 							target[key] = value;
 						}
 						circle.digestId++;
-						// console.log('%d: %s: update %s to %s',
-						// 	circle.digestId, self.constructor.name, absoluteKey, value, circle.stackTrace());
+						console.log('%d: %s: update %s to %s',
+							circle.digestId, self.constructor.name, absoluteKey, value, circle.stackTrace());
 						let k = absoluteKey;
 						while (k) {
 							self.digest(k);
@@ -435,116 +435,10 @@
 			return eval(str);
 		}
 
-		hasModel(absoluteKey) {
-			const k = dirname(absoluteKey);
-			const b = basename(absoluteKey);
-			if (k) {
-				return this.hasModel(k) && (b in this.getModel(k));
-			}
-			return b in this.model;
-		}
+	
+    }
+    
 
-		setModel(absoluteKey, value) {
-			if (this.getModel(absoluteKey) === value) {
-				return;
-			}
-			const str = 'this.model.' + absoluteKey + ' = value';
-			eval(str);
-		}
 
-		setEvent(attr, value) {
-			this.event[attr] = () => eval(value);
-		}
-	}
 
-	class CircleBehavior {
-		static get tag() {
-			return camel2Spinal(this.name);
-		}
-		static get reg() {
-			window.circle.behaviorRegistry[this.tag] = this;
-		}
-
-		constructor(elt) {
-			this.elt = elt;
-			this.host = elt.getRootNode().host;
-			this.key = this.getModelVar(this.constructor.tag);
-			this.init();
-
-			this.host.bindKey(this.key, this);
-			let k = this.key;
-			while (k) {
-				this.host.bindKey(k, this);
-				k = dirname(k);
-			}
-			this.onDigest(this.key);
-		}
-
-		init() { }
-
-		getModelVar(attr) {
-			return DBNotation.extractModelVar(this.elt.getAttribute(attr));
-		}
-
-		onDigest() { }
-	}
-
-	/**
-	 * The Circle class is the exposed class of the library.
-	 * The circle.js produces a global variable window.circle which is the hook
-	 * to all functionalities of this library.
-	 * 
-	 * @class Circle
-	 */
-	class Circle {
-		constructor() {
-			this.Element = CircleElement;
-			this.Behavior = CircleBehavior;
-			this.digestId = 0;
-			this.dependancyInjectionRegistry = {};
-			this.behaviorRegistry = {};
-		}
-
-		stackTrace() {
-			var err = new Error();
-			return err.stack;
-		}
-
-		di(str, di) {
-			if (arguments.length > 1) {
-				this.dependancyInjectionRegistry[str] = di;
-			}
-			return this.dependancyInjectionRegistry[str];
-		}
-	}
-	window.o = function (element, tag) {
-		if (tag === undefined) {
-			return element.getRootNode().host;
-		}
-		let host = element.getRootNode().host;
-		while (host.constructor.tag !== tag) {
-			host = host.getRootNode().host;
-			if (!host) {
-				throw new Error('circle.wc: cannot find a component with tag ' + tag);
-			}
-		}
-		return host;
-	};
-	Object.setPrototypeOf(window.o, new Circle());
-	window.circle = window.o;
-
-	/**
-	 * CircleExpr is the component that allows displaying expressions.
-	 * 
-	 * @class CircleExpr
-	 * @extends {circle.Element}
-	 */
-	class CircleExpr extends CircleElement {
-		render() {
-			let str = (this.model.expr === undefined) ? '' : this.model.expr;
-			str = (typeof str === 'object') ? JSON.stringify(str) : str;
-			this.root.innerHTML = str;
-		}
-	}
-	CircleExpr.reg;
 })();
