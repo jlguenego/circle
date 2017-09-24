@@ -22,7 +22,9 @@
 			this.dj.onExit(function(elt) {
 				return new Promise((fulfill, reject) => {
 					elt.className += 'leaving';
+					self.isBusy = true;
 					setTimeout(() => {
+						self.isBusy = false;
 						fulfill();
 					}, self.transitionTimeout);
 				});
@@ -32,8 +34,10 @@
 				return new Promise((fulfill, reject) => {
 					elt.className += 'entering';
 					console.log('this', this);
+					self.isBusy = true;
 					setTimeout(() => {
 						elt.classList.remove('entering');
+						self.isBusy = false;
 						fulfill();
 					}, self.transitionTimeout);
 				});
@@ -60,12 +64,15 @@
 
 			this.dj.onUpdateElement(function(elt) {
 				const index = elt.$data$.index;
-				elt.setAttribute('index', index);
+				setTimeout(() => {
+					elt.setAttribute('index', index);
+				}, self.transitionTimeout/2);
 				return elt;
 			});
 		}
 
 		init() {
+			this.isBusy = false;
 			const transition = window.getComputedStyle(this).getPropertyValue('--o-transition').replace(/ms/, '');
 			console.log('transition', transition);
 			this.transitionTimeout = transition || 0;
@@ -108,8 +115,6 @@
 
 	class ORepeatItem extends o.Element {
 
-		static get observedAttributes() { return ['index']; }
-
 		attributeChangedCallback(attr, oldValue, newValue) {
 			if (attr === 'index') {
 				this.model.index = newValue;
@@ -135,10 +140,13 @@
 		}
 
 		delete() {
+			if (this.getParent().isBusy) {
+				return;
+			}
 			this.getParent().model.list.splice(this.model.index, 1);
 		}
 	}
-
+	ORepeatItem.oa = ['index'];
 	ORepeatItem.reg;
 
 })();
