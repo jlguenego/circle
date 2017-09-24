@@ -1,8 +1,10 @@
 import { Circle } from './Circle.js';
 
+console.log('circle start');
+
 if (window.circle) { console.warning('circle already loaded'); }
 
-console.log('circle start');
+
 
 window.o = function (element, tag) {
     if (tag === undefined) {
