@@ -1,4 +1,4 @@
-(function() {
+(function () {
 	'use strict';
 
 	function createElementFromString(document, str) {
@@ -17,9 +17,9 @@
 			if (this.headerContent) {
 				this.root.appendChild(this.headerContent);
 			}
-				
+
 			this.dj = new window.DJ(this.root, 'o-repeat-item');
-			this.dj.onExit(function(elt) {
+			this.dj.onExit(function (elt) {
 				return new Promise((fulfill, reject) => {
 					elt.className += 'leaving';
 					self.isBusy = true;
@@ -30,7 +30,7 @@
 				});
 			});
 
-			this.dj.onEnter(function(elt) {
+			this.dj.onEnter(function (elt) {
 				return new Promise((fulfill, reject) => {
 					elt.className += 'entering';
 					console.log('this', this);
@@ -52,7 +52,7 @@
 				return true;
 			};
 
-			this.dj.onAddNewElement(function(obj) {
+			this.dj.onAddNewElement(function (obj) {
 				const elt = createElementFromString(
 					document,
 					`<o-repeat-item iterator="${iterator}" 
@@ -62,11 +62,11 @@
 				return elt;
 			});
 
-			this.dj.onUpdateElement(function(elt) {
+			this.dj.onUpdateElement(function (elt) {
 				const index = elt.$data$.index;
 				setTimeout(() => {
 					elt.setAttribute('index', index);
-				}, self.transitionTimeout/2);
+				}, self.transitionTimeout / 2);
 				return elt;
 			});
 		}
@@ -74,30 +74,20 @@
 		init() {
 			this.isBusy = false;
 			const transition = window.getComputedStyle(this).getPropertyValue('--o-transition').replace(/ms/, '');
-			console.log('transition', transition);
 			this.transitionTimeout = transition || 0;
-			if (this.hasAttribute('tmpl-header-selector')) {
-				const originalTemplate = this.myDoc.querySelector(this.getAttribute('tmpl-header-selector'));
-				if (originalTemplate) {
-					this.headerContent = document.importNode(originalTemplate.content, true);
-				}
-			} else {
-				const originalTemplate = this.querySelector('template[header]');
-				if (originalTemplate) {
-					this.headerContent = document.importNode(originalTemplate.content, true);
-				}
+
+			const tmpl = (this.hasAttribute('tmpl-header-selector')) ?
+				this.myDoc.querySelector(this.getAttribute('tmpl-header-selector')) :
+				this.querySelector('template[header]');
+			if (tmpl) {
+				this.headerContent = document.importNode(tmpl.content, true);
 			}
 
-			if (this.hasAttribute('tmpl-item-selector')) {
-				const originalTemplate = this.myDoc.querySelector(this.getAttribute('tmpl-item-selector'));
-				if (originalTemplate) {
-					this.originalContent = document.importNode(originalTemplate.content, true);
-				}
-			} else {
-				const originalTemplate = this.querySelector('template[item]');
-				if (originalTemplate) {
-					this.originalContent = document.importNode(originalTemplate.content, true);
-				}
+			const tmpl2 = (this.hasAttribute('tmpl-item-selector')) ?
+				this.myDoc.querySelector(this.getAttribute('tmpl-item-selector')) :
+				this.querySelector('template[item]');
+			if (tmpl2) {
+				this.originalContent = document.importNode(tmpl2.content, true);
 			}
 			this.initDJ();
 		}
@@ -106,7 +96,6 @@
 			if (!this.model.list) {
 				return;
 			}
-			console.log('this.model.list', this.model.list);
 			this.dj.update(this.model.list);
 		}
 	}
