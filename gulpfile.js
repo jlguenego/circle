@@ -3,14 +3,10 @@ const ghPages = require('gulp-gh-pages');
 const eslint = require('gulp-eslint');
 const debug = require('gulp-debug');
 const gulpIf = require('gulp-if');
-const uglifyjs = require('uglify-es');
-const minify = require('gulp-uglify/composer')(uglifyjs, console);
-const pump = require('pump');
-const rename = require('gulp-rename');
-const concat = require('gulp-concat');
-const iife = require('gulp-iife');
-const sourcemaps = require('gulp-sourcemaps');
 const del = require('del');
+const webpack = require('webpack');
+const webpackConfig = require('./webpack.config.js');
+const gutil = require('gulp-util');
 
 gulp.task('default', ['build']);
 
@@ -41,43 +37,23 @@ gulp.task('clean', function () {
 });
 
 
-gulp.task('build', ['html', 'uglify']);
+gulp.task('build', ['html', 'webpack']);
 
 gulp.task('html', function () {
 	return gulp.src(cfg.html).pipe(gulp.dest(cfg.dist));
 });
 
 
-gulp.task('uglify', function (cb) {
-	// the same options as described above
-	const options = {
-		compress: {
-			toplevel: true,
-			dead_code: true,
-		},
-		mangle: {
-			toplevel: true,
-			properties: false,
-			eval: true,
-			reserved : ['CircleExpr']
-		},
-		output: {
-			beautify: true,
-		},
-	};
-
-	pump([
-		gulp.src(cfg.circle.input),
-		sourcemaps.init(),
-		concat(cfg.circle.output),
-		iife(),
-		minify(options),
-		rename(cfg.minified),
-		sourcemaps.write('.'),
-		gulp.dest(cfg.dist)
-	],
-		cb
-	);
+gulp.task('webpack', function (cb) {
+	webpack(webpackConfig, function (err, stats) {
+		if (err) {
+			throw new gutil.PluginError('webpack', err);
+		}
+		gutil.log('[webpack]', stats.toString({
+			// output options
+		}));
+		cb();
+	});
 });
 
 

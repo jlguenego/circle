@@ -2,6 +2,8 @@ import { Circle } from './Circle.js';
 
 if (window.circle) { console.warning('circle already loaded'); }
 
+console.log('circle start');
+
 window.o = function (element, tag) {
     if (tag === undefined) {
         return element.getRootNode().host;
