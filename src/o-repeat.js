@@ -128,6 +128,10 @@
 		get index() {
 			return this.model.index;
 		}
+
+		delete() {
+			this.getParent().model.list.splice(this.model.index, 1);
+		}
 	}
 
 	ORepeatItem.reg;
