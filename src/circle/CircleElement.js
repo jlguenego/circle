@@ -198,7 +198,8 @@ export class CircleElement extends HTMLElement {
     parseExpr(elt) {
         const walk = document.createTreeWalker(elt, NodeFilter.SHOW_TEXT, null, false);
         let array = [];
-        for (let node = walk.nextNode(); node !== null; node = walk.nextNode()) {
+        let node;
+        for (node = walk.nextNode(); node !== null; node = walk.nextNode()) {
             if (node.data.match(/{{(.*?)}}/g)) {
                 array.push(node);
             }

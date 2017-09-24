@@ -12,25 +12,25 @@ module.exports = {
 	},
 	devtool: 'source-map',
 	plugins: [
-		// new UglifyJSPlugin({
-		// 	sourceMap: true,
-		// 	uglifyOptions: {
-		// 		ie8: false,
-		// 		ecma: 6,
-		// 		compress: {
-		// 			// keep_fnames: true,
-		// 			// keep_classnames: true,
-		// 		},
-		// 		mangle: {
-		// 			// reserved: ['CircleExpr'],
-		// 			properties: false,
-		// 			// keep_fnames: true,
-		// 			keep_classnames: true,
-		// 		},
-		// 		output: {
-		// 			beautify: false
-		// 		},
-		// 	}
-		// })
+		new UglifyJSPlugin({
+			sourceMap: true,
+			uglifyOptions: {
+				ie8: false,
+				ecma: 6,
+				compress: {
+					// keep_fnames: true,
+					// keep_classnames: true,
+				},
+				mangle: {
+					// reserved: ['CircleExpr'],
+					properties: false,
+					// keep_fnames: true,
+					keep_classnames: true,
+				},
+				output: {
+					beautify: false
+				},
+			}
+		})
 	]
 };
