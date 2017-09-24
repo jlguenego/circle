@@ -10,6 +10,7 @@
 	class ORepeat extends o.Element {
 
 		initDJ() {
+			const self = this;
 			const iterator = this.model.iterator;
 
 			this.root.innerHTML = '';
@@ -23,17 +24,18 @@
 					elt.className += 'leaving';
 					setTimeout(() => {
 						fulfill();
-					}, 500);
+					}, self.transitionTimeout);
 				});
 			});
 
 			this.dj.onEnter(function(elt) {
 				return new Promise((fulfill, reject) => {
 					elt.className += 'entering';
+					console.log('this', this);
 					setTimeout(() => {
 						elt.classList.remove('entering');
 						fulfill();
-					}, 500);
+					}, self.transitionTimeout);
 				});
 			});
 
@@ -64,6 +66,9 @@
 		}
 
 		init() {
+			const transition = window.getComputedStyle(this).getPropertyValue('--o-transition').replace(/ms/, '');
+			console.log('transition', transition);
+			this.transitionTimeout = transition || 0;
 			if (this.hasAttribute('tmpl-header-selector')) {
 				const originalTemplate = this.myDoc.querySelector(this.getAttribute('tmpl-header-selector'));
 				if (originalTemplate) {

@@ -1,14 +1,14 @@
-<link rel="import" href="../../dist/circle.html">
-<link rel="import" href="../../src/o-repeat.html">
-<script src="../../src/di/xhr.js"></script>
 <template id="my-app">
+
+	<style>
+		o-repeat {
+			--o-transition: 5000ms;
+		}
+	</style>
+	<button onclick="o(this).init()">Initialize list</button>
 	<o-repeat list="[cities]" iterator="city">
 		<template header>
-			<style>
-				o-repeat-item:nth-child(even) {
-					background-color: #eee;
-				}
-			</style>
+			<link rel="stylesheet" href="../../src/o-repeat.css">
 		</template>
 		<template item>
 			<style>
@@ -28,6 +28,9 @@
 		</template>
 	</o-repeat>
 </template>
+<link rel="import" href="../../dist/circle.html">
+<link rel="import" href="../../src/o-repeat.html">
+<script src="../../src/di/xhr.js"></script>
 <script>
 	class MyApp extends o.Element {
 		init() {
@@ -37,7 +40,6 @@
 			}).catch((error) => {
 				console.error('error', error);
 			});
-			this.model.cities = [];
 		}
 	}
 	MyApp.reg;
