@@ -84,7 +84,7 @@ gulp.task('deploy', function () {
 });
 
 gulp.task('watch', function () {
-	const watcher = gulp.watch('src/**/*', ['uglify']);
+	const watcher = gulp.watch('src/**/*', ['build']);
 	watcher.on('change', function (event) {
 		console.log('File ' + event.path + ' was ' + event.type + ', running tasks...');
 	});
