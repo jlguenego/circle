@@ -104,24 +104,18 @@
 
 	class ORepeatItem extends o.Element {
 
-		attributeChangedCallback(attr, oldValue, newValue) {
-			if (attr === 'index') {
-				this.model.index = newValue;
-			}
-		}
-
 		render(digestId) {
-			if (!this.alreadyWentHere) {
-				this.alreadyWentHere = true;
-				if (this.getParent().originalContent === undefined) {
-					throw new Error('o-repeat: Cannot find the template');
-				}
-				const clone = document.importNode(this.getParent().originalContent, true);
-				this.parseExpr(clone);
-				this.root.innerHTML = '';
-				this.root.appendChild(clone);
+			if (this.alreadyWentHere) {
 				return;
 			}
+			this.alreadyWentHere = true;
+			if (this.getParent().originalContent === undefined) {
+				throw new Error('o-repeat: Cannot find the template');
+			}
+			const clone = document.importNode(this.getParent().originalContent, true);
+			this.parseExpr(clone);
+			this.root.innerHTML = '';
+			this.root.appendChild(clone);
 		}
 
 		get index() {
