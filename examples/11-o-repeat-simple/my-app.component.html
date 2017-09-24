@@ -1,0 +1,45 @@
+<link rel="import" href="../../dist/circle.html">
+<link rel="import" href="../../src/o-repeat.html">
+<script src="../../src/di/xhr.js"></script>
+<template id="my-app">
+	<o-repeat list="[cities]" iterator="city">
+		<template header>
+			<style>
+				o-repeat-item:nth-child(even) {
+					background-color: #eee;
+				}
+			</style>
+		</template>
+		<template item>
+			<style>
+				:host {
+					display: flex;
+				}
+
+				span {
+					width: 200px;
+				}
+			</style>
+			<span>{{index}}</span>
+			<span>{{city.name}}</span>
+			<span>{{city.population}}</span>
+			<span>{{city.region}}</span>
+		</template>
+	</o-repeat>
+</template>
+<script>
+	class MyApp extends o.Element {
+		init() {
+			setTimeout(() => {
+				o.di('xhr').get('content.json').then((response) => {
+					this.model.cities = response.data.content;
+					console.log('this.model.cities', this.model.cities);
+				}).catch((error) => {
+					console.error('error', error);
+				});
+			}, 1000);
+		}
+	}
+	MyApp.reg;
+
+</script>

@@ -1,0 +1,47 @@
+<template id="my-app">
+
+	<style>
+		o-repeat {
+			--o-transition: 500ms;
+		}
+	</style>
+	<button onclick="o(this).init()">Initialize list</button>
+	<o-repeat list="[cities]" iterator="city">
+		<template header>
+			<link rel="stylesheet" href="../../src/o-repeat.css">
+		</template>
+		<template item>
+			<style>
+				:host {
+					display: flex;
+				}
+
+				span {
+					width: 200px;
+				}
+			</style>
+			<span>{{index}}</span>
+			<span>{{city.name}}</span>
+			<span>{{city.population}}</span>
+			<span>{{city.region}}</span>
+			<span><button onclick="o(this).delete()">Delete</button></span>
+		</template>
+	</o-repeat>
+</template>
+<link rel="import" href="../../dist/circle.html">
+<link rel="import" href="../../src/o-repeat.html">
+<script src="../../src/di/xhr.js"></script>
+<script>
+	class MyApp extends o.Element {
+		init() {
+			o.di('xhr').get('content.json').then((response) => {
+				this.model.cities = response.data.content;
+				console.log('this.model.cities', this.model.cities);
+			}).catch((error) => {
+				console.error('error', error);
+			});
+		}
+	}
+	MyApp.reg;
+
+</script>

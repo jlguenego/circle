@@ -1,8 +1,6 @@
 o-repeat-item {
-	display: block;
-	animation: fade-in 0.5s forwards;
-	background-color: #eee;
-
+	animation: fade-in forwards;
+	animation-duration: var(--o-transition, 0.5s);
 }
 
 @keyframes fade-in {
@@ -14,7 +12,6 @@ o-repeat-item {
 	to {
 		opacity: 1;
 		height: 30px;
-		background-color: #eee;
 	}
 }
 
@@ -27,10 +24,10 @@ o-repeat-item {
 	to {
 		opacity: 0;
 		height: 0;
-		background-color: transparent;
 	}
 }
 
 .leaving {
-	animation: fade-out 0.5s forwards;
+	animation: fade-out forwards;
+	animation-duration: var(--o-transition, 0.5s);
 }
