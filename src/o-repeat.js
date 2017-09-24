@@ -104,11 +104,7 @@
 
 	class ORepeatItem extends o.Element {
 
-		render(digestId) {
-			if (this.alreadyWentHere) {
-				return;
-			}
-			this.alreadyWentHere = true;
+		init() {
 			if (this.getParent().originalContent === undefined) {
 				throw new Error('o-repeat: Cannot find the template');
 			}
