@@ -3,10 +3,19 @@ Getting Started
 
 You can see the examples ([sources](../examples/), [run](https://jlguenego.github.io/circle/examples/index.html)).
 
+There are 10 steps:
+- [01 - Hello {{name}}](#01-hello-name)
+- [01 - Hello {{name}}](#01-hello-name)
+- [01 - Hello {{name}}](#01-hello-name)
+- [01 - Hello {{name}}](#01-hello-name)
+- [01 - Hello {{name}}](#01-hello-name)
+- [01 - Hello {{name}}](#01-hello-name)
+
+
 Ok, let's go !
 
-01 - Hello {{name}}
--------------------
+[01 - Hello {{name}}](#01-hello-name)
+-------------------------------------
 
 - [Read the code](../examples/01-hello-name/)
 - [Run it](https://jlguenego.github.io/circle/examples/01-hello-name/index.html)
