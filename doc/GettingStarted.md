@@ -53,7 +53,7 @@ For instance:
 </body>
 ```
 
-Here we have a **interpolation databinding**. The term comes from AngularJS/Angular.
+Here we have an **interpolation databinding**. The term comes from AngularJS/Angular.
 
 Each web component defined with *circle* is called a **circle component**.
 
@@ -61,9 +61,7 @@ A circle component is equiped with a **model**, which is a fully observable obje
 
 By specifying an attribute `my-key="my-value"` to a circle component, we add to the circle component model the property `myKey` which contains `my-value`.
 
-If the attribute value changes, then the model value change and is propagated inside the circle component.
 
-Let us check this fact !
 
 
 02 - Hello Madame Monsieur
@@ -72,6 +70,11 @@ Let us check this fact !
 - [Read the code](../examples/02-hello-madame-monsieur/)
 - [Run it](https://jlguenego.github.io/circle/examples/02-hello-madame-monsieur/index.html)
 
+Here we have an interpolation databinding with a value that can be updated with the two buttons.
+
+If the attribute value changes, then the model value change and is propagated inside the circle component.
+
+Let us check this fact !
 
 Hmmm. Almost... It will work only if we added the attribute name to the observed attribute array (yes, it is because of the web component architecture limitation).
 So we would absolutely need to do something like `HelloName.oa = ['name']`.
