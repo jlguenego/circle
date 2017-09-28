@@ -14,8 +14,8 @@ There are 10 steps:
 
 Ok, let's go !
 
-[01 - Hello {{name}}](#01-hello-name)
--------------------------------------
+01 - Hello {{name}}
+-------------------
 
 - [Read the code](../examples/01-hello-name/)
 - [Run it](https://jlguenego.github.io/circle/examples/01-hello-name/index.html)
