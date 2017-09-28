@@ -20,7 +20,7 @@
 </template>
 
 <template id="my-body">
-	Hello body...
+	<o-route></o-route>
 </template>
 
 <template id="my-footer">
@@ -35,8 +35,15 @@
 				{ label: 'Home', url: './' },
 				{ label: 'Products', url: './products' },
 				{ label: 'Services', url: './services' },
-				{ label: 'Contact', url: './contacts' },
+				{ label: 'Contact', url: './contact' },
 			];
+
+			o.di('routes').config({
+				home: { url: './'},
+				products: { url: './products'},
+				services: { url: './services'},
+				contact: { url: './contact'},
+			});
 		}
 
 	}
