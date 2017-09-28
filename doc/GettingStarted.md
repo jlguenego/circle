@@ -4,7 +4,7 @@ Getting Started
 You can see the examples ([sources](../examples/), [run](https://jlguenego.github.io/circle/examples/index.html)).
 
 There are 10 steps:
-- [01 - Hello {{name}}](#01-hello-name)
+- [01 - Hello {{name}}](#user-content-01---hello-name)
 - [01 - Hello {{name}}](#01-hello-name)
 - [01 - Hello {{name}}](#01-hello-name)
 - [01 - Hello {{name}}](#01-hello-name)
