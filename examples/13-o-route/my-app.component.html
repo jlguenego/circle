@@ -1,0 +1,49 @@
+<template id="my-app">
+	<my-header menu="[menu]" site-id="Fatfood" tagline="The cetogen food place."></my-header>
+	<my-body></my-body>
+	<my-footer></my-footer>
+</template>
+<template id="my-header">
+	<site-id>{{siteId}}</site-id>
+	<tag-line>{{tagline}}</tag-line>
+	<o-repeat list="[menu]">
+		<template item>
+			<item><a o-href="[url]">{{label}}</a></item>
+		</template>
+	</o-repeat>
+	<hr>
+</template>
+<template id="my-body">
+	Hello body...
+</template>
+<template id="my-footer">
+	<hr>
+	<p>@Fatfood - {{year}}</p>
+</template>
+
+<link rel="import" href="../../dist/circle.html">
+<script>
+	class MyApp extends o.Element {
+		init() {
+			this.model.menu = [
+				{ label: 'Home', url: '/' },
+				{ label: 'Products', url: '/products' },
+				{ label: 'Services', url: '/services' },
+				{ label: 'Contact', url: '/contacts' },
+			];
+		}
+
+	}
+	MyApp.reg;
+	class MyHeader extends o.Element { }
+	MyHeader.reg;
+	class MyBody extends o.Element { }
+	MyBody.reg;
+	class MyFooter extends o.Element {
+		init() {
+			this.model.year = new Date().getFullYear();
+		}
+	}
+	MyFooter.reg;
+
+</script>
