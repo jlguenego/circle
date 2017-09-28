@@ -1,14 +1,6 @@
 import { camel2Spinal, spinal2Camel, dirname, basename, isFirefox, isEdge } from './functions.js';
 import { Databinding } from './Databinding.js';
 
-function parseBehavior(rootElt) {
-    for (let tag in window.circle.behaviorRegistry) {
-        rootElt.querySelectorAll(`[${tag}]`).forEach(elt => {
-            new window.circle.behaviorRegistry[tag](elt);
-        });
-    }
-}
-
 // Firefox and Edge does not understand well currentScript after init.
 // So we keep this pointer for later.
 const doc = document.currentScript.ownerDocument;
@@ -115,7 +107,7 @@ export class CircleElement extends HTMLElement {
             this.parseExpr(clone);
             this.root.innerHTML = '';
             this.root.appendChild(clone);
-            parseBehavior(this.root);
+            this.parseBehavior(this.root);
         }
         this.databinding.connectedCallBack();
         this.init();
@@ -213,5 +205,13 @@ export class CircleElement extends HTMLElement {
             parentNode.insertBefore(replacementNode, node);
             parentNode.removeChild(node);
         });
+    }
+
+    parseBehavior(rootElt) {
+        for (let tag in window.circle.behaviorRegistry) {
+            rootElt.querySelectorAll(`[${tag}]`).forEach(elt => {
+                new window.circle.behaviorRegistry[tag](elt);
+            });
+        }
     }
 }

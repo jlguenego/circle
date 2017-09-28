@@ -1,6 +1,6 @@
 (function () {
     'use strict';
-    class OValue extends circle.Behavior {
+    class OValue extends o.Behavior {
         constructor(elt) {
             super(elt);
             this.elt.addEventListener('input', () => {

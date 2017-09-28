@@ -1,27 +1,33 @@
+<link rel="import" href="../../dist/circle.html">
+<link rel="import" href="../../src/o-repeat.html">
+<link rel="import" href="../../src/behavior.html">
+
 <template id="my-app">
 	<my-header menu="[menu]" site-id="Fatfood" tagline="The cetogen food place."></my-header>
 	<my-body></my-body>
 	<my-footer></my-footer>
 </template>
+
 <template id="my-header">
 	<site-id>{{siteId}}</site-id>
 	<tag-line>{{tagline}}</tag-line>
-	<o-repeat list="[menu]">
+	<o-repeat list="[menu]" iterator="item">
 		<template item>
-			<item><a o-href="[url]">{{label}}</a></item>
+			<item><a o-href="[item.url]">{{item.label}}</a></item>
 		</template>
 	</o-repeat>
 	<hr>
 </template>
+
 <template id="my-body">
 	Hello body...
 </template>
+
 <template id="my-footer">
 	<hr>
 	<p>@Fatfood - {{year}}</p>
 </template>
 
-<link rel="import" href="../../dist/circle.html">
 <script>
 	class MyApp extends o.Element {
 		init() {
@@ -45,5 +51,4 @@
 		}
 	}
 	MyFooter.reg;
-
 </script>

@@ -112,6 +112,8 @@
 			this.parseExpr(clone);
 			this.root.innerHTML = '';
 			this.root.appendChild(clone);
+			this.parseBehavior(this.root);
+			
 		}
 
 		get index() {
