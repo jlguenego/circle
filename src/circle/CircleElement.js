@@ -17,6 +17,8 @@ export class CircleElement extends HTMLElement {
         return camel2Spinal(this.name);
     }
     static get reg() {
+        this.myDoc = (isFirefox() || isEdge() || (document.currentScript === null)) ?
+            doc : document.currentScript.ownerDocument;
         window.customElements.define(this.tag, this);
     }
 
@@ -98,10 +100,8 @@ export class CircleElement extends HTMLElement {
             // Eric B. explain why it is better to use open mode.
             mode: 'open'
         });
-        this.myDoc = (isFirefox() || isEdge() || (document.currentScript === null)) ?
-            doc : document.currentScript.ownerDocument;
 
-        const t = this.myDoc.querySelector(this.templateSelector);
+        const t = this.constructor.myDoc.querySelector(this.templateSelector);
         console.log('look for template: ', this.templateSelector, t);
         if (t) {
             const clone = document.importNode(t.content, true);
