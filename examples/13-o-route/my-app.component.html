@@ -32,19 +32,12 @@
 <script>
 	class MyApp extends o.Element {
 		init() {
-			this.model.menu = [
-				{ label: 'Home', url: './' },
-				{ label: 'Products', url: './products' },
-				{ label: 'Services', url: './services' },
-				{ label: 'Contact', url: './contact' },
-			];
-
-			o.di('routes').config({
-				home: { url: './'},
-				products: { url: './products'},
-				services: { url: './services'},
-				contact: { url: './contact'},
-			});
+			o.di('routes').config([
+				{ name: 'home', label: 'Home', url: './', component: 'my-home' },
+				{ name: 'products', label: 'Products', url: './products', component: 'my-products' },
+				{ name: 'services', label: 'Services', url: './services', component: 'my-services' },
+				{ name: 'contact', label: 'Contact', url: './contact', component: 'my-contact' },
+			]);
 		}
 
 	}
@@ -59,4 +52,5 @@
 		}
 	}
 	MyFooter.reg;
+
 </script>
