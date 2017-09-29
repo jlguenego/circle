@@ -17,7 +17,7 @@
 			event.preventDefault();
 			const component = this.config.find(n => n.url === url).component;
 			console.log('component', component);
-			this.elt.root.innerHTML = 'asdf';
+			this.elt.root.innerHTML = '';
             this.elt.root.appendChild(document.createElement(component));
 		}
 
