@@ -38,7 +38,9 @@
 				{ name: 'services', label: 'Services', url: './services', component: 'my-services' },
 				{ name: 'contact', label: 'Contact', url: './contact', component: 'my-contact' },
 			]);
+			this.model.menu = o.di('routes').config;
 		}
+
 
 	}
 	MyApp.reg;
