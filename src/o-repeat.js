@@ -33,7 +33,6 @@
 			this.dj.onEnter(function (elt) {
 				return new Promise((fulfill, reject) => {
 					elt.className += 'entering';
-					console.log('this', this);
 					self.isBusy = true;
 					setTimeout(() => {
 						elt.classList.remove('entering');

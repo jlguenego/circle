@@ -1,6 +1,5 @@
 (function () {
     'use strict';
-    console.log('ohref decl');
 
     class OHref extends o.Behavior {
 

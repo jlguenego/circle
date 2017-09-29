@@ -102,7 +102,6 @@ export class CircleElement extends HTMLElement {
         });
 
         const t = this.constructor.myDoc.querySelector(this.templateSelector);
-        console.log('look for template: ', this.templateSelector, t);
         if (t) {
             const clone = document.importNode(t.content, true);
             this.parseExpr(clone);
