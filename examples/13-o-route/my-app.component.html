@@ -1,0 +1,60 @@
+<link rel="import" href="../../dist/circle.html">
+<link rel="import" href="../../src/o-repeat.html">
+<link rel="import" href="../../src/behavior.html">
+<link rel="import" href="../../src/routes/routes.html">
+
+
+<template id="my-app">
+	<my-header menu="[menu]" site-id="Fatfood" tagline="The cetogen food place."></my-header>
+	<my-body></my-body>
+	<my-footer></my-footer>
+</template>
+
+<template id="my-header">
+	<site-id>{{siteId}}</site-id>
+	<tag-line>{{tagline}}</tag-line>
+	<o-repeat list="[menu]" iterator="item">
+		<template item>
+			<item><a o-href="item.url">{{item.label}}</a></item>
+		</template>
+	</o-repeat>
+	<hr>
+</template>
+
+<template id="my-footer">
+	<hr>
+	<p>@Fatfood - {{year}}</p>
+</template>
+
+<script>
+	class MyApp extends o.Element {
+		init() {
+			o.di('routes').config([
+				{ name: 'home', label: 'Home', url: './', component: 'my-home' },
+				{ name: 'products', label: 'Products', url: './products', component: 'my-products' },
+				{ name: 'services', label: 'Services', url: './services', component: 'my-services' },
+				{ name: 'contact', label: 'Contact', url: './contact', component: 'my-contact' },
+			]);
+			this.model.menu = o.di('routes').config;
+		}
+
+
+	}
+	MyApp.reg;
+	class MyHeader extends o.Element { }
+	MyHeader.reg;
+	class MyBody extends o.Element {
+		init() {
+			o.di('routes').register(this);
+		}
+	}
+	MyBody.reg;
+	class MyFooter extends o.Element {
+		init() {
+			this.model.year = new Date().getFullYear();
+		}
+	}
+	MyFooter.reg;
+
+</script>
+<link rel="import" href="./routes/routes.html">

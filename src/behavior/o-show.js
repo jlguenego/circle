@@ -1,6 +1,6 @@
 (function () {
     'use strict';
-    class OShow extends circle.Behavior {
+    class OShow extends o.Behavior {
 
         onDigest(key) {
             this.render();

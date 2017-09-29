@@ -4,8 +4,8 @@ Circle
 Official web site: (https://jlguenego.github.io/circle/)
 
 Purpose: 
-- Using the web components technologies in projects, and the other very recent web API.
-- Reducing boilerplate code to something very simple for the developer.
+- Using the [web components](https://www.webcomponents.org/) technologies in projects, and the other very recent web API.
+- Reducing [boilerplate code](./doc/ReducingBoilerplate.md) to something very simple for the developer.
 - Providing custom element (web components), and custom attributes (behaviors).
 - Providing templating, observable model, with the 4 kinds of databinding (1-way, 2-way, interpolation, event), Dependancy Injection.
 - Library size very small.
@@ -37,6 +37,7 @@ Table of Content
 - [Concepts](./doc/Concepts.md)
 - [API Reference](./doc/APIReference.md)
 - [Examples](./doc/Examples.md)
+- [Reducing boilerplate code](./doc/ReducingBoilerplate.md)
 
 
 Why Circle ?

@@ -1,6 +1,6 @@
 (function () {
     'use strict';
-    class OSelectList extends circle.Behavior {
+    class OSelectList extends o.Behavior {
 
         onDigest(key) {
             this.render();
