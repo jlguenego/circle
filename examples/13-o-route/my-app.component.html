@@ -3,6 +3,7 @@
 <link rel="import" href="../../src/behavior.html">
 <link rel="import" href="../../src/routes/routes.html">
 
+
 <template id="my-app">
 	<my-header menu="[menu]" site-id="Fatfood" tagline="The cetogen food place."></my-header>
 	<my-body></my-body>
@@ -18,10 +19,6 @@
 		</template>
 	</o-repeat>
 	<hr>
-</template>
-
-<template id="my-body">
-	<o-route></o-route>
 </template>
 
 <template id="my-footer">
@@ -46,7 +43,11 @@
 	MyApp.reg;
 	class MyHeader extends o.Element { }
 	MyHeader.reg;
-	class MyBody extends o.Element { }
+	class MyBody extends o.Element {
+		init() {
+			o.di('routes').register(this);
+		}
+	}
 	MyBody.reg;
 	class MyFooter extends o.Element {
 		init() {
@@ -56,3 +57,4 @@
 	MyFooter.reg;
 
 </script>
+<link rel="import" href="./routes/routes.html">

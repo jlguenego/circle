@@ -7,8 +7,11 @@
         init() {
             const behavior = this;
             this.elt.addEventListener('click', function (event) {
-                window.history.pushState('object or string', 'title', behavior.host.getModel(behavior.key));
-                event.preventDefault();
+                const url = behavior.host.getModel(behavior.key);
+                
+                const routes = o.di('routes');
+                routes.onClick(event, url);
+                
             });
         }
 
