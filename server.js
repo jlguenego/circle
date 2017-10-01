@@ -16,6 +16,10 @@ app.use('/dist/', webpackDevMiddleware(compiler, {}));
 app.use(express.static('.'));
 app.use(serveIndex('.', { icons: true }));
 
+app.use('/examples/13-o-route/', function (req, res, next) {
+	res.sendFile('./examples/13-o-route/', { root: '.' });
+});
+
 app.use(function (req, res, next) {
 	console.log('404: Page not Found', req.url);
 	next();
