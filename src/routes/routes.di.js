@@ -8,6 +8,9 @@
 
 		register(elt) {
 			this.elt = elt;
+			const component = this.states.find(n => n.default === true).component;
+			this.elt.root.innerHTML = '';
+            this.elt.root.appendChild(document.createElement(component));
 		}
 
 		onClick(event, url) {
