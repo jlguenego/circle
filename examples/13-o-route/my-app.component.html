@@ -29,13 +29,13 @@
 <script>
 	class MyApp extends o.Element {
 		init() {
-			o.di('routes').config([
-				{ name: 'home', label: 'Home', url: './', component: 'my-home' },
+			o.di('routes').states([
+				{ name: 'home', label: 'Home', url: './', component: 'my-home', default: true },
 				{ name: 'products', label: 'Products', url: './products', component: 'my-products' },
 				{ name: 'services', label: 'Services', url: './services', component: 'my-services' },
 				{ name: 'contact', label: 'Contact', url: './contact', component: 'my-contact' },
 			]);
-			this.model.menu = o.di('routes').config;
+			this.model.menu = o.di('routes').states;
 		}
 
 
