@@ -5,12 +5,12 @@
 
         init() {
             const behavior = this;
+            const url = behavior.host.getModel(behavior.key);
+            console.log('url', url);
             this.elt.addEventListener('click', function (event) {
-                const url = behavior.host.getModel(behavior.key);
-                
+                event.preventDefault();
                 const routes = o.di('routes');
-                routes.onClick(event, url);
-                
+                routes.goto(url);
             });
         }
 
