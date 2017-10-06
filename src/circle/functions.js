@@ -21,7 +21,7 @@ function key2Array(key) {
 }
 
 function array2Key(array) {
-    return array.map(n => `['${n}']`).join();
+    return array.map(n => `['${n}']`).join('');
 }
 
 /**

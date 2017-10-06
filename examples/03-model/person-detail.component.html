@@ -8,7 +8,7 @@
 	<h1>Person Detail</h1>
 	<ul>
 		<li>First name: {{firstname}}</li>
-		<li>Last name: {{['last-name']}}</li>
+		<li>Last name: {{['last.name']}}</li>
 		<li>Email: {{profile.email}}</li>
 		<li>Birthday: {{['personal-info'].birthday}}</li>
 	</ul>
@@ -17,7 +17,7 @@
 	class PersonDetail extends o.Element {
 		init() {
 			this.model.firstname = 'John';
-			this.model['last-name'] = 'Doe';
+			this.model['last.name'] = 'Doe';
 			this.model.profile = {
 				email: 'john@doe.io'
 			};
