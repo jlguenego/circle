@@ -56,7 +56,7 @@
 					document,
 					`<o-repeat-item iterator="${iterator}" 
 						index="${obj.index}" 
-						${iterator}="[list[${obj.index}]]"></o-repeat-item>`);
+						${iterator}="[list['${obj.index}']]"></o-repeat-item>`);
 
 				return elt;
 			});
