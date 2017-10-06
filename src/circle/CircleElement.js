@@ -173,7 +173,6 @@ export class CircleElement extends HTMLElement {
         }
         const prefix = (absoluteKey.startsWith('[')) ? 'this.model' : 'this.model.';
         const str = prefix + absoluteKey + ' = value';
-        console.log('setModel-> about to eval: ', str);
         eval(str);
     }
 
