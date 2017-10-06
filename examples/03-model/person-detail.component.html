@@ -1,41 +1,31 @@
-<!DOCTYPE html>
-<html>
-
-<head>
-	<link rel="import" href="../../dist/circle.html">
-</head>
-
-<body>
-	<template id="person-detail">
-		<style>
-			li {
-				border: 1px solid gray;
-			}
-		</style>
-		<h1>Person Detail</h1>
-		<ul>
-			<li>First name: {{firstname}}</li>
-			<li>Last name: {{lastname}}</li>
-			<li>Email: {{profile.email}}</li>
-			<li>Birthday: {{['personal-info'].birthday}}</li>
-		</ul>
-	</template>
-	<script>
-		class PersonDetail extends o.Element {
-			constructor() {
-				super();
-				this.model.firstname = 'John';
-				this.model.lastname = 'Doe';
-				this.model.profile = {
-					email: 'john@doe.io'
-				};
-				this.model['personal-info'] = {
-					birthday: '12 dec. 2004'
-				};
-			}
+<link rel="import" href="../../dist/circle.html">
+<template id="person-detail">
+	<style>
+		li {
+			border: 1px solid gray;
 		}
-		PersonDetail.reg;
-	</script>
-</body>
-
-</html>
+	</style>
+	<h1>Person Detail</h1>
+	<ul>
+		<li>First name: {{firstname}}</li>
+		<li>Last name: {{lastname}}</li>
+		<li>Email: {{profile.email}}</li>
+		<li>Birthday: {{['personal-info'].birthday}}</li>
+	</ul>
+</template>
+<script>
+	class PersonDetail extends o.Element {
+		constructor() {
+			super();
+			this.model.firstname = 'John';
+			this.model.lastname = 'Doe';
+			this.model.profile = {
+				email: 'john@doe.io'
+			};
+			this.model['personal-info'] = {
+				birthday: '12 dec. 2004'
+			};
+		}
+	}
+	PersonDetail.reg;
+</script>
