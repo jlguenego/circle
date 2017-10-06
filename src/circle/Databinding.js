@@ -22,6 +22,7 @@ export class Databinding {
                 this.scope[key] = DBNotation.scope.LITTERAL;
             }
         }
+        console.log('this.scope', this.scope);
     }
 
     getModelVar(attr) {
@@ -73,14 +74,15 @@ export class Databinding {
     }
 
     digest(key) {
-        if (key in this.scope) {
-            if (this.scope[key] === DBNotation.scope.LITTERAL) {
-                if (this.elt.getAttribute(key) !== this.elt.getModel(spinal2Camel(key))) {
-                    this.elt.setAttribute(key, this.elt.getModel(spinal2Camel(key)));
+        const attr = key.substring(2, key.length - 2);
+        if (attr in this.scope) {
+            if (this.scope[attr] === DBNotation.scope.LITTERAL) {
+                if (this.elt.getAttribute(attr) !== this.elt.getModel(spinal2Camel(key))) {
+                    this.elt.setAttribute(attr, this.elt.getModel(spinal2Camel(key)));
                 }
             }
-            if (this.scope[key] === DBNotation.scope.TWO_WAYS) {
-                const modelVar = this.getModelVar(key);
+            if (this.scope[attr] === DBNotation.scope.TWO_WAYS) {
+                const modelVar = this.getModelVar(attr);
                 this.elt.getParent().setModel(modelVar, this.elt.getModel(spinal2Camel(key)));
             }
         }
