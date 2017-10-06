@@ -1,12 +1,14 @@
 /**
- * Transforms hello.world[3].foo.bar in hello['world'][3]['foo']['bar']
+ * Transforms hello.world[3].foo.bar['a-b'] in ['hello']['world']['3']['foo']['bar']['a-b']
  * 
  * 
  * @param {any} key 
  * @returns 
  */
 function parseAbsoluteKey(key) {
-    return key.replace(/\.([^.]+)/g, '[\'$1\']');
+    const result = key.replace(/^\['/, '').replace(/'\]$/, '')
+        .split(/(?:\.|\['|'\].)/).map(n => `['${n}']`).join('');
+    return result;
 }
 
 /**
@@ -64,7 +66,8 @@ export class DBNotation {
      * @memberof DBNotation
      */
     static extractModelVar(value) {
-        let expr = value.replace(/^\[(.*?)\]$/g, '$1').replace(/^\[(.*?)\]$/g, '$1');
+
+        let expr = value.replace(/^\[([^'].*?)\]$/g, '$1').replace(/^\[([^'].*?)\]$/g, '$1');
         expr = parseAbsoluteKey(expr);
         return expr;
     }

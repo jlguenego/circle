@@ -8,7 +8,6 @@
 
 		sync() {
 			const currentUrl = window.location.href;
-			console.log('currentUrl', currentUrl);
 			let state = this.states.find(n => currentUrl.endsWith(n.url.substring(1)));
 			if (state) {
 				const baseElt = document.createElement('base');

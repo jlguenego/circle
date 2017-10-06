@@ -32,7 +32,7 @@ export class Databinding {
         this.initScope();
         for (let attr in this.scope) {
             if (this.scope[attr] === DBNotation.scope.LITTERAL) {
-                this.elt.setModel(spinal2Camel(attr), this.elt.getAttribute(attr));
+                this.elt.setModel(`['${spinal2Camel(attr)}']`, this.elt.getAttribute(attr));
                 continue;
             }
 
@@ -59,7 +59,7 @@ export class Databinding {
             const modelVar = this.getModelVar(attr);
             if (modelVar === key) {
                 const parentModelValue = this.elt.getParent().getModel(key);
-                this.elt.setModel(spinal2Camel(attr), parentModelValue);
+                this.elt.setModel(`['${spinal2Camel(attr)}']`, parentModelValue);
             }
         }
         this.elt.askRendering();

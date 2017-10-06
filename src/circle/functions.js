@@ -16,21 +16,29 @@ export function spinal2Camel(str) {
     return str.replace(/(-[a-z])/g, function ($1) { return $1.toUpperCase().replace('-', ''); });
 }
 
+function key2Array(key) {
+    return key.substring(2, key.length -2).split(/'\]\['/);
+}
+
+function array2Key(array) {
+    return array.map(n => `['${n}']`).join();
+}
+
 /**
  * Returns the parent key
  * Ex: 
- * hello['world']['toto'] becomes hello['world']
- * hello['world'] becomes hello
- * hello becomes undefined
+ * ['hello']['world']['toto'] becomes ['hello']['world']
+ * ['hello']['world'] becomes ['hello']
+ * ['hello'] becomes undefined
  * 
  * @param {any} absoluteKey 
  * @returns 
  */
 export function dirname(absoluteKey) {
-    if (absoluteKey.match(/\[/)) {
-        return absoluteKey.replace(/^(.*)\[[^[]+?\]$/, '$1');
-    }
-    return undefined;
+    const array = key2Array(absoluteKey);
+    array.pop();
+    const result = array2Key(array);
+    return result;
 }
 
 /**
@@ -44,10 +52,8 @@ export function dirname(absoluteKey) {
  * @returns 
  */
 export function basename(absoluteKey) {
-    if (absoluteKey.match(/\[/)) {
-        return absoluteKey.replace(/^.*\['([^']+)'\]$/, '$1');
-    }
-    return absoluteKey;
+    const array = key2Array(absoluteKey);
+    return array.pop();
 }
 
 

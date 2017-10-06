@@ -31,7 +31,7 @@ export class CircleElement extends HTMLElement {
     }
 
     attributeChangedCallback(attr, oldValue, newValue) {
-        this.setModel(spinal2Camel(attr), newValue);
+        this.setModel(`['${spinal2Camel(attr)}']`, newValue);
     }
     constructor() {
         super();
@@ -42,7 +42,7 @@ export class CircleElement extends HTMLElement {
         function handler(parentKey) {
             return {
                 set(target, key, value) {
-                    const absoluteKey = (parentKey) ? `${parentKey}['${key}']` : key;
+                    const absoluteKey = (parentKey) ? `${parentKey}['${key}']` : `['${key}']`;
                     if (Array.isArray(target)) {
                         if (key === 'length') {
                             return true;
@@ -50,6 +50,10 @@ export class CircleElement extends HTMLElement {
                     }
                     if (value !== null && typeof value === 'object' && !(value instanceof CircleProxyType)) {
                         target[key] = new Proxy(value, handler(absoluteKey));
+                        for (let k in value) {
+                            const absKey = absoluteKey + `['${k}']`;
+                            self.digest(absKey);
+                        }
                     } else {
                         target[key] = value;
                     }
@@ -153,8 +157,7 @@ export class CircleElement extends HTMLElement {
         if (k && (typeof this.getModel(k) !== 'object')) {
             this.setModel(k, {});
         }
-        const prefix = (absoluteKey.startsWith('[')) ? 'this.model' : 'this.model.';
-        const str = prefix + absoluteKey;
+        const str = 'this.model' + absoluteKey;
         return eval(str);
     }
 
@@ -171,8 +174,7 @@ export class CircleElement extends HTMLElement {
         if (this.getModel(absoluteKey) === value) {
             return;
         }
-        const prefix = (absoluteKey.startsWith('[')) ? 'this.model' : 'this.model.';
-        const str = prefix + absoluteKey + ' = value';
+        const str = 'this.model' + absoluteKey + ' = value';
         eval(str);
     }
 
