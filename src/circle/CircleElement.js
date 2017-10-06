@@ -95,7 +95,10 @@ export class CircleElement extends HTMLElement {
     }
 
     getParent() {
-        return this.getRootNode().host;
+        if (!this.oParent) {
+            this.oParent = this.getRootNode().host;
+        }
+        return this.oParent;
     }
 
     connectedCallback() {
@@ -115,6 +118,10 @@ export class CircleElement extends HTMLElement {
         }
         this.databinding.connectedCallBack();
         this.init();
+    }
+
+    disconnectedCallback() {
+        this.databinding.disconnectedCallBack();
     }
 
     init() { }
@@ -140,6 +147,12 @@ export class CircleElement extends HTMLElement {
             digestRegistry[key] = [elt];
         } else {
             digestRegistry[key].push(elt);
+        }
+    }
+
+    unbind(elt) {
+        for (let key in this.digestRegistry) {
+            this.digestRegistry[key] = this.digestRegistry[key].filter(n => n !== elt);
         }
     }
 

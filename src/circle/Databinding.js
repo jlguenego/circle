@@ -51,6 +51,13 @@ export class Databinding {
         this.elt.askRendering();
     }
 
+    disconnectedCallBack() {
+        const parent = this.elt.getParent();
+        if (parent) {
+            parent.unbind(this.elt);
+        }
+    }
+
     onDigest(key) {
         for (let attr in this.scope) {
             if (this.scope[attr] === DBNotation.scope.LITTERAL) {

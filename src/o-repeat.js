@@ -56,7 +56,7 @@
 					document,
 					`<o-repeat-item iterator="${iterator}" 
 						index="${obj.index}" 
-						${iterator}="[list['${obj.index}']]"></o-repeat-item>`);
+						item="[list['${obj.index}']]"></o-repeat-item>`);
 
 				return elt;
 			});
@@ -104,6 +104,7 @@
 	class ORepeatItem extends o.Element {
 
 		init() {
+			this.model[this.model.iterator] = this.model.item;
 			if (this.getParent().originalContent === undefined) {
 				throw new Error('o-repeat: Cannot find the template');
 			}
