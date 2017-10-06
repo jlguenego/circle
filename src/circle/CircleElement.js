@@ -171,7 +171,9 @@ export class CircleElement extends HTMLElement {
         if (this.getModel(absoluteKey) === value) {
             return;
         }
-        const str = 'this.model.' + absoluteKey + ' = value';
+        const prefix = (absoluteKey.startsWith('[')) ? 'this.model' : 'this.model.';
+        const str = prefix + absoluteKey + ' = value';
+        console.log('setModel-> about to eval: ', str);
         eval(str);
     }
 
