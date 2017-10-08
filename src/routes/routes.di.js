@@ -8,19 +8,18 @@
 
 		sync() {
 			const currentUrl = window.location.href;
-			console.log('currentUrl', currentUrl);
 			let state = this.states.find(n => currentUrl.endsWith(n.url.substring(1)));
 			if (state) {
 				const baseElt = document.createElement('base');
 				baseElt.setAttribute('href', currentUrl);
 				document.head.insertBefore(baseElt, document.head.childNodes[0]);
-				this.elt.root.innerHTML = '';
-				this.elt.root.appendChild(document.createElement(state.component));
-			}
-			if (!state) {
+				
+			} else {
 				state = this.states.find(n => n.default === true);
-				this.goto(state.url);
+				window.history.replaceState(state, state.name, state.url);
 			}
+			this.elt.root.innerHTML = '';
+			this.elt.root.appendChild(document.createElement(state.component));
 		}
 
 		register(elt) {

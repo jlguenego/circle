@@ -1,12 +1,33 @@
 /**
- * Transforms hello.world[3].foo.bar in hello['world'][3]['foo']['bar']
+ * Transforms hello.world[3].foo.bar['a.\'b'] in ['hello']['world']['3']['foo']['bar']['a.\'b']
  * 
  * 
  * @param {any} key 
  * @returns 
  */
 function parseAbsoluteKey(key) {
-    return key.replace(/\.([^.]+)/g, '[\'$1\']');
+    const array = key.split(/(\.|\['|'\])/);
+    let mode = 0; // 0 is dot notation, 1 is inside [].
+    const result = array.reduce((acc, n) => {
+        if (mode === 0) {
+            if (n === '') {
+                return acc;
+            }
+            if (n === '[\'') {
+                mode = 1;
+                return acc + n;
+            }
+            if (n === '.') {
+                return acc;
+            }
+            return acc + `['${n}']`;
+        }
+        if (n === '\']') {
+            mode = 0;
+        }
+        return acc + n;
+    }, '');
+    return result;
 }
 
 /**
@@ -64,7 +85,8 @@ export class DBNotation {
      * @memberof DBNotation
      */
     static extractModelVar(value) {
-        let expr = value.replace(/^\[(.*?)\]$/g, '$1').replace(/^\[(.*?)\]$/g, '$1');
+
+        let expr = value.replace(/^\[([^'].*?)\]$/g, '$1').replace(/^\[([^'].*?)\]$/g, '$1');
         expr = parseAbsoluteKey(expr);
         return expr;
     }

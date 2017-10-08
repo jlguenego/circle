@@ -22,6 +22,7 @@ export class Databinding {
                 this.scope[key] = DBNotation.scope.LITTERAL;
             }
         }
+        console.log('this.scope', this.scope);
     }
 
     getModelVar(attr) {
@@ -32,7 +33,7 @@ export class Databinding {
         this.initScope();
         for (let attr in this.scope) {
             if (this.scope[attr] === DBNotation.scope.LITTERAL) {
-                this.elt.setModel(spinal2Camel(attr), this.elt.getAttribute(attr));
+                this.elt.setModel(`['${spinal2Camel(attr)}']`, this.elt.getAttribute(attr));
                 continue;
             }
 
@@ -51,6 +52,13 @@ export class Databinding {
         this.elt.askRendering();
     }
 
+    disconnectedCallBack() {
+        const parent = this.elt.getParent();
+        if (parent) {
+            parent.unbind(this.elt);
+        }
+    }
+
     onDigest(key) {
         for (let attr in this.scope) {
             if (this.scope[attr] === DBNotation.scope.LITTERAL) {
@@ -59,21 +67,22 @@ export class Databinding {
             const modelVar = this.getModelVar(attr);
             if (modelVar === key) {
                 const parentModelValue = this.elt.getParent().getModel(key);
-                this.elt.setModel(spinal2Camel(attr), parentModelValue);
+                this.elt.setModel(`['${spinal2Camel(attr)}']`, parentModelValue);
             }
         }
         this.elt.askRendering();
     }
 
     digest(key) {
-        if (key in this.scope) {
-            if (this.scope[key] === DBNotation.scope.LITTERAL) {
-                if (this.elt.getAttribute(key) !== this.elt.getModel(spinal2Camel(key))) {
-                    this.elt.setAttribute(key, this.elt.getModel(spinal2Camel(key)));
+        const attr = key.substring(2, key.length - 2);
+        if (attr in this.scope) {
+            if (this.scope[attr] === DBNotation.scope.LITTERAL) {
+                if (this.elt.getAttribute(attr) !== this.elt.getModel(spinal2Camel(key))) {
+                    this.elt.setAttribute(attr, this.elt.getModel(spinal2Camel(key)));
                 }
             }
-            if (this.scope[key] === DBNotation.scope.TWO_WAYS) {
-                const modelVar = this.getModelVar(key);
+            if (this.scope[attr] === DBNotation.scope.TWO_WAYS) {
+                const modelVar = this.getModelVar(attr);
                 this.elt.getParent().setModel(modelVar, this.elt.getModel(spinal2Camel(key)));
             }
         }
