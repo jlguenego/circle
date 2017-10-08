@@ -5,26 +5,69 @@
 
 <link rel="import" href="./routes/routes.html">
 
+
 <template id="my-app">
+	<link rel="stylesheet" href="my-app.css">
 	<my-header menu="[menu]" site-id="Fatfood" tagline="The cetogen food place."></my-header>
 	<my-body></my-body>
 	<my-footer></my-footer>
 </template>
 
 <template id="my-header">
+	<link rel="stylesheet" href="my-header.css">
 	<site-id>{{siteId}}</site-id>
 	<tag-line>{{tagline}}</tag-line>
 	<o-repeat list="[menu]" iterator="item">
+		<template header>
+			<style>
+				o-repeat,
+				 :host {
+					display: flex;
+					justify-content: center;
+				}
+
+				o-repeat-item {
+					flex-grow: 0.1;
+					text-align: center;
+				}
+			</style>
+		</template>
 		<template item>
-			<item><a o-href="item.url">{{item.label}}</a></item>
+			<style>
+				o-repeat-item,
+				 :host {
+					margin: 0 1%;
+					
+				}
+
+				a {
+					
+					display: block;
+					
+					padding: 10px;
+					background-color: #aaa;
+					color: black;
+					text-decoration: none;
+				}
+			</style>
+			<a o-href="item.url">{{item.label}}</a>
 		</template>
 	</o-repeat>
-	<hr>
 </template>
 
 <template id="my-footer">
-	<hr>
-	<p>@Fatfood - {{year}}</p>
+	<style>
+		:host, my-footer {
+			display: block;
+			background-color: #666;
+			color: #ddd;
+			padding: 10px;
+		}
+		p {
+			text-align: center;
+		}
+	</style>
+	<p>Fatfood - ©{{year}}</p>
 </template>
 
 <script>
