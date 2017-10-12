@@ -1,16 +1,15 @@
 (function () {
     'use strict';
 
-    class OHref extends o.Behavior {
+    class OSref extends o.Behavior {
 
         init() {
-            const behavior = this;
-            const url = behavior.host.getModel(behavior.key);
-            console.log('url', url);
+            const routes = o.di('routes');
+            const name = this.host.getModel(this.key);
+            const state = routes.states.find(n => n.name === name);
             this.elt.addEventListener('click', function (event) {
                 event.preventDefault();
-                const routes = o.di('routes');
-                routes.goto(url);
+                routes.goto(state);
             });
         }
 
@@ -22,5 +21,5 @@
             this.elt.setAttribute('href', this.host.getModel(this.key));
         }
     }
-    OHref.reg();
+    OSref.reg();
 })();
