@@ -18,5 +18,5 @@
 			});
         }
     }
-    OSelectList.reg;
+    OSelectList.reg();
 })();

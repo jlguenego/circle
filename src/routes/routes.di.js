@@ -40,9 +40,8 @@
 			};
 		}
 
-		goto(url) {
-			const state = this.states.find(n => n.url === url);
-			window.history.pushState(state, state.name, url);
+		goto(state) {
+			window.history.pushState(state, state.name, state.url);
 			this.elt.root.innerHTML = '';
 			this.elt.root.appendChild(document.createElement(state.component));
 		}

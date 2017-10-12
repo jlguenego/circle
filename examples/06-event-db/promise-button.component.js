@@ -23,5 +23,5 @@
 		}
 	}
 
-	PromiseButton.reg;
+	PromiseButton.reg();
 })();

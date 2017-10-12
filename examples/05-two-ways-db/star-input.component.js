@@ -42,5 +42,5 @@
 
 	}
 
-	StarInput.reg;
+	StarInput.reg();
 })();

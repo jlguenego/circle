@@ -22,5 +22,5 @@
 			this.select.value = this.model.value;
 		}
 	}
-	OChoice.reg;
+	OChoice.reg();
 })();

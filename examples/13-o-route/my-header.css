@@ -1,5 +1,3 @@
-@import url('https://fonts.googleapis.com/css?family=Baloo');
-
 :host, my-header {
     display: block;
     background-color: #eee;
@@ -9,7 +7,7 @@
 
 site-id {
     display: inline-block;
-    font-family: 'Baloo', cursive;
+    font-family: sans-serif;
     font-weight: bold;
     font-size: 50px;
     color: red;

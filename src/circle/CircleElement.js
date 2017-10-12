@@ -16,18 +16,16 @@ export class CircleElement extends HTMLElement {
     static get tag() {
         return camel2Spinal(this.name);
     }
-    static get reg() {
+    static reg(...args) {
         this.myDoc = (isFirefox() || isEdge() || (document.currentScript === null)) ?
             doc : document.currentScript.ownerDocument;
+        this._oa = args;
         window.customElements.define(this.tag, this);
+        return this;
     }
 
     static get observedAttributes() {
         return this._oa;
-    }
-
-    static set oa(value) {
-        this._oa = value;
     }
 
     attributeChangedCallback(attr, oldValue, newValue) {

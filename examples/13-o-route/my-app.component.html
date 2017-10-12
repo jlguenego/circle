@@ -24,6 +24,7 @@
 				 :host {
 					display: flex;
 					justify-content: center;
+					margin-top: 10px;
 				}
 
 				o-repeat-item {
@@ -51,7 +52,7 @@
 				}
 			</style>
 			<!-- TODO: implement o-active -->
-			<a o-href="item.url" o-active="active">{{item.label}}</a>
+			<a o-sref="item.name" o-active="active">{{item.label}}</a>
 		</template>
 	</o-repeat>
 </template>
@@ -83,20 +84,20 @@
 			this.model.menu = o.di('routes').states;
 		}
 	}
-	MyApp.reg;
+	MyApp.reg();
 	class MyHeader extends o.Element { }
-	MyHeader.reg;
+	MyHeader.reg();
 	class MyBody extends o.Element {
 		init() {
 			o.di('routes').register(this);
 		}
 	}
-	MyBody.reg;
+	MyBody.reg();
 	class MyFooter extends o.Element {
 		init() {
 			this.model.year = new Date().getFullYear();
 		}
 	}
-	MyFooter.reg;
+	MyFooter.reg();
 
 </script>
