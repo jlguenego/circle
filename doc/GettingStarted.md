@@ -84,8 +84,7 @@ So we would absolutely need to do something like `HelloName.oa = ['name']`.
 </template>
 <script>
     class HelloName extends o.Element {}
-    HelloName.oa = ['name'];
-    HelloName.reg();
+    HelloName.reg('name');
 </script>
 ```
 
