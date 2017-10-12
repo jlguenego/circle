@@ -38,33 +38,36 @@
 				o-repeat-item,
 				 :host {
 					margin: 0 1%;
-					
 				}
 
 				a {
-					
 					display: block;
-					
 					padding: 10px;
 					background-color: #aaa;
 					color: black;
 					text-decoration: none;
 				}
+
+				a.active {
+					background-color: red;
+				}
 			</style>
 			<!-- TODO: implement o-active -->
-			<a o-sref="item.name" o-active="active">{{item.label}}</a>
+			<a o-sref="item.name" o-sref-active="active">{{item.label}}</a>
 		</template>
 	</o-repeat>
 </template>
 
 <template id="my-footer">
 	<style>
-		:host, my-footer {
+		:host,
+		my-footer {
 			display: block;
 			background-color: #666;
 			color: #ddd;
 			padding: 10px;
 		}
+
 		p {
 			text-align: center;
 		}
