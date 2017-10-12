@@ -5,8 +5,9 @@ export class CircleBehavior {
     static get tag() {
         return camel2Spinal(this.name);
     }
-    static get reg() {
+    static reg() {
         window.circle.behaviorRegistry[this.tag] = this;
+        return this;
     }
 
     constructor(elt) {
