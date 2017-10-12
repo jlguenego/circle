@@ -22,5 +22,5 @@
             this.elt.setAttribute('href', this.host.getModel(this.key));
         }
     }
-    OHref.reg;
+    OHref.reg();
 })();

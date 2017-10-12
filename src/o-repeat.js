@@ -99,7 +99,7 @@
 		}
 	}
 
-	ORepeat.reg;
+	ORepeat.reg();
 
 	class ORepeatItem extends o.Element {
 
@@ -128,6 +128,6 @@
 		}
 	}
 	ORepeatItem.oa = ['index'];
-	ORepeatItem.reg;
+	ORepeatItem.reg();
 
 })();

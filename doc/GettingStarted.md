@@ -29,14 +29,14 @@ Ok, let's go !
 To define a [web component](https://www.webcomponents.org/), you need to:
 - have the *circle* library imported: `<link rel="import" href="pathto/node_modules/@jlguenego/circle/src/circle.html">`
 - define its class, `class HelloName extends o.Element {}`
-- register it. `HelloName.reg;`
+- register it. `HelloName.reg();`
 - give it a template (optional), `<template id="hello-name"><h1>Hello {{name}} !</h1></template>`
 
 Done !
 
 By using *circle*, you will have less boilerplate code than in "vanilla" JS:
 - Tag name is automatically calculated from the class name: the class `HelloName` (PascalCase) corresponds to the tag element `hello-name` (spinal-case).
-- No long name like `window.customElements.define('app-drawer', AppDrawer);`. Just `AppDrawer.reg;`.
+- No long name like `window.customElements.define('app-drawer', AppDrawer);`. Just `AppDrawer.reg();`.
 - Template is automatically using the Shadow DOM.
 - Template understands **expression** (similar syntax as AngularJS/Angular). At that time, expressions are just observable variable replacement. No more, no less. `{{name}}` ok. `{{name | uppercase}}` not ok (may be in future version).
 
@@ -85,7 +85,7 @@ So we would absolutely need to do something like `HelloName.oa = ['name']`.
 <script>
     class HelloName extends o.Element {}
     HelloName.oa = ['name'];
-    HelloName.reg;
+    HelloName.reg();
 </script>
 ```
 
@@ -146,7 +146,7 @@ In the example, you can see how we *manually* add a property to the model of a c
 				};
 			}
 		}
-		PersonDetail.reg;
+		PersonDetail.reg();
 	</script>
 </body>
 ```
@@ -180,7 +180,7 @@ Here we pass the model variable `firstname`: so `<hello-name name="[firstname]">
 				this.model.firstname = 'Maïté';
 			}
 		}
-		MyApp.reg;
+		MyApp.reg();
 	</script>
 </body>
 ```
@@ -267,7 +267,7 @@ and add it to the model of the current circle component.
 </template>
 <script>
 	class MyApp extends o.Element {}
-	MyApp.reg;
+	MyApp.reg();
 </script>
 ```
 
@@ -304,7 +304,7 @@ This example shows the behavior `o-value` applied to a select element.
 			this.model.value = 'jlg';
 		}
 	}
-	MyApp.reg;
+	MyApp.reg();
 </script>
 ```
 
@@ -336,7 +336,7 @@ Thanks to AngularJS for the [idea](https://docs.angularjs.org/guide/directive#cr
 </template>
 <script>
 	class MyApp extends o.Element { }
-	MyApp.reg;
+	MyApp.reg();
 </script>
 ```
 
@@ -378,7 +378,7 @@ Thanks to AngularJS for the [idea](https://docs.angularjs.org/guide/directive#cr
 
 		};
 	}
-	Draggable.reg;
+	Draggable.reg();
 
 </script>
 ```

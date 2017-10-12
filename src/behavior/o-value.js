@@ -27,5 +27,5 @@
             this.elt.value = this.host.getModel(this.key) || '';
         }
     }
-    OValue.reg;
+    OValue.reg();
 })();

@@ -31,4 +31,4 @@ class CircleExpr extends o.Element {
         this.root.innerHTML = str;
     }
 }
-CircleExpr.reg;
+CircleExpr.reg();
