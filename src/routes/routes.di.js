@@ -6,6 +6,13 @@
 			this.states = states;
 		}
 
+		setState(state) {
+			this.elt.root.innerHTML = '';
+			this.elt.root.appendChild(document.createElement(state.component));
+			console.log('setting current state to ', state);
+			this.elt.model.currentState = state;
+		}
+
 		sync() {
 			const currentUrl = window.location.href;
 			let state = this.states.find(n => currentUrl.endsWith(n.url.substring(1)));
@@ -18,12 +25,12 @@
 				state = this.states.find(n => n.default === true);
 				window.history.replaceState(state, state.name, state.url);
 			}
-			this.elt.root.innerHTML = '';
-			this.elt.root.appendChild(document.createElement(state.component));
+			this.setState(state);
 		}
 
 		register(elt) {
 			this.elt = elt;
+			
 
 			this.sync();
 
@@ -42,8 +49,7 @@
 
 		goto(state) {
 			window.history.pushState(state, state.name, state.url);
-			this.elt.root.innerHTML = '';
-			this.elt.root.appendChild(document.createElement(state.component));
+			this.setState(state);
 		}
 
 	}
