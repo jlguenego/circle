@@ -92,6 +92,20 @@ export class DBNotation {
     }
 
     /**
+     * removes the <>.
+     * 
+     * @static
+     * @param {any} value 
+     * @returns 
+     * @memberof DBNotation
+     */
+    static extractModelVarFromBehavior(value) {
+        let expr = value.replace(/^<(.*)>$/, '$1');
+        expr = parseAbsoluteKey(expr);
+        return expr;
+    }
+
+    /**
      * Removes the starting &.
      * 
      * @static

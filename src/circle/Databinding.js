@@ -22,7 +22,6 @@ export class Databinding {
                 this.scope[key] = DBNotation.scope.LITTERAL;
             }
         }
-        console.log('this.scope', this.scope);
     }
 
     getModelVar(attr) {

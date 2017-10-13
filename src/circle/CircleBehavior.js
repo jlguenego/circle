@@ -13,22 +13,24 @@ export class CircleBehavior {
     constructor(elt) {
         this.elt = elt;
         this.host = elt.getRootNode().host;
-        this.key = this.getModelVar(this.constructor.tag);
-        this.init();
-
-        this.host.bindKey(this.key, this);
-        let k = this.key;
-        while (k) {
-            this.host.bindKey(k, this);
-            k = dirname(k);
+        this.value = this.elt.getAttribute(this.constructor.tag);
+        if (this.value.match(/^<.*>$/)) {
+            this.key = this.getModelVar(this.constructor.tag);
+            this.host.bindKey(this.key, this);
+            let k = this.key;
+            while (k) {
+                this.host.bindKey(k, this);
+                k = dirname(k);
+            }
         }
+        this.init();
         this.onDigest(this.key);
     }
 
     init() { }
 
     getModelVar(attr) {
-        return DBNotation.extractModelVar(this.elt.getAttribute(attr));
+        return DBNotation.extractModelVarFromBehavior(this.elt.getAttribute(attr));
     }
 
     onDigest() { }
