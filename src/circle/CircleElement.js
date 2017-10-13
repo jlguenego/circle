@@ -211,7 +211,6 @@ export class CircleElement extends HTMLElement {
             }
         }
         array.forEach((node) => {
-            
             const t = document.createElement('template');
             t.innerHTML = node.data.replace(/{{(.*?)}}/g, (match, name) => {
                 return `<circle-expr expr="[${name}]"></circle-expr>`;
