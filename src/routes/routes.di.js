@@ -2,15 +2,14 @@
 	'use strict';
 
 	class Routes {
-		states(states) {
-			this.states = states;
-		}
 
 		setState(state) {
 			this.elt.root.innerHTML = '';
 			this.elt.root.appendChild(document.createElement(state.component));
 			console.log('setting current state to ', state);
 			this.elt.model.currentState = state;
+			document.title = this.title + ' - ' + state.label;
+			return this;
 		}
 
 		sync() {
@@ -39,8 +38,7 @@
 				console.log('onpopstate', arguments);
 				const state = e.state;
 				if (state) {
-					service.elt.root.innerHTML = '';
-					service.elt.root.appendChild(document.createElement(state.component));
+					service.setState(state);
 				} else {
 					service.sync();
 				}
