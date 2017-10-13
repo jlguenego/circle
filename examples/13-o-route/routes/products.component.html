@@ -17,9 +17,6 @@
                     border: 1px solid gray;
                 }
 
-                o-repeat-item:hover {
-                    background-color: hsl(0, 0%, 80%);
-                }
             </style>
         </template>
         <template item>
@@ -27,11 +24,17 @@
                 product-line {
                     display: flex;
                     flex-wrap: wrap;
+                    align-items: flex-end;
                     margin: 3px;
                     background-color: hsl(0, 0%, 90%);
+                    cursor: pointer;
                 }
 
-                product-name {
+                product-line:hover {
+                    background-color: hsl(0, 0%, 80%);
+                }
+
+                name {
                     font-weight: bold;
                     width: 120px;
                     padding: 5px 5px;
@@ -40,7 +43,7 @@
 
                 qty {
                     width: 50px;
-                    padding: 5px 5px;
+                    padding: 6px 5px;
                     flex-grow: 0;
                     font-size: 12px;
                 }
@@ -53,8 +56,8 @@
                     color: hsl(0, 100%, 30%);
                 }
             </style>
-            <product-line>
-                <product-name>{{product.name}}</product-name>
+            <product-line onclick="o(this, 'my-products').model.product = o(this).model.product">
+                <name>{{product.name}}</name>
                 <qty>{{product.quantity}}</qty>
                 <price>{{product.price}}</price>
             </product-line>
@@ -63,9 +66,9 @@
     </o-repeat>
     <product-detail>
         <name>{{product.name}}</name>
-        <product-name>{{product.name}}</product-name>
         <qty>{{product.quantity}}</qty>
         <price>{{product.price}}</price>
+        <price>{{product.details}}</price>
     </product-detail>
 </template>
 <script>
