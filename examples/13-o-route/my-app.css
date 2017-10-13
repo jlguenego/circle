@@ -1,0 +1,10 @@
+my-body {
+    display: block;
+    padding: 10px;
+}
+
+@media screen and (max-width: 500px) {
+    my-body {
+        padding: 0px;
+    }
+}
