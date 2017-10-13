@@ -5,6 +5,13 @@
             display: flex;
             width: 100%;
         }
+
+        product-detail {
+            display: block;
+            width: 60%;
+            flex-grow: 1;
+            margin: 3px;
+        }
     </style>
     <o-repeat list="[products]" iterator="product">
         <template header>
@@ -14,9 +21,8 @@
                     width: 40%;
                     max-width: 300px;
                     margin: 3px;
-                    border: 1px solid gray;
+                    border: 1px solid lightgray;
                 }
-
             </style>
         </template>
         <template item>
@@ -61,7 +67,6 @@
                 <qty>{{product.quantity}}</qty>
                 <price>{{product.price}}</price>
             </product-line>
-
         </template>
     </o-repeat>
     <product-detail>
