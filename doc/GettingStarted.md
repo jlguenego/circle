@@ -96,7 +96,7 @@ static get observedAttributes() {return ['name']; }
 
 And we have simplified to:
 ```
-HelloName.oa = ['name'];
+HelloName.reg('name');
 ```
 
 03 - Model
