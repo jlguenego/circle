@@ -1,7 +1,71 @@
+<link rel="import" href="../../../src/di/xhr.html">
+
 <template id="my-products">
-    Products
+    <style>
+         :host {
+            display: flex;
+            width: 100%;
+        }
+    </style>
+    <o-repeat list="[products]" iterator="product">
+        <template header>
+            <style>
+                 :host {
+                    display: block;
+                    width: 40%;
+                    max-width: 300px;
+                    margin: 3px;
+                    border: 1px solid gray;
+                }
+            </style>
+        </template>
+        <template item>
+            <style>
+                 :host {
+                    display: flex;
+                    flex-wrap: wrap;
+
+                    margin: 3px;
+                    background-color: hsl(0, 0%, 90%);
+                }
+
+                product-name {
+                    font-weight: bold;
+                    width: 120px;
+                    padding: 5px 5px;
+                    flex-grow: 0;
+                }
+
+                qty {
+                    width: 50px;
+                    padding: 5px 5px;
+                    flex-grow: 0;
+                    font-size: 12px;
+                }
+
+                price {
+                    width: 50px;
+                    padding: 5px 5px;
+                    flex-grow: 0;
+                    font-weight: bold;
+                    color: hsl(0, 100%, 30%);
+                }
+            </style>
+            <product-name>{{product.name}}</product-name>
+            <qty>{{product.quantity}}</qty>
+            <price>{{product.price}}</price>
+        </template>
+    </o-repeat>
 </template>
 <script>
-    class MyProducts extends o.Element { }
+    class MyProducts extends o.Element {
+        init() {
+            o.di('xhr').get('ws/products.json').then(response => {
+                this.model.products = response.data.products;
+            }).catch(error => console.error('error', error));
+        }
+
+    }
     MyProducts.reg();
+
 </script>
