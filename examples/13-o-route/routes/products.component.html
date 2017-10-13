@@ -1,8 +1,9 @@
 <link rel="import" href="../../../src/di/xhr.html">
 <template id="my-products">
     <style>
-        :host {
+         :host {
             display: flex;
+            align-items: flex-start;
             width: 100%;
         }
 
@@ -97,7 +98,6 @@
         <qty>{{product.quantity}}</qty>
         <p>{{product.details}}</p>
         <price>{{product.price}}</price>
-        
     </product-detail>
 </template>
 <script>
@@ -106,7 +106,14 @@
             o.di('xhr').get('ws/products.json').then(response => {
                 response.data.products.forEach(n => n.image = '../img/' + n.image);
                 this.model.products = response.data.products;
-                this.model.product = this.model.products[0];
+                setTimeout(() => {
+                    this.model.product = this.model.products[0];
+                    const oRepeat = this.root.querySelector('o-repeat');
+                    const oRepeatItem = oRepeat.root.querySelector('o-repeat-item');
+                    const productLine = oRepeatItem.root.querySelector('product-line');
+                    productLine.setAttribute('active', '');
+                }, 0);
+
             }).catch(error => console.error('error', error));
         }
 
