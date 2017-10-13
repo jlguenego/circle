@@ -19,7 +19,7 @@
 				const baseElt = document.createElement('base');
 				baseElt.setAttribute('href', currentUrl);
 				document.head.insertBefore(baseElt, document.head.childNodes[0]);
-				
+
 			} else {
 				state = this.states.find(n => n.default === true);
 				window.history.replaceState(state, state.name, state.url);
@@ -29,10 +29,7 @@
 
 		register(elt) {
 			this.elt = elt;
-			
-
 			this.sync();
-
 			const service = this;
 			window.onpopstate = function (e) {
 				console.log('onpopstate', arguments);
