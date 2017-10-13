@@ -127,7 +127,6 @@
 			this.getParent().model.list.splice(this.model.index, 1);
 		}
 	}
-	ORepeatItem.oa = ['index'];
-	ORepeatItem.reg();
+	ORepeatItem.reg('index');
 
 })();
