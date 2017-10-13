@@ -3,12 +3,34 @@
         a {
             color: hsl(0, 100%, 50%);
         }
+
+        div {
+            padding: 10px;
+        }
+
+        jumbo {
+            display: inline-block;
+            text-align: left;
+            min-width: 320px;
+            width: 50%;
+        }
+
+        img {
+            display: inline-block;
+            width: 20%;
+        }
     </style>
-    <h1>What do we do ?</h1>
-    <ul>
-        <li>We sell only food without carbs. Look at our <a o-sref="products">products</a> !</li>
-        <li>We sell <a o-sref="services">coaching services</a> to help you manage your health.</li>
-    </ul>
+    <div>
+        <h1>What do we do ?</h1>
+
+        <ul>
+            <li>We sell only food without carbs. Look at our <a o-sref="products">products</a> !</li>
+            <li>We sell <a o-sref="services">coaching services</a> to help you manage your health.</li>
+        </ul>
+
+
+    </div>
+
 </template>
 <script>
     class MyHome extends o.Element { }

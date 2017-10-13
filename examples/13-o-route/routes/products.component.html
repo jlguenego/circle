@@ -12,6 +12,27 @@
             flex-grow: 1;
             margin: 3px;
         }
+
+        img {
+            float: left;
+            width: 200px;
+            max-width: 100%;
+            padding: 10px;
+        }
+
+        name {
+            font-size: 50px;
+        }
+
+        qty {
+            display: block;
+        }
+
+        price {
+            font-size: 50px;
+            font-weight: bold;
+            font-family: fixed;
+        }
     </style>
     <o-repeat list="[products]" iterator="product">
         <template header>
@@ -70,16 +91,19 @@
         </template>
     </o-repeat>
     <product-detail>
+        <img o-src="<product.image>">
         <name>{{product.name}}</name>
         <qty>{{product.quantity}}</qty>
+        <p>{{product.details}}</p>
         <price>{{product.price}}</price>
-        <price>{{product.details}}</price>
+        
     </product-detail>
 </template>
 <script>
     class MyProducts extends o.Element {
         init() {
             o.di('xhr').get('ws/products.json').then(response => {
+                response.data.products.forEach(n => n.image = '../img/' + n.image);
                 this.model.products = response.data.products;
                 this.model.product = this.model.products[0];
             }).catch(error => console.error('error', error));
