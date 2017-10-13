@@ -1,4 +1,9 @@
+html, body {
+    height: 100%;
+}
+
 body {
+    display: block;
     padding: 0;
     margin: 0;
 }

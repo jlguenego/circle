@@ -1,6 +1,8 @@
 my-body {
     display: block;
     padding: 10px;
+    /* it's good when body is at the window bottom. */
+    min-height: calc( 100% - 210px );
 }
 
 @media screen and (max-width: 500px) {
