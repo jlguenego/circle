@@ -1,7 +1,114 @@
+<link rel="import" href="../../../src/di/xhr.html">
 <template id="my-products">
-    Products
+    <style>
+         :host {
+            display: flex;
+            width: 100%;
+        }
+
+        product-detail {
+            display: block;
+            width: 60%;
+            flex-grow: 1;
+            margin: 3px;
+        }
+
+        img {
+            float: left;
+            width: 200px;
+            max-width: 100%;
+            padding: 10px;
+        }
+
+        name {
+            font-size: 50px;
+        }
+
+        qty {
+            display: block;
+        }
+
+        price {
+            font-size: 50px;
+            font-weight: bold;
+            font-family: fixed;
+        }
+    </style>
+    <o-repeat list="[products]" iterator="product">
+        <template header>
+            <style>
+                 :host {
+                    display: block;
+                    width: 40%;
+                    max-width: 300px;
+                    margin: 3px;
+                    border: 1px solid lightgray;
+                }
+            </style>
+        </template>
+        <template item>
+            <style>
+                product-line {
+                    display: flex;
+                    flex-wrap: wrap;
+                    align-items: flex-end;
+                    margin: 3px;
+                    background-color: hsl(0, 0%, 90%);
+                    cursor: pointer;
+                }
+
+                product-line:hover {
+                    background-color: hsl(0, 0%, 80%);
+                }
+
+                name {
+                    font-weight: bold;
+                    width: 120px;
+                    padding: 5px 5px;
+                    flex-grow: 0;
+                }
+
+                qty {
+                    width: 50px;
+                    padding: 6px 5px;
+                    flex-grow: 0;
+                    font-size: 12px;
+                }
+
+                price {
+                    width: 50px;
+                    padding: 5px 5px;
+                    flex-grow: 0;
+                    font-weight: bold;
+                    color: hsl(0, 100%, 30%);
+                }
+            </style>
+            <product-line onclick="o(this, 'my-products').model.product = o(this).model.product">
+                <name>{{product.name}}</name>
+                <qty>{{product.quantity}}</qty>
+                <price>{{product.price}}</price>
+            </product-line>
+        </template>
+    </o-repeat>
+    <product-detail>
+        <img o-src="<product.image>">
+        <name>{{product.name}}</name>
+        <qty>{{product.quantity}}</qty>
+        <p>{{product.details}}</p>
+        <price>{{product.price}}</price>
+        
+    </product-detail>
 </template>
 <script>
-    class MyProducts extends o.Element { }
+    class MyProducts extends o.Element {
+        init() {
+            o.di('xhr').get('ws/products.json').then(response => {
+                response.data.products.forEach(n => n.image = '../img/' + n.image);
+                this.model.products = response.data.products;
+                this.model.product = this.model.products[0];
+            }).catch(error => console.error('error', error));
+        }
+    }
     MyProducts.reg();
+
 </script>

@@ -24,11 +24,11 @@ window.circle = window.o;
  * @class CircleExpr
  * @extends {circle.Element}
  */
-class CircleExpr extends o.Element {
+class OExpr extends o.Element {
     render() {
         let str = (this.model.expr === undefined) ? '' : this.model.expr;
         str = (typeof str === 'object') ? JSON.stringify(str) : str;
         this.root.innerHTML = str;
     }
 }
-CircleExpr.reg();
+OExpr.reg();

@@ -1,0 +1,46 @@
+{
+    "products": [
+        {
+            "name": "Avocado",
+            "quantity": "1 piece",
+            "price": "$1.00",
+            "details": "The base of any cetogen diet.",
+            "image": "avocado.svg"
+        },
+        {
+            "name": "Eggs",
+            "quantity": "12 pieces",
+            "price": "$3.50",
+            "details": "One egg has only 75 calories but 7 grams of high-quality protein, 5 grams of fat, and 1.6 grams of saturated fat, along with iron, vitamins, minerals, and carotenoids. The egg is a powerhouse of disease-fighting nutrients like lutein and zeaxanthin.",
+            "image": "fried-egg.svg"
+        },
+        {
+            "name": "Green beans",
+            "quantity": "400g",
+            "price": "$1.50",
+            "details": "The good: This food is low in Sodium, and very low in Saturated Fat and Cholesterol. It is also a good source of Protein, Thiamin, Riboflavin, Niacin, Vitamin B6, Calcium, Iron, Magnesium, Phosphorus, Potassium and Copper, and a very good source of Dietary Fiber, Vitamin A, Vitamin C, Vitamin K, Folate and Manganese.",
+            "image": "beans.svg"
+        },
+        {
+            "name": "Steak tartare",
+            "quantity": "100g",
+            "price": "$3.40",
+            "details": "Steak tartare is a meat dish made from raw ground meat. It is often served with onions, capers and seasonings, sometimes with a raw egg yolk, and often on rye bread. The name tartare is sometimes generalized to other raw meat or fish dishes",
+            "image": "meat.svg"
+        },
+        {
+            "name": "Salmon (raw)",
+            "quantity": "500g",
+            "price": "$16.50",
+            "details": "Nutritional Breakdown. For every 3 ounces of salmon you eat, you take in around 121 calories and 17 grams of protein. Salmon is known as a fatty fish; it contains 5.4 grams of fat per 3 ounces, but less than 1 gram of that is saturated fat.",
+            "image": "avocado.svg"
+        },
+        {
+            "name": "Coconut cream",
+            "quantity": "500g",
+            "price": "$4.50",
+            "details": "Coconut cream is very similar to coconut milk but contains less water. The difference is mainly consistency. It has a thicker, more paste-like consistency, while coconut milk is generally a liquid.",
+            "image": "coconut.svg"
+        }
+    ]
+}
