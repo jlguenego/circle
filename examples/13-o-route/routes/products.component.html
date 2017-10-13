@@ -1,5 +1,4 @@
 <link rel="import" href="../../../src/di/xhr.html">
-
 <template id="my-products">
     <style>
          :host {
@@ -17,14 +16,17 @@
                     margin: 3px;
                     border: 1px solid gray;
                 }
+
+                o-repeat-item:hover {
+                    background-color: hsl(0, 0%, 80%);
+                }
             </style>
         </template>
         <template item>
             <style>
-                 :host {
+                product-line {
                     display: flex;
                     flex-wrap: wrap;
-
                     margin: 3px;
                     background-color: hsl(0, 0%, 90%);
                 }
@@ -51,20 +53,29 @@
                     color: hsl(0, 100%, 30%);
                 }
             </style>
-            <product-name>{{product.name}}</product-name>
-            <qty>{{product.quantity}}</qty>
-            <price>{{product.price}}</price>
+            <product-line>
+                <product-name>{{product.name}}</product-name>
+                <qty>{{product.quantity}}</qty>
+                <price>{{product.price}}</price>
+            </product-line>
+
         </template>
     </o-repeat>
+    <product-detail>
+        <name>{{product.name}}</name>
+        <product-name>{{product.name}}</product-name>
+        <qty>{{product.quantity}}</qty>
+        <price>{{product.price}}</price>
+    </product-detail>
 </template>
 <script>
     class MyProducts extends o.Element {
         init() {
             o.di('xhr').get('ws/products.json').then(response => {
                 this.model.products = response.data.products;
+                this.model.product = this.model.products[0];
             }).catch(error => console.error('error', error));
         }
-
     }
     MyProducts.reg();
 

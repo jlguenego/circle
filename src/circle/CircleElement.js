@@ -211,11 +211,13 @@ export class CircleElement extends HTMLElement {
             }
         }
         array.forEach((node) => {
-            const replacementNode = document.createElement('span');
-            replacementNode.innerHTML = node.data.replace(/{{(.*?)}}/g, (match, name) => {
+            
+            const t = document.createElement('template');
+            t.innerHTML = node.data.replace(/{{(.*?)}}/g, (match, name) => {
                 return `<circle-expr expr="[${name}]"></circle-expr>`;
             });
             const parentNode = node.parentNode;
+            const replacementNode = t.content;
             parentNode.insertBefore(replacementNode, node);
             parentNode.removeChild(node);
         });
