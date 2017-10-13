@@ -1,7 +1,7 @@
 <link rel="import" href="../../../src/di/xhr.html">
 <template id="my-products">
     <style>
-         :host {
+        :host {
             display: flex;
             width: 100%;
         }
@@ -15,7 +15,7 @@
 
         img {
             float: left;
-            width: 200px;
+            width: 150px;
             max-width: 100%;
             padding: 10px;
         }
@@ -33,19 +33,16 @@
             font-weight: bold;
             font-family: fixed;
         }
+
+        o-repeat {
+            display: block;
+            width: 40%;
+            max-width: 300px;
+            margin: 3px;
+            border: 1px solid lightgray;
+        }
     </style>
     <o-repeat list="[products]" iterator="product">
-        <template header>
-            <style>
-                 :host {
-                    display: block;
-                    width: 40%;
-                    max-width: 300px;
-                    margin: 3px;
-                    border: 1px solid lightgray;
-                }
-            </style>
-        </template>
         <template item>
             <style>
                 product-line {
@@ -59,6 +56,10 @@
 
                 product-line:hover {
                     background-color: hsl(0, 0%, 80%);
+                }
+
+                product-line[active] {
+                    background-color: hsl(0, 100%, 80%);
                 }
 
                 name {
@@ -83,7 +84,7 @@
                     color: hsl(0, 100%, 30%);
                 }
             </style>
-            <product-line onclick="o(this, 'my-products').model.product = o(this).model.product">
+            <product-line onclick="o(this, 'my-products').setProduct(this)">
                 <name>{{product.name}}</name>
                 <qty>{{product.quantity}}</qty>
                 <price>{{product.price}}</price>
@@ -107,6 +108,15 @@
                 this.model.products = response.data.products;
                 this.model.product = this.model.products[0];
             }).catch(error => console.error('error', error));
+        }
+
+        setProduct(elt) {
+            this.model.product = o(elt).model.product;
+            const oRepeat = this.root.querySelector('o-repeat');
+            const oRepeatItems = oRepeat.root.querySelectorAll('o-repeat-item');
+            const array = Array.prototype.map.call(oRepeatItems, n => n.root.querySelector('product-line'));
+            array.forEach(n => n.removeAttribute('active'));
+            elt.setAttribute('active', '');
         }
     }
     MyProducts.reg();
