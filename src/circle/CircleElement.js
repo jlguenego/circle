@@ -196,7 +196,7 @@ export class CircleElement extends HTMLElement {
 
     /**
      * We want the user be able to easily insert expression like in AngularJS.
-     * But internally, the {{myModelVar}} must be converted to <circle-expr expr="[myModelVar]"></circle-expr>
+     * But internally, the {{myModelVar}} must be converted to <o-expr expr="[myModelVar]"></o-expr>
      * 
      * @param {any} elt 
      * @memberof CircleElement
@@ -213,7 +213,7 @@ export class CircleElement extends HTMLElement {
         array.forEach((node) => {
             const t = document.createElement('template');
             t.innerHTML = node.data.replace(/{{(.*?)}}/g, (match, name) => {
-                return `<circle-expr expr="[${name}]"></circle-expr>`;
+                return `<o-expr expr="[${name}]"></o-expr>`;
             });
             const parentNode = node.parentNode;
             const replacementNode = t.content;
