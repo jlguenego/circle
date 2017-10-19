@@ -2,15 +2,14 @@
 	'use strict';
 
 	class Routes {
-		states(states) {
-			this.states = states;
-		}
 
 		setState(state) {
 			this.elt.root.innerHTML = '';
 			this.elt.root.appendChild(document.createElement(state.component));
 			console.log('setting current state to ', state);
 			this.elt.model.currentState = state;
+			document.title = this.title + ' - ' + state.label;
+			return this;
 		}
 
 		sync() {
@@ -20,7 +19,7 @@
 				const baseElt = document.createElement('base');
 				baseElt.setAttribute('href', currentUrl);
 				document.head.insertBefore(baseElt, document.head.childNodes[0]);
-				
+
 			} else {
 				state = this.states.find(n => n.default === true);
 				window.history.replaceState(state, state.name, state.url);
@@ -30,17 +29,13 @@
 
 		register(elt) {
 			this.elt = elt;
-			
-
 			this.sync();
-
 			const service = this;
 			window.onpopstate = function (e) {
 				console.log('onpopstate', arguments);
 				const state = e.state;
 				if (state) {
-					service.elt.root.innerHTML = '';
-					service.elt.root.appendChild(document.createElement(state.component));
+					service.setState(state);
 				} else {
 					service.sync();
 				}

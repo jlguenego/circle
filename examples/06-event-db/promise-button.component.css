@@ -1,0 +1,15 @@
+button {
+	border: 1px solid black;
+	border-radius: 3px;
+	background-color: #ccc;
+	padding: 20px;
+	cursor: pointer;
+}
+
+button:hover {
+	background-color: #aaa;	
+}
+
+button:disabled {
+	background-color: #eee;
+}

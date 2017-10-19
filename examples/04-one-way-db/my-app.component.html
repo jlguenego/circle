@@ -1,25 +1,17 @@
-<!DOCTYPE html>
-<html>
-
-<head>
-	<link rel="import" href="../../dist/circle.html">
-</head>
-
-<body>
-	<template id="my-app">
-		<hello-name name="[firstname]"></hello-name><br>
-		<button onclick="o(this).model.firstname = 'Jean-Louis'">Hello Monsieur</button>
-		<button onclick="o(this).model.firstname = 'Maïté'">Hello Madame</button>
-	</template>
-	<script>
-		class MyApp extends o.Element {
-			constructor() {
-				super();
-				this.model.firstname = 'Maïté';
-			}
+<link rel="import" href="../../dist/circle.html">
+<link rel="import" href="hello-name.component.html">
+<template id="my-app">
+	<hello-name name="[firstname]"></hello-name><br>
+	<button onclick="o(this).model.firstname = 'Jean-Louis'">Hello Monsieur</button>
+	<button onclick="o(this).model.firstname = 'Maïté'">Hello Madame</button>
+</template>
+<script>
+	class MyApp extends o.Element {
+		constructor() {
+			super();
+			this.model.firstname = 'Maïté';
 		}
-		MyApp.reg();
-	</script>
-</body>
+	}
+	MyApp.reg();
 
-</html>
+</script>
