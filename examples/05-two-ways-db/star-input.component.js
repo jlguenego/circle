@@ -1,7 +1,7 @@
 (function () {
 	'use strict';
 
-	class StarInput extends circle.Element {
+	class StarInput extends o.Element {
 
 		render() {
 			let note = +this.model.note || 0;

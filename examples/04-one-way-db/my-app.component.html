@@ -1,10 +1,10 @@
 <link rel="import" href="../../dist/circle.html">
 <link rel="import" href="hello-name.component.html">
 <template id="my-app">
-		<hello-name name="[firstname]"></hello-name><br>
-		<button onclick="o(this).model.firstname = 'Jean-Louis'">Hello Monsieur</button>
-		<button onclick="o(this).model.firstname = 'Maïté'">Hello Madame</button>
-	</template>
+	<hello-name name="[firstname]"></hello-name><br>
+	<button onclick="o(this).model.firstname = 'Jean-Louis'">Hello Monsieur</button>
+	<button onclick="o(this).model.firstname = 'Maïté'">Hello Madame</button>
+</template>
 <script>
 	class MyApp extends o.Element {
 		constructor() {

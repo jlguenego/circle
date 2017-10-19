@@ -1,7 +1,7 @@
 (function () {
 	'use strict';
 
-	class PromiseButton extends circle.Element {
+	class PromiseButton extends o.Element {
 		init() {
 			this.button = this.root.querySelector('button');
 		}
