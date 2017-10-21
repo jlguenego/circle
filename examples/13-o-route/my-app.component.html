@@ -4,6 +4,7 @@
 <link rel="import" href="../../src/routes/routes.html">
 
 <link rel="import" href="./routes/routes.html">
+<link rel="import" href="./layout/my-footer.component.html">
 
 
 <template id="my-app">
@@ -58,41 +59,6 @@
 	</o-repeat>
 </template>
 
-<template id="my-footer">
-	<style>
-		:host,
-		my-footer {
-			display: block;
-			background-color: #666;
-			color: #ddd;
-			padding: 10px;
-		}
-
-		p {
-			text-align: center;
-		}
-
-		a {
-			color: hsl(0, 100%, 80%);
-		}
-
-		flat-icon {
-			display: block;
-			text-align: center;
-			font-size: 10px;
-		}
-	</style>
-	<footer>
-		<p>Fatfood - ©{{year}} - This is one of the <a href="..">examples</a> of the circle library.</p>
-		<flat-icon>Icons made by
-			<a href="https://www.flaticon.com/authors/baianat" title="Baianat">Baianat</a>,
-			<a href="http://www.freepik.com" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a>			is licensed by
-			<a href="http://creativecommons.org/licenses/by/3.0/" title="Creative Commons BY 3.0" target="_blank">CC 3.0 BY</a>
-
-		</flat-icon>
-	</footer>
-</template>
-
 <script>
 	class MyApp extends o.Element {
 		init() {
@@ -115,11 +81,5 @@
 		}
 	}
 	MyBody.reg();
-	class MyFooter extends o.Element {
-		init() {
-			this.model.year = new Date().getFullYear();
-		}
-	}
-	MyFooter.reg();
 
 </script>
