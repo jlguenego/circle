@@ -17,11 +17,6 @@ export class Circle {
         this.behaviorRegistry = {};
     }
 
-    stackTrace() {
-        var err = new Error();
-        return err.stack;
-    }
-
     di(str, di) {
         if (arguments.length > 1) {
             this.dependancyInjectionRegistry[str] = di;

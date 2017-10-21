@@ -56,8 +56,6 @@ export class CircleElement extends HTMLElement {
                         target[key] = value;
                     }
                     circle.digestId++;
-                    // console.log('%d: %s: update %s to %s',
-                    //     circle.digestId, self.constructor.name, absoluteKey, value, circle.stackTrace());
                     let k = absoluteKey;
                     while (k) {
                         self.digest(k);
@@ -72,8 +70,6 @@ export class CircleElement extends HTMLElement {
                         target.length--;
                     }
                     circle.digestId++;
-                    // console.log('%d: %s: delete %s',
-                    // 	circle.digestId, self.constructor.name, absoluteKey, circle.stackTrace());
                     self.digest(parentKey);
                     return true;
                 },
