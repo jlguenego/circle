@@ -1,0 +1,53 @@
+<link rel="import" href="../../../dist/circle.html">
+
+<link rel="import" href="../../../src/behavior/behavior.html">
+<link rel="import" href="../../../src/routes/routes.html">
+
+<template id="my-header">
+	<link rel="stylesheet" href="my-header.css">
+	<site-id o-sref="home">{{siteId}}</site-id>
+	<tag-line>{{tagline}}</tag-line>
+	<o-repeat list="[menu]" iterator="item">
+		<template header>
+			<style>
+				o-repeat,
+				 :host {
+					display: flex;
+					justify-content: center;
+					margin-top: 10px;
+				}
+
+				o-repeat-item {
+					flex-grow: 0.1;
+					text-align: center;
+				}
+			</style>
+		</template>
+		<template item>
+			<style>
+				o-repeat-item,
+				 :host {
+					margin: 0 1%;
+				}
+
+				a {
+					display: block;
+					padding: 10px;
+					background-color: #aaa;
+					color: black;
+					text-decoration: none;
+				}
+
+				a.active {
+					color: white;
+					background-color: red;
+				}
+			</style>
+			<a o-sref="<item.name>" o-sref-active="active">{{item.label}}</a>
+		</template>
+	</o-repeat>
+</template>
+<script>
+	class MyHeader extends o.Element { }
+	MyHeader.reg();
+</script>

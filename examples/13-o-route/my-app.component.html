@@ -4,8 +4,8 @@
 <link rel="import" href="../../src/routes/routes.html">
 
 <link rel="import" href="./routes/routes.html">
+<link rel="import" href="./layout/my-header.component.html">
 <link rel="import" href="./layout/my-footer.component.html">
-
 
 <template id="my-app">
 	<link rel="stylesheet" href="my-app.css">
@@ -14,67 +14,42 @@
 	<my-footer></my-footer>
 </template>
 
-<template id="my-header">
-	<link rel="stylesheet" href="my-header.css">
-	<site-id o-sref="home">{{siteId}}</site-id>
-	<tag-line>{{tagline}}</tag-line>
-	<o-repeat list="[menu]" iterator="item">
-		<template header>
-			<style>
-				o-repeat,
-				 :host {
-					display: flex;
-					justify-content: center;
-					margin-top: 10px;
-				}
-
-				o-repeat-item {
-					flex-grow: 0.1;
-					text-align: center;
-				}
-			</style>
-		</template>
-		<template item>
-			<style>
-				o-repeat-item,
-				 :host {
-					margin: 0 1%;
-				}
-
-				a {
-					display: block;
-					padding: 10px;
-					background-color: #aaa;
-					color: black;
-					text-decoration: none;
-				}
-
-				a.active {
-					color: white;
-					background-color: red;
-				}
-			</style>
-			<a o-sref="<item.name>" o-sref-active="active">{{item.label}}</a>
-		</template>
-	</o-repeat>
-</template>
 
 <script>
+	o.di('routes').states = [{
+			name: 'home',
+			label: 'Home',
+			url: './',
+			component: 'my-home',
+			default: true
+		},
+		{
+			name: 'products',
+			label: 'Products',
+			url: './products',
+			component: 'my-products'
+		},
+		{
+			name: 'services',
+			label: 'Services',
+			url: './services',
+			component: 'my-services'
+		},
+		{
+			name: 'contact',
+			label: 'Contact',
+			url: './contact',
+			component: 'my-contact'
+		},
+	];
+	o.di('routes').title = 'FatFood';
 	class MyApp extends o.Element {
 		init() {
-			o.di('routes').states = [
-				{ name: 'home', label: 'Home', url: './', component: 'my-home', default: true },
-				{ name: 'products', label: 'Products', url: './products', component: 'my-products' },
-				{ name: 'services', label: 'Services', url: './services', component: 'my-services' },
-				{ name: 'contact', label: 'Contact', url: './contact', component: 'my-contact' },
-			];
-			o.di('routes').title = 'FatFood';
+
 			this.model.menu = o.di('routes').states;
 		}
 	}
 	MyApp.reg();
-	class MyHeader extends o.Element { }
-	MyHeader.reg();
 	class MyBody extends o.Element {
 		init() {
 			o.di('routes').register(this);
