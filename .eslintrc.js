@@ -16,7 +16,7 @@ module.exports = {
 		'no-use-before-define': 'error',
 		'no-undef-init': 'error',
 		'semi': ['error', 'always'],
-		'quotes': ['error', 'single'],
+		'quotes': ['error', 'single', { 'avoidEscape': true }],
 	},
 	env: {
 		browser: true,
