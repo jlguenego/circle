@@ -6,22 +6,22 @@
  * @returns spinal-case equivalent string.
  */
 export function camel2Spinal(str) {
-    // handle case like JLGStars becoming jlg-stars
-    str = str.replace(/^([A-Z]+)([A-Z][a-z])/g, '$1-$2');
-    // then do the traditional conversion to spinal case.
-    return str.replace(/([a-z])([A-Z])/g, '$1-$2').toLowerCase();
+	// handle case like JLGStars becoming jlg-stars
+	str = str.replace(/^([A-Z]+)([A-Z][a-z])/g, '$1-$2');
+	// then do the traditional conversion to spinal case.
+	return str.replace(/([a-z])([A-Z])/g, '$1-$2').toLowerCase();
 }
 
 export function spinal2Camel(str) {
-    return str.replace(/(-[a-z])/g, function ($1) { return $1.toUpperCase().replace('-', ''); });
+	return str.replace(/(-[a-z])/g, function($1) { return $1.toUpperCase().replace('-', ''); });
 }
 
 function key2Array(key) {
-    return key.substring(2, key.length -2).split(/'\]\['/);
+	return key.substring(2, key.length - 2).split(/'\]\['/);
 }
 
 function array2Key(array) {
-    return array.map(n => `['${n}']`).join('');
+	return array.map(n => `['${n}']`).join('');
 }
 
 /**
@@ -35,10 +35,10 @@ function array2Key(array) {
  * @returns 
  */
 export function dirname(absoluteKey) {
-    const array = key2Array(absoluteKey);
-    array.pop();
-    const result = array2Key(array);
-    return result;
+	const array = key2Array(absoluteKey);
+	array.pop();
+	const result = array2Key(array);
+	return result;
 }
 
 /**
@@ -52,8 +52,8 @@ export function dirname(absoluteKey) {
  * @returns 
  */
 export function basename(absoluteKey) {
-    const array = key2Array(absoluteKey);
-    return array.pop();
+	const array = key2Array(absoluteKey);
+	return array.pop();
 }
 
 
@@ -64,7 +64,7 @@ export function basename(absoluteKey) {
  * @returns true if user agent is Firefox, false otherwise.
  */
 export function isFirefox() {
-    return navigator.userAgent.match(/Firefox/) !== null;
+	return navigator.userAgent.match(/Firefox/) !== null;
 }
 
 /**
@@ -73,8 +73,37 @@ export function isFirefox() {
  * @returns true if user agent is Edge, false otherwise.
  */
 export function isEdge() {
-    return navigator.userAgent.match(/Edge/) !== null;
+	return navigator.userAgent.match(/Edge/) !== null;
 }
 
-
-
+/**
+ * Transforms hello.world[3].foo.bar['a.\'b'] in ['hello']['world']['3']['foo']['bar']['a.\'b']
+ * 
+ * 
+ * @param {any} key 
+ * @returns 
+ */
+export function parseAbsoluteKey(key) {
+	const array = key.split(/(\.|\['|'\])/);
+	let mode = 0; // 0 is dot notation, 1 is inside [].
+	const result = array.reduce((acc, n) => {
+		if (mode === 0) {
+			if (n === '') {
+				return acc;
+			}
+			if (n === '[\'') {
+				mode = 1;
+				return acc + n;
+			}
+			if (n === '.') {
+				return acc;
+			}
+			return acc + `['${n}']`;
+		}
+		if (n === '\']') {
+			mode = 0;
+		}
+		return acc + n;
+	}, '');
+	return result;
+}
