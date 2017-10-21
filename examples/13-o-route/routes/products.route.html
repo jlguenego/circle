@@ -1,5 +1,6 @@
 <link rel="import" href="../../../src/di/xhr.html">
-<template id="my-products">
+<link rel="import" href="../../../src/behavior/behavior.html">
+<template id="products-route">
     <style>
          :host {
             display: flex;
@@ -85,7 +86,7 @@
                     color: hsl(0, 100%, 30%);
                 }
             </style>
-            <product-line onclick="o(this, 'my-products').setProduct(this)">
+            <product-line onclick="o(this, 'products-route').setProduct(this)">
                 <name>{{product.name}}</name>
                 <qty>{{product.quantity}}</qty>
                 <price>{{product.price}}</price>
@@ -101,7 +102,7 @@
     </product-detail>
 </template>
 <script>
-    class MyProducts extends o.Element {
+    class ProductsRoute extends o.Element {
         init() {
             o.di('xhr').get('ws/products.json').then(response => {
                 response.data.products.forEach(n => n.image = '../img/' + n.image);
@@ -126,6 +127,6 @@
             elt.setAttribute('active', '');
         }
     }
-    MyProducts.reg();
+    ProductsRoute.reg();
 
 </script>

@@ -1,35 +1,15 @@
-<link rel="import" href="home.component.html">
-<link rel="import" href="products.component.html">
-<link rel="import" href="services.component.html">
-<link rel="import" href="contact.component.html">
+<link rel="import" href="home.route.html">
+<link rel="import" href="products.route.html">
+<link rel="import" href="services.route.html">
+<link rel="import" href="contact.route.html">
 
 <script>
-	o.di('routes').states = [{
-			name: 'home',
-			label: 'Home',
-			url: './',
-			component: 'my-home',
-			default: true
-		},
-		{
-			name: 'products',
-			label: 'Products',
-			url: './products',
-			component: 'my-products'
-		},
-		{
-			name: 'services',
-			label: 'Services',
-			url: './services',
-			component: 'my-services'
-		},
-		{
-			name: 'contact',
-			label: 'Contact',
-			url: './contact',
-			component: 'my-contact'
-		},
-	];
+	o.di('routes').push({
+		name: 'home',
+        default: true,
+        url: './'
+	}, 'products', 'services', 'contact');
+
 	o.di('routes').title = 'FatFood';
 
 </script>
