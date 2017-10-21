@@ -2,3 +2,34 @@
 <link rel="import" href="products.component.html">
 <link rel="import" href="services.component.html">
 <link rel="import" href="contact.component.html">
+
+<script>
+	o.di('routes').states = [{
+			name: 'home',
+			label: 'Home',
+			url: './',
+			component: 'my-home',
+			default: true
+		},
+		{
+			name: 'products',
+			label: 'Products',
+			url: './products',
+			component: 'my-products'
+		},
+		{
+			name: 'services',
+			label: 'Services',
+			url: './services',
+			component: 'my-services'
+		},
+		{
+			name: 'contact',
+			label: 'Contact',
+			url: './contact',
+			component: 'my-contact'
+		},
+	];
+	o.di('routes').title = 'FatFood';
+
+</script>
