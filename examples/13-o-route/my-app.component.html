@@ -3,6 +3,7 @@
 
 <link rel="import" href="./routes/routes.html">
 <link rel="import" href="./layout/my-header.component.html">
+<link rel="import" href="./layout/my-body.component.html">
 <link rel="import" href="./layout/my-footer.component.html">
 
 <template id="my-app">
@@ -21,11 +22,5 @@
 		}
 	}
 	MyApp.reg();
-	class MyBody extends o.Element {
-		init() {
-			o.di('routes').register(this);
-		}
-	}
-	MyBody.reg();
 
 </script>
