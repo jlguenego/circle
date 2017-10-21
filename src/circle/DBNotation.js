@@ -1,4 +1,4 @@
-import { parseAbsoluteKey } from './functions.js';
+import { normalizeKey } from './functions.js';
 
 /**
  * Class in charge of managing the databinding notation:
@@ -57,7 +57,7 @@ export class DBNotation {
 	static extractModelVar(value) {
 
 		let expr = value.replace(/^\[([^'].*?)\]$/g, '$1').replace(/^\[([^'].*?)\]$/g, '$1');
-		expr = parseAbsoluteKey(expr);
+		expr = normalizeKey(expr);
 		return expr;
 	}
 
@@ -71,7 +71,7 @@ export class DBNotation {
 	 */
 	static extractModelVarFromBehavior(value) {
 		let expr = value.replace(/^<(.*)>$/, '$1');
-		expr = parseAbsoluteKey(expr);
+		expr = normalizeKey(expr);
 		return expr;
 	}
 

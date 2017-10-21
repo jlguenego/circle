@@ -83,7 +83,7 @@ export function isEdge() {
  * @param {any} key 
  * @returns 
  */
-export function parseAbsoluteKey(key) {
+export function normalizeKey(key) {
 	const array = key.split(/(\.|\['|'\])/);
 	let mode = 0; // 0 is dot notation, 1 is inside [].
 	const result = array.reduce((acc, n) => {
