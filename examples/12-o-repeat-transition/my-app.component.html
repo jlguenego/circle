@@ -7,7 +7,7 @@
 	<button onclick="o(this).init()">Initialize list</button>
 	<o-repeat list="[cities]" iterator="city">
 		<template header>
-			<link rel="stylesheet" href="../../src/o-repeat.css">
+			<link rel="stylesheet" href="../../src/repeat/o-repeat.css">
 		</template>
 		<template item>
 			<style>
@@ -28,7 +28,7 @@
 	</o-repeat>
 </template>
 <link rel="import" href="../../dist/circle.html">
-<link rel="import" href="../../src/o-repeat.html">
+<link rel="import" href="../../src/repeat/repeat.html">
 <script src="../../src/di/xhr.js"></script>
 <script>
 	class MyApp extends o.Element {
