@@ -30,6 +30,7 @@
 <script>
 	class MyApp extends o.Element {
 		init() {
+			console.log('waiting for 1s...');
 			setTimeout(() => {
 				o.di('xhr').get('content.json').then((response) => {
 					this.model.cities = response.data.content;
